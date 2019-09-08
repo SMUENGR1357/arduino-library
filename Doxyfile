@@ -6,7 +6,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "SMU KNW 2300 Arduino Library"
 PROJECT_NUMBER         =
-PROJECT_BRIEF          = "Documentation for the Arduino Library used in the KNW 2300 course."
+PROJECT_BRIEF          = "Documentation for the Arduino Library used in the SMU KNW 2300 course."
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = ./docs
 CREATE_SUBDIRS         = NO
