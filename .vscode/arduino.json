@@ -1,4 +1,0 @@
-{
-    "sketch": "sketches/ThermistorDemo/thermisterDemo.ino",
-    "board": "arduino:avr:megaADK"
-}
