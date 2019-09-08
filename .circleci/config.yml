@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  docs-build:
+    docker:
+      - image: hrektts/doxygen
+    steps:
+      - checkout
+      - run:
+          name: Build Doxygen docs
+          command: doxygen Doxyfile
+
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: docs
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages
+            git config user.email "cayala@smu.edu"
+            git config user.name "ChristianAyala"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist docs
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - docs-build
+      - docs-deploy:
+          requires:
+            - docs-build
+          filters:
+            branches:
+              only: add_circle_for_docs
