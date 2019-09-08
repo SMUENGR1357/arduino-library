@@ -10,7 +10,8 @@ jobs:
           command: doxygen Doxyfile
       - persist_to_workspace:
           root: .
-          paths: docs
+          paths:
+            - docs/*
 
   docs-deploy:
     docker:
