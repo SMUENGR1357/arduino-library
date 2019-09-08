@@ -8,6 +8,9 @@ jobs:
       - run:
           name: Build Doxygen docs
           command: doxygen Doxyfile
+      - persist_to_workspace:
+          root: .
+          paths: docs
 
   docs-deploy:
     docker:
