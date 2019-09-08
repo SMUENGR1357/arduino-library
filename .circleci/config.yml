@@ -43,4 +43,4 @@ workflows:
             - docs-build
           filters:
             branches:
-              only: add_circle_for_docs
+              only: master
