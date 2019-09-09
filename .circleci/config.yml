@@ -1,0 +1,46 @@
+version: 2
+jobs:
+  docs-build:
+    docker:
+      - image: hrektts/doxygen
+    steps:
+      - checkout
+      - run:
+          name: Build Doxygen docs
+          command: doxygen Doxyfile
+      - persist_to_workspace:
+          root: .
+          paths:
+            - docs/*
+
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - add_ssh_keys:
+          fingerprints:
+            - "18:9e:e0:ef:7d:9e:cb:5d:e4:74:3c:2f:e0:35:5d:59"
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages
+            git config user.email "cayala@smu.edu"
+            git config user.name "ChristianAyala"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist docs
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - docs-build
+      - docs-deploy:
+          requires:
+            - docs-build
+          filters:
+            branches:
+              only: master
