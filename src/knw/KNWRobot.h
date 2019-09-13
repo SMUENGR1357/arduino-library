@@ -1,10 +1,10 @@
 /*
 	---------------------------------
-	|		KNW Robot Library		| 
+	|	 KNW Robot Library 2.0 		| 
 	---------------------------------
 	KNWRobot.h - Library written to control robots for SMU KNW2300
 	Controling Arduino: MEGA 2560 
-	Author: Alexandria Hancock
+	Author: Alexandria Hancock + (many contributors from previous library)
 
 	When first starting to interface with the MEGA 2560 to get the robot
 	runnning, a couple things must first be wired so you can use the library. 
@@ -32,25 +32,57 @@
 
 
 	-----------------------------------------------------------------------------
-	Functions
+	Functions and Variables
 	-----------------------------------------------------------------------------
 	KNWRobot(); 							//constructor, initalizes the pins, numpad, LCD, PWM
-											//the numpad has set pins.
-	------------------------------------
-	Ping Sensor Functions
-	------------------------------------
-	long getPing(int channel);				//returns ping distance in cm
 
+	bool analogPins[16]; 					//[*internal] 16 analog pins (0-15), True if used, False if free
+	bool digitalPins[54];					//[*internal] 54 analog pins (0-53),True if used, False if free
+	bool pcaPins[16];						//[*internal] 16 pwm pins on PCA board (0-15),True if used, False if free
+	bool* getAnalogPins();					//returns pointer to analogPins list
+	bool* getDigitalPins();					//returns pointer to digitalPins list
+	bool* getPCAPins();						//returns pointer to pcaPins list
+	bool checkPin(int pin, char type); 		//[*internal] check to see if pin is avalible (false) 
+	int getPin(int id, char type); 			//[*internal] gets physical pin from the user's ID		
+
+	------------------------------------
+	Ping Sensor 
+	------------------------------------
+	Component pingSensors[8];				//[*internal] List of Ping Sensors 'attached', up to 8
+	int numPings;							//number of ping sensors attached
+	bool setupPing(int id, int pin);		//'attaches' ping to physical pin by user's ID, true if successful
+	long getPing(int id);					//returns (long) ping distance in cm
+
+	------------------------------------
+	(!)Bump Sensor
+	------------------------------------
+	Component bumpSensors[8];				//[*internal] List of Bump Sensors 'attached', up to 8
+	int numBumps;							//number of bump sensors attached
+	bool setupBump(int id, int pin);		//'attaches' bump to physical pin by user's ID, true if successful
+	int checkBump(int id);					//checks to see if the bump has been triggered (HIGH or 1), else its LOW or 0
+
+	------------------------------------
+	(!)Inclinometer
+	------------------------------------
+	int inclinePin;							//the physical pin the inclinometer is attached to
+	bool setupIncline(int pin);				//'attaches' inclinometer to physical pin by user's ID, true if successful
+	int getIncline();						//returns ADC code [0-1023] of the measured resistance 
+	
+
+	int tempPin;
+		bool setupTemp(int pin);
+		int getTemp(); //returns 0-1023, or -1 if not setup
 	------------------------------------
 	Conductivity Sensor Functions
 	------------------------------------
-	int getConductivity(); 					//returns conduct. between plates
+	int getConductivity(); 					//returns conductivity between plates
 											//analog pins 2,3 : digital pins 12,13
 	------------------------------------
 	Keypad Functions
 	------------------------------------
 	int getInput();							//returns up to 15 inputted chars as int 
 											//'#' is the 'enter' key
+											//'*' is the backspace
 											//treat 'A,B,C,D' as int values for quadrents
 	------------------------------------
 	LCD Functions
@@ -59,12 +91,10 @@
 	void moveCursor(int col, int row);		//moves the cursor to (col, row)
 											//col is 0-15, row is 0(top) or 1(bottom)
 	void clearLine(int row);				//clears line, cursor set to begining of row
-	void printLCD(char* input);				//will print input where cursor currently is
+	void printLCD(* input);					//takes input of char*, int, long, or char
+											//will print input where cursor currently is
 											//suggest moveCursor() first
 											//the input should be  char str[] 
-	void printINT(int input);
-	void printLONG(long input);
-	void printCHAR(char input);
 
 	------------------------------------
 	PCA9685 Functions (all vars are int)	//goes 0(LOW) to 4095 (HIGH)
@@ -90,11 +120,6 @@
 		duration);
 	void pcaDC2MotorsTime(channel1, speed1,	//move 2 DC motors on channels at speeds for dur (ms)
 		channel2, speed2, duration);
-	void pcaDCMotorEncoded(channel, speed, 	//NOT IMPLEMENTED
-		encoderPin, encoderTicks);
-	void pcaDC2MotorsEndcoded(channel1, 	//NOT IMPLEMENTED
-		speed1, encoderPin1, encoderTicks1, 
-		channel2, speed2, encoderPin2, encoderTicks2);
 
 
 	------------------------------------
@@ -103,14 +128,6 @@
 	int getIRChar(channel);				//returns char found with IR Sensor on channel (NOT YET IMPLEMENTED)
 	void print_IR();					//prints everything in the IR buffer to the LCD
 	char get_char(int index);			//prints char in buffer at index, or Z if index out of range
-
-	------------------------------------
-	Testing Functions -T is for Dev mode use, prints to Serial Plotter
-	------------------------------------
-	void printDigitalPins(); -T 			//println state of digitalPins
-	void printAnalogPins(); -T 				//println state of analogPins
-	void lcdTest();							//rendom message to lcd Test
-	void secretFunction();					//vine references/moves motors
 
 
 
@@ -164,9 +181,11 @@
 	------------------------------------
 	unsigned char IRChar,IRCharBitMask,necState,buffer[8];
 	int buffer_in,buffer_out;
-	boolean receiverState = false;
+	boolean receiverState;
 	unsigned long prev_time,cur_time,ticks;
 */
+
+
 
 #ifndef KNWRobot_h
 #define KNWRobot_h
@@ -185,76 +204,70 @@
 #include "Adafruit_PWMServoDriver.h"
 #include "Servo.h"
 
-class KNWRobot{
+struct Component {
+	int ID = 0;		//User defined
+	int PIN = 0;	//physical pin
+	char TYPE = 0;	//either analog(a), digital (d), or pca (p)
+};
+
+
+/**
+ * KNWRobot Library 2.0. Ridding Serial Comm for the Superior Embedded BB.
+ */
+
+class KNWRobot
+{
 	public:
+		/**
+	 	* KNWRobot Constructor.
+	 	* Initalizes the mapping for analog, digital, and  pins
+	 	*/
 		KNWRobot(); 
-		void printAnalogPins();
-		void printDigitalPins();
-		void lcdTest();
+
+		//PIN MAPPING 
+		bool analogPins[16]; // 16 analog pins (0-15) 
+		bool digitalPins[54];//54 analog pins (0-53)
+		bool pcaPins[16];
+		bool* getAnalogPins();
+		bool* getDigitalPins();
+		bool* getPCAPins();
+		bool checkPin(int pin, char type); //check to see if avalible
+		int getPin(int id, char type); //from an ID
 		void secretFunction();
 
-		//ping sensor Functions
-		long getPing(int channel);
+		//PING SENSOR (digital)
+		Component pingSensors[8];
+		int numPings;
+		bool setupPing(int id, int pin);
+		long getPing(int id);
 
-		//conductivity Functions
-		int getConductivity();
+		//BUMP SENSOR (digital)
+		Component bumpSensors[8];
+		int numBumps;
+		bool setupBump(int id, int pin);
+		int checkBump(int id);
 
-		//Keypad Functions
-		int getInput();
+		//INCLINOMETER (analog)
+		int inclinePin;
+		bool setupIncline(int pin);
+		int getIncline();
 
-		//LCD Functions
-		void clearLCD();
-		void moveCursor(int col, int row);
-		void clearLine(int row);
-		void printLCD(char* input);
-		void printINT(int input);
-		void printLONG(long input);
-		void printCHAR(char input);
-
-
-		//PCA Functions
-		void pcaRaw(int channel, int pulseSize); 
-		void pcaRawTime(int channel, int pulseSize, int duration);
-		void pcaStop(int channel);
-		void pcaStopAll();
-		void pca180Servo(int channel, int angle);
-		void pcaContServo(int channel, int speed);
-		void pcaDCMotor(int channel, int speed);
-		void pcaDC2Motors(int channel1, int speed1, int channel2, int speed2);
-		void pca180ServoTime(int channel, int angle, int duration);
-		void pcaContServoTime(int channel, int speed, int duration);
-		void pcaDCMotorTime(int channel, int speed, int duration);
-		void pcaDC2MotorsTime(int channel1, int speed1, int channel2, int speed2, int duration);
-		//all for motors with motor encoders
-		/*void pcaDCMotorEncoded(int channel, int speed, int encoderPin, int encoderTicks);
-		void pcaDC2MotorsEndcoded(int channel1, int speed1, int encoderPin1, int encoderTicks1, int channel2, int speed2, int encoderPin2, int encoderTicks2);
-		//interrupt functions for encoded motors
-		void encoderTickInterrupt0();
-		void encoderTickInterrupt1();
-		void queryEncoderTicks();
-		void zeroEncoderTicks();
-		*/
-
-		//IR Functions
-		int getIRChar(int channel);
-		void printIR();
-		char get_char(int index);
-
-		//keeping track of pins
-		bool analogPins[16]; //16 analog pins (0-15)
-		bool digitalPins[54];//54 analog pins (0-53)
-
-		//ping 
-
-		//conductivity
+		//CONDUCTIVITY SENSOR 
 		const int dPin1 = 12, dPin2 = 13;
     	const int aPin1 = 2,  aPin2 = 3;
+		int getConductivity();
 
-		//keypad variables (change rowPins and colPins if needed)
+		//TEMPERATURE SENSOR (analog)
+		int tempPin;
+		bool setupTemp(int pin);
+		int getTemp(); //returns 0-1023, or -1 if not setup
+
+		//KEYPAD (digital)
+		int getInput(); //clears LCD
+		int getInput(int row); //if you want to format which line to print on (0 or 1)
 		bool entered;
 		int numEntered;
-		char DATA[16];
-
+		char DATA[17];
 		byte ROWS = 4;
 		byte COLS = 4;
 		char keys[4][4] = {
@@ -265,19 +278,45 @@ class KNWRobot{
 		};
 		byte rowPins[4] = {39,41,43,45}; 
 		byte colPins[4] = {47,49,51,53}; 
-
 		Keypad* mykeypad;
 
-
-		//LCD variables
+		//LCD 
 		LiquidCrystal_I2C* lcd;
+		void clearLCD();
+		void moveCursor(int col, int row);
+		void clearLine(int row);
+		void printLCD(char* input);
+		void printLCD(int input);
+		void printLCD(long input);
+		void printLCD(char input);
 
-
-		//PCA board Variables
+		//PCA/MOTOR (digital PWM)
 		Adafruit_PWMServoDriver* pwm;
-		bool servos[16]; //0-15 motors on a single pwm board
+		int numServos;
+		Component servos[16];
+		bool setupServo(int id, int pin);
+		int numMotors;
+		Component motors[4];
+		bool setupMotor(int id, int pin);
+		void pcaRaw(int id, int pulseSize); 
+		void pcaRawTime(int id, int pulseSize, int duration);
+		void pcaStop(int id);
+		void pcaStopAll();
+		void pca180Servo(int id, int angle);
+		void pcaContServo(int id, int speed);
+		void pcaDCMotor(int id, int speed);
+		void pcaDC2Motors(int id1, int speed1, int id2, int speed2);
+		void pca180ServoTime(int id, int angle, int duration);
+		void pcaContServoTime(int id, int speed, int duration);
+		void pcaDCMotorTime(int id, int speed, int duration);
+		void pcaDC2MotorsTime(int id1, int speed1, int id2, int speed2, int duration);
 
-		//IR Sensor Variables
+		//IR (digital)
+		int numIR;
+		Component irSensors[4];
+		bool setupIR(int id, int pin);
+		int scanIR(int id);
+		unsigned char* getIR();
 		unsigned char necState;
 		int num_chars;
 		unsigned long prev_time;
