@@ -71,6 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -111,30 +112,68 @@ $(document).ready(function(){initNavTree('class_k_n_w_robot.html','');});
 <div class="title">KNWRobot Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_k_n_w_robot.html" title="KNWRobot Library 2.0. ">KNWRobot</a> Library 2.0.  
+ <a href="class_k_n_w_robot.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_k_n_w_robot_8h_source.html">KNWRobot.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0ae9bd4d38f0c39b00785b9d9768e815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ae9bd4d38f0c39b00785b9d9768e815"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printAnalogPins</b> ()</td></tr>
-<tr class="separator:a0ae9bd4d38f0c39b00785b9d9768e815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43c7c343f58277c13d7486e7d8742ccb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43c7c343f58277c13d7486e7d8742ccb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printDigitalPins</b> ()</td></tr>
-<tr class="separator:a43c7c343f58277c13d7486e7d8742ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e475f243264adf436587f19ad4c0a9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e475f243264adf436587f19ad4c0a9f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>lcdTest</b> ()</td></tr>
-<tr class="separator:a0e475f243264adf436587f19ad4c0a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a646b4429008350a0db1b4a544703c5cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a646b4429008350a0db1b4a544703c5cb">KNWRobot</a> ()</td></tr>
+<tr class="memdesc:a646b4429008350a0db1b4a544703c5cb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_k_n_w_robot.html" title="KNWRobot Library 2.0. ">KNWRobot</a> Constructor.  <a href="#a646b4429008350a0db1b4a544703c5cb">More...</a><br /></td></tr>
+<tr class="separator:a646b4429008350a0db1b4a544703c5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d13b03aa286d2a8315a42807f2b6a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97d13b03aa286d2a8315a42807f2b6a6"></a>
+bool *&#160;</td><td class="memItemRight" valign="bottom"><b>getAnalogPins</b> ()</td></tr>
+<tr class="separator:a97d13b03aa286d2a8315a42807f2b6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6c18bcf060536a263d8c00ea060303"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa6c18bcf060536a263d8c00ea060303"></a>
+bool *&#160;</td><td class="memItemRight" valign="bottom"><b>getDigitalPins</b> ()</td></tr>
+<tr class="separator:aaa6c18bcf060536a263d8c00ea060303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a377ad5d4e18d56c3e7c377cc7344f6d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a377ad5d4e18d56c3e7c377cc7344f6d1"></a>
+bool *&#160;</td><td class="memItemRight" valign="bottom"><b>getPCAPins</b> ()</td></tr>
+<tr class="separator:a377ad5d4e18d56c3e7c377cc7344f6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebf83a834d0abaa8cca7725d13c97e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abebf83a834d0abaa8cca7725d13c97e6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkPin</b> (int pin, char type)</td></tr>
+<tr class="separator:abebf83a834d0abaa8cca7725d13c97e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb466557785d4de0b35038aceba59bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcb466557785d4de0b35038aceba59bb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getPin</b> (int id, char type)</td></tr>
+<tr class="separator:afcb466557785d4de0b35038aceba59bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a930579fce44f9a252e5085d1dc3669e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a930579fce44f9a252e5085d1dc3669e9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>secretFunction</b> ()</td></tr>
 <tr class="separator:a930579fce44f9a252e5085d1dc3669e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220ac0239c9c2cd0038159fea7121356"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a220ac0239c9c2cd0038159fea7121356"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>getPing</b> (int channel)</td></tr>
-<tr class="separator:a220ac0239c9c2cd0038159fea7121356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d1d1ded6ca8ce7b445ae26de76dff0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9d1d1ded6ca8ce7b445ae26de76dff0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupPing</b> (int id, int pin)</td></tr>
+<tr class="separator:ab9d1d1ded6ca8ce7b445ae26de76dff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe191a97cfbccbcce9165173ae18567e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe191a97cfbccbcce9165173ae18567e"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>getPing</b> (int id)</td></tr>
+<tr class="separator:afe191a97cfbccbcce9165173ae18567e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3863838f5fae8481f70c71cc6fad04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d3863838f5fae8481f70c71cc6fad04"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupBump</b> (int id, int pin)</td></tr>
+<tr class="separator:a6d3863838f5fae8481f70c71cc6fad04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa14ba3fe0e3aaf230e2a191f84fabc02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa14ba3fe0e3aaf230e2a191f84fabc02"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>checkBump</b> (int id)</td></tr>
+<tr class="separator:aa14ba3fe0e3aaf230e2a191f84fabc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44560025bb80b5fbebc42713582d927d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44560025bb80b5fbebc42713582d927d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupIncline</b> (int pin)</td></tr>
+<tr class="separator:a44560025bb80b5fbebc42713582d927d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0ef37de9f7938515e46c25884d290a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d0ef37de9f7938515e46c25884d290a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getIncline</b> ()</td></tr>
+<tr class="separator:a8d0ef37de9f7938515e46c25884d290a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48b47453e55df71edbee2ab255b07620"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48b47453e55df71edbee2ab255b07620"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getConductivity</b> ()</td></tr>
 <tr class="separator:a48b47453e55df71edbee2ab255b07620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d3413b58f2ae774251bdf778760a55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23d3413b58f2ae774251bdf778760a55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupTemp</b> (int pin)</td></tr>
+<tr class="separator:a23d3413b58f2ae774251bdf778760a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fafe105acec3db470e488542882c992"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fafe105acec3db470e488542882c992"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getTemp</b> ()</td></tr>
+<tr class="separator:a3fafe105acec3db470e488542882c992"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4f768d05ae6c02c63d8054f84238b9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4f768d05ae6c02c63d8054f84238b9b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getInput</b> ()</td></tr>
 <tr class="separator:ae4f768d05ae6c02c63d8054f84238b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f35fe045c20274c2a440952ae004e06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f35fe045c20274c2a440952ae004e06"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getInput</b> (int row)</td></tr>
+<tr class="separator:a6f35fe045c20274c2a440952ae004e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae83682079482b655e3ef07f92d275d68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae83682079482b655e3ef07f92d275d68"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clearLCD</b> ()</td></tr>
 <tr class="separator:ae83682079482b655e3ef07f92d275d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,60 +186,66 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>clearLine</b> (int ro
 <tr class="memitem:ab7425515e1a3a19335604913716239df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7425515e1a3a19335604913716239df"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>printLCD</b> (char *input)</td></tr>
 <tr class="separator:ab7425515e1a3a19335604913716239df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa73c6b0efbd4d4bc62592260022d8761"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa73c6b0efbd4d4bc62592260022d8761"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printINT</b> (int input)</td></tr>
-<tr class="separator:aa73c6b0efbd4d4bc62592260022d8761"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8fb88be2e0706bf46d79f4d6c2c3fdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8fb88be2e0706bf46d79f4d6c2c3fdb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printLONG</b> (long input)</td></tr>
-<tr class="separator:ac8fb88be2e0706bf46d79f4d6c2c3fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2971d70c94d2495ab7360a6b65d7c41a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2971d70c94d2495ab7360a6b65d7c41a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printCHAR</b> (char input)</td></tr>
-<tr class="separator:a2971d70c94d2495ab7360a6b65d7c41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9452f68ba4a74e7abf33caab538ce861"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9452f68ba4a74e7abf33caab538ce861"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRaw</b> (int channel, int pulseSize)</td></tr>
-<tr class="separator:a9452f68ba4a74e7abf33caab538ce861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66b3899dd91a990a7171e5393f779188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66b3899dd91a990a7171e5393f779188"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRawTime</b> (int channel, int pulseSize, int duration)</td></tr>
-<tr class="separator:a66b3899dd91a990a7171e5393f779188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bc36a90cfa6131af620aeb3fdc000a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bc36a90cfa6131af620aeb3fdc000a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaStop</b> (int channel)</td></tr>
-<tr class="separator:a2bc36a90cfa6131af620aeb3fdc000a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3250d2307519e6fc799b815a57316aa5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3250d2307519e6fc799b815a57316aa5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printLCD</b> (int input)</td></tr>
+<tr class="separator:a3250d2307519e6fc799b815a57316aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e21c8e3573bf218c1b465883a195c97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e21c8e3573bf218c1b465883a195c97"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printLCD</b> (long input)</td></tr>
+<tr class="separator:a9e21c8e3573bf218c1b465883a195c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac33b91ee3c56c3035379499150c0a3df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac33b91ee3c56c3035379499150c0a3df"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printLCD</b> (char input)</td></tr>
+<tr class="separator:ac33b91ee3c56c3035379499150c0a3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94753ae378d8167ed01912d315d45da5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94753ae378d8167ed01912d315d45da5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupServo</b> (int id, int pin)</td></tr>
+<tr class="separator:a94753ae378d8167ed01912d315d45da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c83d9b2f0d080d7725964d2bcfc8dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79c83d9b2f0d080d7725964d2bcfc8dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupMotor</b> (int id, int pin)</td></tr>
+<tr class="separator:a79c83d9b2f0d080d7725964d2bcfc8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93a06b316df5eba9c16426112bffd31a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93a06b316df5eba9c16426112bffd31a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRaw</b> (int id, int pulseSize)</td></tr>
+<tr class="separator:a93a06b316df5eba9c16426112bffd31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a894e10aad382b9431b77bcf731df42f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894e10aad382b9431b77bcf731df42f6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRawTime</b> (int id, int pulseSize, int duration)</td></tr>
+<tr class="separator:a894e10aad382b9431b77bcf731df42f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bac41a5aacbf64ebcf2a159e785370a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bac41a5aacbf64ebcf2a159e785370a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaStop</b> (int id)</td></tr>
+<tr class="separator:a9bac41a5aacbf64ebcf2a159e785370a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04b7aaed9340548ba0552ca08aca3d01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04b7aaed9340548ba0552ca08aca3d01"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaStopAll</b> ()</td></tr>
 <tr class="separator:a04b7aaed9340548ba0552ca08aca3d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dc5f88bab9949473311964a6b583ce9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc5f88bab9949473311964a6b583ce9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pca180Servo</b> (int channel, int angle)</td></tr>
-<tr class="separator:a1dc5f88bab9949473311964a6b583ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af944a5e681d5b3d4ba6591bcddfc121e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af944a5e681d5b3d4ba6591bcddfc121e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaContServo</b> (int channel, int speed)</td></tr>
-<tr class="separator:af944a5e681d5b3d4ba6591bcddfc121e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af94b1066b7d32c59941545837fe7f928"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af94b1066b7d32c59941545837fe7f928"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDCMotor</b> (int channel, int speed)</td></tr>
-<tr class="separator:af94b1066b7d32c59941545837fe7f928"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd0072dc85dac1417160ea3ad29e8b7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd0072dc85dac1417160ea3ad29e8b7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDC2Motors</b> (int channel1, int speed1, int channel2, int speed2)</td></tr>
-<tr class="separator:afd0072dc85dac1417160ea3ad29e8b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a172d01952649c1febdfb452f5f5fc794"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a172d01952649c1febdfb452f5f5fc794"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pca180ServoTime</b> (int channel, int angle, int duration)</td></tr>
-<tr class="separator:a172d01952649c1febdfb452f5f5fc794"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98963284c3b3ebfd943cc849735b5569"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98963284c3b3ebfd943cc849735b5569"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaContServoTime</b> (int channel, int speed, int duration)</td></tr>
-<tr class="separator:a98963284c3b3ebfd943cc849735b5569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008e8102a3f3478ebd8f5c5c336c8af6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a008e8102a3f3478ebd8f5c5c336c8af6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDCMotorTime</b> (int channel, int speed, int duration)</td></tr>
-<tr class="separator:a008e8102a3f3478ebd8f5c5c336c8af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa38e3ffab96cfeddee1ebfbe9417871d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa38e3ffab96cfeddee1ebfbe9417871d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDC2MotorsTime</b> (int channel1, int speed1, int channel2, int speed2, int duration)</td></tr>
-<tr class="separator:aa38e3ffab96cfeddee1ebfbe9417871d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dcd7345518b69d53e47e12e100b6af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dcd7345518b69d53e47e12e100b6af3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getIRChar</b> (int channel)</td></tr>
-<tr class="separator:a3dcd7345518b69d53e47e12e100b6af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c396f7a5a917075e52ba1a90ebe01b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c396f7a5a917075e52ba1a90ebe01b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printIR</b> ()</td></tr>
-<tr class="separator:a9c396f7a5a917075e52ba1a90ebe01b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97dd7f1639cbe36667f578cd035f8983"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97dd7f1639cbe36667f578cd035f8983"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>get_char</b> (int index)</td></tr>
-<tr class="separator:a97dd7f1639cbe36667f578cd035f8983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f41c4fd52a7137645939340bdb2b6d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f41c4fd52a7137645939340bdb2b6d6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pca180Servo</b> (int id, int angle)</td></tr>
+<tr class="separator:a5f41c4fd52a7137645939340bdb2b6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4ad97037ff87e997aa2764da4b4ce18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4ad97037ff87e997aa2764da4b4ce18"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaContServo</b> (int id, int speed)</td></tr>
+<tr class="separator:af4ad97037ff87e997aa2764da4b4ce18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43883e6cf9bb018f86087b6fa4b9c32a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43883e6cf9bb018f86087b6fa4b9c32a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDCMotor</b> (int id, int speed)</td></tr>
+<tr class="separator:a43883e6cf9bb018f86087b6fa4b9c32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01890a72e68ea56e7d1636d8a5d46dd6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01890a72e68ea56e7d1636d8a5d46dd6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDC2Motors</b> (int id1, int speed1, int id2, int speed2)</td></tr>
+<tr class="separator:a01890a72e68ea56e7d1636d8a5d46dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef5545959defdfd33ec5296d931bc00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ef5545959defdfd33ec5296d931bc00"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pca180ServoTime</b> (int id, int angle, int duration)</td></tr>
+<tr class="separator:a0ef5545959defdfd33ec5296d931bc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e53f71b815b641f93d7b5797d531f7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e53f71b815b641f93d7b5797d531f7d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaContServoTime</b> (int id, int speed, int duration)</td></tr>
+<tr class="separator:a0e53f71b815b641f93d7b5797d531f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89027e1edff8419dae20976f32a19ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae89027e1edff8419dae20976f32a19ac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDCMotorTime</b> (int id, int speed, int duration)</td></tr>
+<tr class="separator:ae89027e1edff8419dae20976f32a19ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77eb3749b0285c58ffbc538a9e036226"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77eb3749b0285c58ffbc538a9e036226"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaDC2MotorsTime</b> (int id1, int speed1, int id2, int speed2, int duration)</td></tr>
+<tr class="separator:a77eb3749b0285c58ffbc538a9e036226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8eaa7d3d286d00f8a48f5bb6049e14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d8eaa7d3d286d00f8a48f5bb6049e14"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupIR</b> (int id, int pin)</td></tr>
+<tr class="separator:a1d8eaa7d3d286d00f8a48f5bb6049e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f19ae94e6d68900c0c9ddd16b4bb326"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f19ae94e6d68900c0c9ddd16b4bb326"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>scanIR</b> (int id)</td></tr>
+<tr class="separator:a2f19ae94e6d68900c0c9ddd16b4bb326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5a352580aa262ab1e22550a08092f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c5a352580aa262ab1e22550a08092f6"></a>
+unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><b>getIR</b> ()</td></tr>
+<tr class="separator:a3c5a352580aa262ab1e22550a08092f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -210,6 +255,24 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>analogPins</b> [16]</
 <tr class="memitem:a959d35750a0bf186d2562679f0c81e55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959d35750a0bf186d2562679f0c81e55"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>digitalPins</b> [54]</td></tr>
 <tr class="separator:a959d35750a0bf186d2562679f0c81e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d71e4d26846a5e8e1ecd6eae919a5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08d71e4d26846a5e8e1ecd6eae919a5d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pcaPins</b> [16]</td></tr>
+<tr class="separator:a08d71e4d26846a5e8e1ecd6eae919a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a622479b7cbf685e6d0c6e7c246165595"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a622479b7cbf685e6d0c6e7c246165595"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pingSensors</b> [8]</td></tr>
+<tr class="separator:a622479b7cbf685e6d0c6e7c246165595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ff6077375f2c2c1ce24214d1884607"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44ff6077375f2c2c1ce24214d1884607"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numPings</b></td></tr>
+<tr class="separator:a44ff6077375f2c2c1ce24214d1884607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14eb121a82683d4fbf4577e9bd1a5ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad14eb121a82683d4fbf4577e9bd1a5ee"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bumpSensors</b> [8]</td></tr>
+<tr class="separator:ad14eb121a82683d4fbf4577e9bd1a5ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5edc924c29fe83299f6694630fa4ed9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5edc924c29fe83299f6694630fa4ed9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numBumps</b></td></tr>
+<tr class="separator:ad5edc924c29fe83299f6694630fa4ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c70af0f3df7c2613e8a81bc3490253"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c70af0f3df7c2613e8a81bc3490253"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>inclinePin</b></td></tr>
+<tr class="separator:a92c70af0f3df7c2613e8a81bc3490253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5594bf51c4c47aebfaff1b0f6f4cc51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5594bf51c4c47aebfaff1b0f6f4cc51"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>dPin1</b> = 12</td></tr>
 <tr class="separator:aa5594bf51c4c47aebfaff1b0f6f4cc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,15 +285,18 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>aPin1</b> = 2</t
 <tr class="memitem:a07cdf553668bb22ff1476bd6cbfb9883"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07cdf553668bb22ff1476bd6cbfb9883"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>aPin2</b> = 3</td></tr>
 <tr class="separator:a07cdf553668bb22ff1476bd6cbfb9883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603564750c72c655c3373a8d755bedc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a603564750c72c655c3373a8d755bedc5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>tempPin</b></td></tr>
+<tr class="separator:a603564750c72c655c3373a8d755bedc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce53064ac1a17daac91796abdebe5a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ce53064ac1a17daac91796abdebe5a5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>entered</b></td></tr>
 <tr class="separator:a4ce53064ac1a17daac91796abdebe5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4ee96356d5dff45033f1ef0f7b1eef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4ee96356d5dff45033f1ef0f7b1eef4"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>numEntered</b></td></tr>
 <tr class="separator:ac4ee96356d5dff45033f1ef0f7b1eef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada463a9fdb1ca88e497a22315214d567"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada463a9fdb1ca88e497a22315214d567"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>DATA</b> [16]</td></tr>
-<tr class="separator:ada463a9fdb1ca88e497a22315214d567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a633e9f43dadaa0fa765a4954543b6444"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a633e9f43dadaa0fa765a4954543b6444"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>DATA</b> [17]</td></tr>
+<tr class="separator:a633e9f43dadaa0fa765a4954543b6444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a341baf345717efe9d0a31f1f1c353346"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a341baf345717efe9d0a31f1f1c353346"></a>
 byte&#160;</td><td class="memItemRight" valign="bottom"><b>ROWS</b> = 4</td></tr>
 <tr class="separator:a341baf345717efe9d0a31f1f1c353346"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,9 +320,24 @@ LiquidCrystal_I2C *&#160;</td><td class="memItemRight" valign="bottom"><b>lcd</b
 <tr class="memitem:aa05fcf341232599a77b6b23ebffc0573"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa05fcf341232599a77b6b23ebffc0573"></a>
 Adafruit_PWMServoDriver *&#160;</td><td class="memItemRight" valign="bottom"><b>pwm</b></td></tr>
 <tr class="separator:aa05fcf341232599a77b6b23ebffc0573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17322ec0e14a25005a2f97deeb156599"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17322ec0e14a25005a2f97deeb156599"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>servos</b> [16]</td></tr>
-<tr class="separator:a17322ec0e14a25005a2f97deeb156599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab238414ca34ee77806be2a8f900549a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab238414ca34ee77806be2a8f900549a8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numServos</b></td></tr>
+<tr class="separator:ab238414ca34ee77806be2a8f900549a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b2173ced6688df0b8d1842e23bf1ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2b2173ced6688df0b8d1842e23bf1ec"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>servos</b> [16]</td></tr>
+<tr class="separator:ab2b2173ced6688df0b8d1842e23bf1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a811c609d9e74a85062a484839cb5817a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a811c609d9e74a85062a484839cb5817a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numMotors</b></td></tr>
+<tr class="separator:a811c609d9e74a85062a484839cb5817a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ded7af28486e1d75bc2b8eed690cc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4ded7af28486e1d75bc2b8eed690cc3"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>motors</b> [4]</td></tr>
+<tr class="separator:ab4ded7af28486e1d75bc2b8eed690cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995941a69ef375d9abfd5e1c1a15390c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a995941a69ef375d9abfd5e1c1a15390c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numIR</b></td></tr>
+<tr class="separator:a995941a69ef375d9abfd5e1c1a15390c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb079a0af35a2e586e6506df6a531f0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb079a0af35a2e586e6506df6a531f0e"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>irSensors</b> [4]</td></tr>
+<tr class="separator:adb079a0af35a2e586e6506df6a531f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab831ad3858f2d61a2065652404c2e006"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab831ad3858f2d61a2065652404c2e006"></a>
 unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>necState</b></td></tr>
 <tr class="separator:ab831ad3858f2d61a2065652404c2e006"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,6 +366,28 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>cur_time</b>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>ticks</b></td></tr>
 <tr class="separator:af5fbf4c160f6539fc8582a57cab848d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_k_n_w_robot.html" title="KNWRobot Library 2.0. ">KNWRobot</a> Library 2.0. </p>
+<p>Ridding Serial Comm for the Superior Embedded BB. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a646b4429008350a0db1b4a544703c5cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KNWRobot::KNWRobot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_k_n_w_robot.html" title="KNWRobot Library 2.0. ">KNWRobot</a> Constructor. </p>
+<p>Initalizes the mapping for analog, digital, and pins </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a034d372f12dad6014de4c1f89419508b"></a>
 <div class="memitem">
