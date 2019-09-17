@@ -1,36 +1,4 @@
 /*
-	---------------------------------
-	|	 KNW Robot Library 2.0 		| 
-	---------------------------------
-	KNWRobot.h - Library written to control robots for SMU KNW2300
-	Controling Arduino: MEGA 2560 
-	Author: Alexandria Hancock + (many contributors from previous library)
-
-	When first starting to interface with the MEGA 2560 to get the robot
-	runnning, a couple things must first be wired so you can use the library. 
-	The numpad, which must be on pins {39,41,43,45,47,49,51,53}, the
-	Adafruit PWM board, and the LCD 16x2 must all be correctly wired to check 
-	if you have successfully included the library in your sketch, if you have,
-	the message "SMU Lyle KNW2300" will appear on the first line of the lcd.
-
-	To include this library in your sketch, you have to make a folder in the
-	libraries folder in the arduino files. For example, for me I keep it in 
-	the c drive in my Program Files folder. The folder must have the name 
-	KNWRobot, and will have the .h, the .cpp, as well as a README.txt within it. 
-	The path should look sommething like this:
-
-	C:\Program Files (x86)\Arduino\libraries\KNWRobot
-
-	After this step is done, open up a sketch in the Arduino IDE and type 
-	#include <KNWRobot.h>
-
-	This will give you access to run all of the functions we've written to safely
-	run your robot. Keep in mind, you do have the freedom to edit the library 
-	however you see fit (for example changing the pins for the numpad), but if you
-	run into errors that you can't fix, we will tell you to delete the edited library
-	and redownload it for it's original state.  
-
-
 	-----------------------------------------------------------------------------
 	Functions and Variables
 	-----------------------------------------------------------------------------
@@ -204,6 +172,16 @@
 #include "Adafruit_PWMServoDriver.h"
 #include "Servo.h"
 
+/**
+ * A struct representing a generic component that gets plugged into the arduino.
+ * A component is a combination of:
+ * - An integer ID - you as the programmer define this.
+ * - A type of pin - 'a' for analog, 'd' for digital, and 'p' for PCA board
+ * - A pin number - these are 0-indexed and the max value depends on the type of pin
+ *
+ * Students typically do not reference these directly; rather, they are using the
+ * various `getValue()` functions that use these Components behind the scenes.
+ */
 struct Component {
 	int ID = 0;		//User defined
 	int PIN = 0;	//physical pin
@@ -253,7 +231,19 @@ class KNWRobot
 		 * to an analog pin on the arduino. If element 0 is `true`, then
 		 * analog pin 0 is currently allocated to a sensor, and so on. If `false`,
 		 * then the pin is not currently allocated.
+		 *
 		 * @returns A boolean array of 16 elements indicating allocation status.
+		 *
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming an inclinometer is wired and connected to digital pin 2
+		 * myRobot->setupIncline(2);
+		 * bool* activeAnalogPins = myRobot->getAnalogPins();
+		 * if (activeAnalogPins[2] == true) {
+		 *   // Analog pin 2 successfully connected
+		 * }
+		 * @endcode
 		 */
 		bool* getAnalogPins();
 
@@ -261,20 +251,101 @@ class KNWRobot
 		 * Accessor function to get what digital pins are currently assigned.
 		 * The returned array contains 54 elements, each of which refers
 		 * to a digital pin on the arduino. If element 0 is `true`, then
-		 * digital pin 0 is currently allocated to a sensor / motor, and so on.
+		 * digital pin 0 is currently allocated to a sensor, and so on.
 		 * If `false`, then the pin is not currently allocated.
+		 *
 		 * @returns A boolean array of 54 elements indicating allocation status.
+		 *
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming a ping sensor is wired and connected to digital pin 3
+		 * myRobot->setupPing(1, 3);
+		 * bool* activeDigitalPins = myRobot->getDigitalPins();
+		 * if (activeDigitalPins[3] == true) {
+		 *   // Digital pin 3 successfully connected
+		 * }
+		 * @endcode
 		 */
 		bool* getDigitalPins();
-		bool* getPCAPins();
-		bool checkPin(int pin, char type); //check to see if avalible
-		int getPin(int id, char type); //from an ID
-		void secretFunction();
 
-		//PING SENSOR (digital)
-		Component pingSensors[8];
-		int numPings;
+		/**
+		 * Accessor function to get what PCA board pins are currently assigned.
+		 * The PCA9685 board is what is used to control motors and servos.
+		 * The returned array contains 16 elements, each of which refers
+		 * to a pwm pin on the PCA board. If element 0 is `true`, then
+		 * pwm pin 0 is currently allocated to a servo / motor, and so on.
+		 * If `false`, then the pin is not currently allocated.
+		 *
+		 * @returns A boolean array of 16 elements indicating allocation status.
+		 *
+		 * @code
+		 * // Assuming a motor is wired and connected to pwm pin 1
+		 * myRobot->setupMotor(1, 1);
+		 * bool* activePCAPins = myRobot->getPCAPins();
+		 * if (activePCAPins[1] == true) {
+		 *   // Motor on pwm pin 1 successfully connected
+		 * }
+		 * @endcode
+		 */
+		bool* getPCAPins();
+
+		/**
+		 * Sets up and assigns a ping sensor to run on the specified digital pin.
+		 * A <a href="https://www.arduino.cc/en/tutorial/ping">ping sensor</a>
+		 * sends a high frequency audio burst out in front of it and waits for
+		 * the echo to come back to it. The time between the sending and receiving
+		 * is used to calculate the distance from the ping sensor to the object
+		 * <b>in centimeters</b>.
+		 *
+		 * <b>Note:</b> The arduino supports connecting up to 8 ping sensors
+		 * at one time.
+		 * 
+		 * @param id A unique identifier that you specify. You will use this identifier
+		 * when running getPing(int), so it's recommended you assign it to a variable.
+		 * It is also recommended you make it equal to the pin number it is assigned to.
+		 * @param pin The digital pin that the ping sensor is connected to.
+		 * @return true If the ping sensor was successfully assigned to the pin
+		 * @return false If the ping sensor was not assigned to the pin
+		 *
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming a ping sensor is wired and connected to digital pin 2
+		 * int pingSensorId = 1;
+		 * bool success = myRobot->setupPing(pingSensorId, 2);
+		 * if (success) {
+		 *   // Now ready to use the ping sensor with pingSensorId
+		 * }
+		 * @endcode
+		 */
 		bool setupPing(int id, int pin);
+
+		/**
+		 * Triggers a ping sensor to sense how far it is away from an object in front of it.
+		 * A <a href="https://www.arduino.cc/en/tutorial/ping">ping sensor</a>
+		 * sends a high frequency audio burst out in front of it and waits for
+		 * the echo to come back to it. The time between the sending and receiving
+		 * is used to calculate the distance from the ping sensor to the object
+		 * <b>in centimeters</b>.
+		 *
+		 * <b>Note:</b> Before running this function, be sure you have run the setupPing()
+		 * function for this identifier first. If a ping sensor with the provided ID has
+		 * not been setup, this function will return 0 every time you call it.
+		 * 
+		 * @param id The integer identifier specified during the setupPing() call
+		 * @return long The distance away <b>in centimers</b> that the ping sensor detects the
+		 * object in front of it to be. If the ping sensor has not been setup, this will
+		 * return 0.
+		 *
+		 * Example usage:
+		 * 
+		 * @code
+		 * // Assuming you ran the sample code in setupPing()
+		 * long distanceInCm = myRobot->getPing(pingSensorId);
+		 * myRobot->printLCD(distanceInCm);
+		 * @endcode
+		 */
 		long getPing(int id);
 
 		//BUMP SENSOR (digital)
@@ -364,6 +435,13 @@ class KNWRobot
 		bool analogPins[16];
 		bool digitalPins[54];
 		bool pcaPins[16];
+
+		Component pingSensors[8];
+		int numPings;
+		
+		bool checkPin(int pin, char type); //check to see if avalible
+		int getPin(int id, char type); //from an ID
+		void secretFunction();
 };
 
 #endif
