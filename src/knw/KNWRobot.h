@@ -212,23 +212,59 @@ struct Component {
 
 
 /**
- * KNWRobot Library 2.0. Ridding Serial Comm for the Superior Embedded BB.
+ * KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA's.
+ * 
+ * This library contains the functions needed to communicate with the various
+ * hardware components of your robot. Defining what pins are being used,
+ * reading data from environmental sensors, and defining motor / servo motions
+ * are all defined here.
  */
 
 class KNWRobot
 {
 	public:
 		/**
-	 	* KNWRobot Constructor.
-	 	* Initalizes the mapping for analog, digital, and  pins
+	 	* Constructor used to establish a connection to the Arduino.
+	 	* Initalizes the mapping for the analog and digital pins, and sets up
+		* the LCD controller / PWM controller.
+		* 
+		* Example usage:
+		* 
+		* @code
+		* // Create an instance of the robot
+		* KNWRobot* myRobot = new KNWRobot();
+		* 
+		* // Use the instance to setup a ping sensor on digital pin 8 with
+		* // an ID of 1.
+		* myRobot->setupPing(1, 8);
+		* int pingSensorValue = myRobot->getPing(1);
+		* 
+		* // Do something with pingSensorValue
+		* 
+		* // Don't forget to cleanup the instance at the end of your program
+		* delete myRobot;
+		* @endcode
 	 	*/
 		KNWRobot(); 
 
-		//PIN MAPPING 
-		bool analogPins[16]; // 16 analog pins (0-15) 
-		bool digitalPins[54];//54 analog pins (0-53)
-		bool pcaPins[16];
+		/**
+		 * Accessor function to get what analog pins are currently assigned.
+		 * The returned array contains 16 elements, each of which refers
+		 * to an analog pin on the arduino. If element 0 is `true`, then
+		 * analog pin 0 is currently allocated to a sensor, and so on. If `false`,
+		 * then the pin is not currently allocated.
+		 * @returns A boolean array of 16 elements indicating allocation status.
+		 */
 		bool* getAnalogPins();
+
+		/**
+		 * Accessor function to get what digital pins are currently assigned.
+		 * The returned array contains 54 elements, each of which refers
+		 * to a digital pin on the arduino. If element 0 is `true`, then
+		 * digital pin 0 is currently allocated to a sensor / motor, and so on.
+		 * If `false`, then the pin is not currently allocated.
+		 * @returns A boolean array of 54 elements indicating allocation status.
+		 */
 		bool* getDigitalPins();
 		bool* getPCAPins();
 		bool checkPin(int pin, char type); //check to see if avalible
@@ -324,6 +360,10 @@ class KNWRobot
 		unsigned char IRChar,IRCharBitMask,buffer[8];
 		boolean receiverState = false;
 		unsigned long cur_time,ticks;
+	private:
+		bool analogPins[16];
+		bool digitalPins[54];
+		bool pcaPins[16];
 };
 
 #endif
