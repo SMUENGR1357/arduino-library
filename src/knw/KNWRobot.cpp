@@ -398,12 +398,12 @@ void KNWRobot::secretFunction(){
   lcd->clear();
   lcd->print("This B Empty");
   for(int i = 0; i < numServos; i++){
-    pwm->setPWM(servos[i].PIN, 0, PCA_SERVO_180_MIN + (i + 1) * 40)
+    pwm->setPWM(servos[i].PIN, 0, PCA_SERVO_180_MIN + (i + 1) * 40);
   }
   lcd->setCursor(0,1);
-  lcd->print("YEEEEEEEETT")
+  lcd->print("YEEEEEEEETT");
   for(int i = 0; i < numMotors; i++){
-    pwm->setPWM(motos[i].PIN, 0, PCA_SERVO_180_MIN + (i + 1) * 40)
+    pwm->setPWM(motors[i].PIN, 0, PCA_SERVO_180_MIN + (i + 1) * 40);
   }
 }
 
