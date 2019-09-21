@@ -237,11 +237,11 @@ class KNWRobot
 		 * Example usage:
 		 *
 		 * @code
-		 * // Assuming an inclinometer is wired and connected to digital pin 2
-		 * myRobot->setupIncline(2);
+		 * // Assuming an inclinometer is wired and connected to analog pin 6
+		 * myRobot->setupIncline(6);
 		 * bool* activeAnalogPins = myRobot->getAnalogPins();
-		 * if (activeAnalogPins[2] == true) {
-		 *   // Analog pin 2 successfully connected
+		 * if (activeAnalogPins[6] == true) {
+		 *   // Analog pin 6 successfully connected
 		 * }
 		 * @endcode
 		 */
@@ -349,13 +349,14 @@ class KNWRobot
 		long getPing(int id);
 		
 		/**
-		 * Checks to see if a bump sensor is pressed or not.
+		 * Sets up and assigns a bump sensor to run on the specified digital pin.
 		 * A <a href="https://www.instructables.com/id/Cheap-Robot-Bump-Sensors-for-Arduino/">bump sensor</a>
 		 * can either be a "high" state or "low" state. Depending on how you wired the sensor,
 		 * a "high" state can either be pressed in or not pressed, and "low" state is the opposite.
 		 * Bump sensors are plugged into a digital pin.
 		 * 
 		 * <b>Note:</b> The arduino support connecting up to 8 bump sensors at one time.
+		 *
 		 * @param id A unique identifier that you specify. You will use this identifier
 		 * when running checkBump(int), so it's recommended you assign it to a variable.
 		 * It is also recommended you make it equal to the pin number it is assigned to.
@@ -375,37 +376,240 @@ class KNWRobot
 		 * @endcode
 		 */
 		bool setupBump(int id, int pin);
+
+		/**
+		 * Checks to see if a bump sensor is pressed or not, or more specifically, in a high or low state.
+		 * A <a href="https://www.instructables.com/id/Cheap-Robot-Bump-Sensors-for-Arduino/">bump sensor</a>
+		 * can either be a "high" state or "low" state. Depending on how you wired the sensor,
+		 * a "high" state can either be pressed in or not pressed, and "low" state is the opposite.
+		 * Bump sensors are plugged into a digital pin.
+		 * 
+		 * <b>Note:</b> The arduino support connecting up to 8 bump sensors at one time.
+		 *
+		 * @param id A unique identifier that you specify. This will be the same identifier
+		 * that you used as the first argument in setupPin(). It is also recommended you make
+		 * it equal to the pin number it is assigned to.
+		 * @param pin The digital pin that the bump sensor is connected to.
+		 * @return 1 The value of a "high" state. Depending on how you wire the bump sensor
+		 * (see link in description), a "high" state can refer to the sensor being pressed, or it
+		 * can refer to a sensor being open.
+		 * @return 0 The value of a "low" state, the opposite of a 1 value.
+		 * 
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming you ran the sample code in setupBump()
+		 * long bumpSensorState = myRobot->checkBump(bumpSensorId);
+		 * myRobot->printLCD(bumpSensorState);
+		 * @endcode
+		 */
 		int checkBump(int id);
 
-		//INCLINOMETER (analog)
-		int inclinePin;
+		/**
+		 * Sets up and assigns your inclinometer to run on the specified analog pin.
+		 * An inclinometer is a sensor that, when built and calibrated properly, can
+		 * detect the angle at which your robot is currently oriented relative to a
+		 * flat plane. Instructions for building the circuit are found on Canvas. For
+		 * additional details, read the documentation for getIncline().
+		 *
+		 * @param pin The analog pin that the inclinometer is connected to.
+		 * @return true If the inclinometer was successfully assigned to the pin
+		 * @return false If the inclinometer was not assigned to the pin
+		 * 
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming your inclinometer is wired and connected to analog pin 6
+		 * bool success = myRobot->setupIncline(6);
+		 * if (success) {
+		 *   // Now ready to use the inclinometer
+		 * }
+		 * @endcode
+		 */
 		bool setupIncline(int pin);
+
+		/**
+		 * Provides a reading of the current value of your inclinometer.
+		 *
+		 * This function returns a value in the range of [0 - 1023], which is the min - max
+		 * range that Arduino analog pins provide. This value in itself does not tell you
+		 * the angle of incline, but rather the analog voltage [0 - 5] volts coming into that
+		 * analog pin converted to a 10-bit precision number . You are required
+		 * to calibrate your sensor by reading sensor value at various angles and then
+		 * generating an interpolating function. This function can then be used to convert
+		 * new values while your robot is performing its tasks. The more data points, the
+		 * more likely your function is accurate. It is also very likely that you will have
+		 * to periodically recalibrate your sensor. Rebuilding your circuit (for example,
+		 * changing the resistors or fixing a broken connection) will require you to
+		 * recalibrate.
+		 * 
+		 * @return int A value between [0 - 1023] telling you the raw analog pin reading.
+		 *
+		 * Example code:
+		 *
+		 * @code
+		 * // Assuming you have run the sample code in setupIncline()
+		 * int inclineReading = myRobot->getIncline();
+		 *
+		 * // This is NOT a good interpolating function. Your function will need to be more
+		 * // precise & accurate than this. This is just an example to show converting from
+		 * // a raw sensor reading to an angle before printing to the LCD screen.
+		 * int angle = inclineReading / 6;
+		 * myRobot->printLCD(angle);
+		 * @endcode
+		 */
 		int getIncline();
 
 		//CONDUCTIVITY SENSOR 
-		const int dPin1 = 12, dPin2 = 13;
-    	const int aPin1 = 2,  aPin2 = 3;
+		
+		/**
+		 * Provides a reading of the conductivity probe.
+		 *
+		 * The full documentation for building and calibrating your conductivity probe can
+		 * be found on Canvas.
+		 *
+		 * Your probe must be connected to the following pins:
+		 * <ul>
+		 *   <li>Digital Pin 12</li>
+		 *   <li>Digital Pin 13</li>
+		 *   <li>Analog Pin 2</li>
+		 *   <li>Analog Pin 3</li>
+		 * </ul>
+		 * 
+		 * Much like getIncline(), the raw returned value is a range between [0 - 1023],
+		 * denoting the absolute difference between analog pins 2 and 3. You are required
+		 * to calibrate your conductivity probe much in the same way you calibrate your
+		 * inclinometer. Be sure to read getIncline() for more details, as well as Canvas.
+		 *
+		 * @return int A value between [0 - 1023] telling you the raw analog pin reading.
+		 *
+		 * Example code:
+		 *
+		 * @code
+		 * // Assuming you have run the sample code in setupIncline()
+		 * int conductivityReading = myRobot->getConductivity();
+		 *
+		 * // Note that this will print the raw value, not the conductivity of the sand.
+		 * myRobot->printLCD(conductivityReading);
+		 * @endcode
+		 */
 		int getConductivity();
 
-		//TEMPERATURE SENSOR (analog)
-		int tempPin;
+		/**
+		 * Sets up and assigns your temperature probe to run on the specified analog pin.
+		 * A temperature probe is a sensor that, when built and calibrated properly, can
+		 * detect the temperature by using a thermal resistor. 
+		 * Instructions for building the circuit are found on Canvas. For
+		 * additional details around calibration, read the documentation for getIncline().
+		 *
+		 * @param pin The analog pin that the temperature probe is connected to.
+		 * @return true If the temperature probe was successfully assigned to the pin
+		 * @return false If the temperature probe was not assigned to the pin
+		 * 
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming your temperature probe is wired and connected to analog pin 8
+		 * bool success = myRobot->setupTemp(8);
+		 * if (success) {
+		 *   // Now ready to use the temperature probe
+		 * }
+		 * @endcode
+		 */
 		bool setupTemp(int pin);
-		int getTemp(); //returns 0-1023, or -1 if not setup
 
-		//KEYPAD (digital)
+		/**
+		 * Provides a reading of the current value of your temperature probe.
+		 *
+		 * This function returns a value in the range of [0 - 1023], which is the min - max
+		 * range that Arduino analog pins provide. The value here is dependent on your
+		 * circuitry and the resistence of the thermal resistor at the time of reading. As
+		 * such, this sensor requires calibration like your inclinometer and your conductivity
+		 * probe. Refer to getIncline() for more information around calibration.
+		 * 
+		 * @return int A value between [0 - 1023] telling you the raw analog pin reading.
+		 *
+		 * Example code:
+		 *
+		 * @code
+		 * // Assuming you have run the sample code in setupTemp()
+		 * int temperatureProbeReading = myRobot->getTemp();
+		 *
+		 * // Note that this will print the raw value, not the actual temperature
+		 * myRobot->printLCD(temperatureProbeReading);
+		 * @endcode
+		 */
+		int getTemp();
+
+		/**
+		 * Clears out the LCD, and gets input from the number pad.
+		 * 
+		 * As defined in the wiring guide, the number pad is plugged into the row of
+		 * digital pins starting at digital pin 39 and ending at digital pin 53. You
+		 * can enter up to 15 digits, followed by the '#' sign, and this function
+		 * will return the entered value to your code.
+		 * 
+		 * The buttons you pressed will appear on the LCD. There are a few special buttons:
+		 * 
+		 * <ul>
+		 *   <li>`*` = backspace</li>
+		 *   <li>`#` = enter</li>
+		 *   <li>
+		 *     'A', 'B', 'C', and 'D' = get translated to 10, 11, 12, and 13,
+		 *     respectively. Use those numbers as special cases for quadrants.
+		 *   </li>
+		 * </ul>
+		 * 
+		 * @return int The numbers / characters you input.
+		 * 
+		 * Example code
+		 * 
+		 * @code
+		 * int quadrant = myRobot->getInput();
+		 * // Enter A B C or D, followed by #
+		 * if (quadrant == 'A') {
+		 *   // Perform the starting function for quadrant A that you define
+		 *   executeQuadrantA();
+		 * }
+		 * if (quadrant == 'B') {
+		 *   // Perform the starting function for quadrant B that you define
+		 *   executeQuadrantB();
+		 * }
+		 * 
+		 * int servoPosition = myRobot->getInput();
+		 * // Enter a value, such as 45, followed by #
+		 * // Assuming you've run the setupServo() sample code already
+		 * myRobot->pca180Servo(servoID, servoPosition);
+		 * @endcode
+		 */
 		int getInput(); //clears LCD
+
+		/**
+		 * Gets input from the number pad, printing the input on the specified row.
+		 * 
+		 * This is fundamentally the same as getInput(), but instead of clearing out
+		 * the LCD, you specify what row to print your input on. Useful for if you
+		 * want to print a statement on row 1, and display your keypad input on line 2.
+		 * Refer to getInput() for full details.
+		 * 
+		 * @param row Either 0 or 1, the row you wwant to print input on.
+		 * @return int The numbers / characters you input.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * myRobot->clearLCD();
+		 * 
+		 * // Prompt on first line, display input on next line
+		 * myRobot->printLCD("Servo angle:");
+		 * int servoPosition = myRobot->getInput(1);
+		 * 
+		 * // Assuming you've run the setupServo sample code already
+		 * myRobot->pca180Servo(servoID, servoPosition);
+		 * @endcode
+		 */
 		int getInput(int row); //if you want to format which line to print on (0 or 1)
-		bool entered;
-		int numEntered;
-		char DATA[17];
-		byte ROWS = 4;
-		byte COLS = 4;
-		char keys[4][4] = {
-  			{'1','2','3','A'},
-  			{'4','5','6','B'},
-  			{'7','8','9','C'},
-  			{'*','0','#','D'}
-		};
+		
 		byte rowPins[4] = {39,41,43,45}; 
 		byte colPins[4] = {47,49,51,53}; 
 		Keypad* mykeypad;
@@ -464,6 +668,25 @@ class KNWRobot
 		Component bumpSensors[8];
 		int numPings;
 		int numBumps;
+		int inclinePin;
+		int tempPin;
+		
+		const int conductivityDigitalPin1 = 12;
+		const int conductivityDigitalPin2 = 13;
+    	const int conductivityAnalogPin1 = 2;
+		const int conductivityAnalogPin2 = 3;
+
+		bool entered;
+		int numEntered;
+		char DATA[17];
+		byte ROWS = 4;
+		byte COLS = 4;
+		char keys[4][4] = {
+  			{'1','2','3','A'},
+  			{'4','5','6','B'},
+  			{'7','8','9','C'},
+  			{'*','0','#','D'}
+		};
 		
 		bool checkPin(int pin, char type); //check to see if avalible
 		int getPin(int id, char type); //from an ID

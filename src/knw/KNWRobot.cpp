@@ -296,10 +296,10 @@ int KNWRobot::getConductivity(){
     //One period of the wave is 10ms. So we want to repeat it numMilliseconds/10ms times
     unsigned long loopCount = (seconds)*100ul;
         
-    pinMode(dPin1, OUTPUT);
-    pinMode(dPin2, OUTPUT);
-    digitalWrite(dPin1, HIGH);
-    digitalWrite(dPin2, HIGH);
+    pinMode(conductivityDigitalPin1, OUTPUT);
+    pinMode(conductivityDigitalPin2, OUTPUT);
+    digitalWrite(conductivityDigitalPin1, HIGH);
+    digitalWrite(conductivityDigitalPin2, HIGH);
         
     //We make an alternating-phase square wave out of digital pins 12/13
     //For this to work, we needed simultaneous digital pin writes. Refer to
@@ -314,10 +314,10 @@ int KNWRobot::getConductivity(){
       delay(5);
     }  
       
-    reading1 = analogRead(aPin1);
-    reading2 = analogRead(aPin2);
-    digitalWrite(dPin1, LOW);
-    digitalWrite(dPin2, LOW);
+    reading1 = analogRead(conductivityAnalogPin1);
+    reading2 = analogRead(conductivityAnalogPin2);
+    digitalWrite(conductivityDigitalPin1, LOW);
+    digitalWrite(conductivityDigitalPin2, LOW);
         
     return result = abs(reading1 - reading2);
 }
