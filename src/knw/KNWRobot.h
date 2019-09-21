@@ -347,10 +347,33 @@ class KNWRobot
 		 * @endcode
 		 */
 		long getPing(int id);
-
-		//BUMP SENSOR (digital)
-		Component bumpSensors[8];
-		int numBumps;
+		
+		/**
+		 * Checks to see if a bump sensor is pressed or not.
+		 * A <a href="https://www.instructables.com/id/Cheap-Robot-Bump-Sensors-for-Arduino/">bump sensor</a>
+		 * can either be a "high" state or "low" state. Depending on how you wired the sensor,
+		 * a "high" state can either be pressed in or not pressed, and "low" state is the opposite.
+		 * Bump sensors are plugged into a digital pin.
+		 * 
+		 * <b>Note:</b> The arduino support connecting up to 8 bump sensors at one time.
+		 * @param id A unique identifier that you specify. You will use this identifier
+		 * when running checkBump(int), so it's recommended you assign it to a variable.
+		 * It is also recommended you make it equal to the pin number it is assigned to.
+		 * @param pin The digital pin that the bump sensor is connected to.
+		 * @return true If the bump sensor was successfully assigned to the pin
+		 * @return false If the bump sensor was not assigned to the pin
+		 * 
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming a bump sensor is wired and connected to digital pin 5
+		 * int bumpSensorId = 5;
+		 * bool success = myRobot->setupBump(bumpSensorId, 5);
+		 * if (success) {
+		 *   // Now ready to use the bump sensor with bumpSensorId
+		 * }
+		 * @endcode
+		 */
 		bool setupBump(int id, int pin);
 		int checkBump(int id);
 
@@ -431,13 +454,16 @@ class KNWRobot
 		unsigned char IRChar,IRCharBitMask,buffer[8];
 		boolean receiverState = false;
 		unsigned long cur_time,ticks;
+	
 	private:
 		bool analogPins[16];
 		bool digitalPins[54];
 		bool pcaPins[16];
 
 		Component pingSensors[8];
+		Component bumpSensors[8];
 		int numPings;
+		int numBumps;
 		
 		bool checkPin(int pin, char type); //check to see if avalible
 		int getPin(int id, char type); //from an ID
