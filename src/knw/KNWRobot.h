@@ -1,160 +1,3 @@
-/*
-	-----------------------------------------------------------------------------
-	Functions and Variables
-	-----------------------------------------------------------------------------
-	KNWRobot(); 							//constructor, initalizes the pins, numpad, LCD, PWM
-
-	bool analogPins[16]; 					//[*internal] 16 analog pins (0-15), True if used, False if free
-	bool digitalPins[54];					//[*internal] 54 analog pins (0-53),True if used, False if free
-	bool pcaPins[16];						//[*internal] 16 pwm pins on PCA board (0-15),True if used, False if free
-	bool* getAnalogPins();					//returns pointer to analogPins list
-	bool* getDigitalPins();					//returns pointer to digitalPins list
-	bool* getPCAPins();						//returns pointer to pcaPins list
-	bool checkPin(int pin, char type); 		//[*internal] check to see if pin is avalible (false) 
-	int getPin(int id, char type); 			//[*internal] gets physical pin from the user's ID		
-
-	------------------------------------
-	Ping Sensor 
-	------------------------------------
-	Component pingSensors[8];				//[*internal] List of Ping Sensors 'attached', up to 8
-	int numPings;							//number of ping sensors attached
-	bool setupPing(int id, int pin);		//'attaches' ping to physical pin by user's ID, true if successful
-	long getPing(int id);					//returns (long) ping distance in cm
-
-	------------------------------------
-	(!)Bump Sensor
-	------------------------------------
-	Component bumpSensors[8];				//[*internal] List of Bump Sensors 'attached', up to 8
-	int numBumps;							//number of bump sensors attached
-	bool setupBump(int id, int pin);		//'attaches' bump to physical pin by user's ID, true if successful
-	int checkBump(int id);					//checks to see if the bump has been triggered (HIGH or 1), else its LOW or 0
-
-	------------------------------------
-	(!)Inclinometer
-	------------------------------------
-	int inclinePin;							//the physical pin the inclinometer is attached to
-	bool setupIncline(int pin);				//'attaches' inclinometer to physical pin by user's ID, true if successful
-	int getIncline();						//returns ADC code [0-1023] of the measured resistance 
-	
-
-	int tempPin;
-		bool setupTemp(int pin);
-		int getTemp(); //returns 0-1023, or -1 if not setup
-	------------------------------------
-	Conductivity Sensor Functions
-	------------------------------------
-	int getConductivity(); 					//returns conductivity between plates
-											//analog pins 2,3 : digital pins 12,13
-	------------------------------------
-	Keypad Functions
-	------------------------------------
-	int getInput();							//returns up to 15 inputted chars as int 
-											//'#' is the 'enter' key
-											//'*' is the backspace
-											//treat 'A,B,C,D' as int values for quadrents
-	------------------------------------
-	LCD Functions
-	------------------------------------
-	void clearLCD();						//clears all contents of LCD
-	void moveCursor(int col, int row);		//moves the cursor to (col, row)
-											//col is 0-15, row is 0(top) or 1(bottom)
-	void clearLine(int row);				//clears line, cursor set to begining of row
-	void printLCD(* input);					//takes input of char*, int, long, or char
-											//will print input where cursor currently is
-											//suggest moveCursor() first
-											//the input should be  char str[] 
-
-	------------------------------------
-	PCA9685 Functions (all vars are int)	//goes 0(LOW) to 4095 (HIGH)
-	------------------------------------
-	void pcaRaw(channel, pulseSize); 		//configures pulsewidth/size on channel
-	void pcaRawTime(channel, pulseSize, 	//configures pulse on channel for duration (in ms)
-		duration);
-	void pcaStop(channel);					//stops the motor on channel
-	void pcaStopAll();						//stops all motors
-	void pca180Servo(channel, angle);		//move a 180 servo on channel to angle then hold
-											//0 <= angle <= 180+ (for student calibration)
-	void pcaContServo(channel, speed);		//move a continuous servo on channel at speed
-											//0 = stop, [-90, 90] speed backwards/forwards
-	void pcaDCMotor(channel, speed);		//move DC motor on channel at speed
-											//0 = stop, [-1023, 1023] speed backwards/forwards
-	void pcaDC2Motors(channel1, speed1, 	//move 2 DC motors on channels to speed
-		channel2, speed2);
-	void pca180ServoTime(channel, 			//move a 180 servo on channel to angle for duration (ms)
-		angle, duration);
-	void pcaContServoTime(channel, speed,	//move cont servo on channel at speed for duration (ms)
-		duration);
-	void pcaDCMotorTime(channel, speed,		//move DC motor on channel at speed for duration (ms)
-		duration);
-	void pcaDC2MotorsTime(channel1, speed1,	//move 2 DC motors on channels at speeds for dur (ms)
-		channel2, speed2, duration);
-
-
-	------------------------------------
-	IR Sensor
-	------------------------------------
-	int getIRChar(channel);				//returns char found with IR Sensor on channel (NOT YET IMPLEMENTED)
-	void print_IR();					//prints everything in the IR buffer to the LCD
-	char get_char(int index);			//prints char in buffer at index, or Z if index out of range
-
-
-
-	-----------------------------------------------------------------------------
-	Variables
-	-----------------------------------------------------------------------------
-	bool analogPins[16]; 					//16 analog pins (0-15) on
-	bool digitalPins[54];					//54 analog pins (0-53)
-											//*These are True(1) if attached, False(0) if free
-
-	------------------------------------
-	Ping Sensor Variables
-	------------------------------------
-
-	------------------------------------
-	Conductivity Variables
-	------------------------------------
-	const int dPin1 = 12, dPin2 = 13;		//digital pins used
-    const int aPin1 = 2,  aPin2 = 3;		//analog pins used
-
-	------------------------------------
-	Keypad Varibales
-	------------------------------------
-	bool entered;							//bool to tell if '#' has been entered
-	int numEntered;							//num chars in buffer (max 15)
-	char DATA[16];							//buffer to store inputted chars
-
-	byte ROWS = 4;							//number of rows on keypad
-	byte COLS = 4;							//number of columns on keypad
-	char keys[4][4];						//physical layout of keypad
-
-	byte rowPins[4] = {39,41,43,45}; 		//digital pins for ROWS
-	byte colPins[4] = {47,49,51,53}; 		//digital pins for COLS
-
-	Keypad* mykeypad;						//keypad object initalized in constructor
-	
-	------------------------------------
-	LCD Variables 
-	------------------------------------
-	LiquidCrystal_I2C* lcd;					//LCD object initalizeed in constructor
-								
-	------------------------------------
-	PCA9685 Variables
-	------------------------------------
-	Adafruit_PWMServoDriver* pwm;			//PWM object initalized in constructor, default address 0x40
-	bool servos[16];						//16 pwm pins on PCA9658, values 0-15
-											//*These are True(1) if attached, False(0) if free
-
-	------------------------------------
-	IR sensor Variables 
-	------------------------------------
-	unsigned char IRChar,IRCharBitMask,necState,buffer[8];
-	int buffer_in,buffer_out;
-	boolean receiverState;
-	unsigned long prev_time,cur_time,ticks;
-*/
-
-
-
 #ifndef KNWRobot_h
 #define KNWRobot_h
 
@@ -754,18 +597,24 @@ class KNWRobot
 		 * There are two types of servo: a 180 degree servo and a continuous rotation servo
 		 * (sometimes colloquially known as a 360 degree servo).
 		 * 
-		 * The 180 degree servo operates by angle. It starts at a 0 degree position, and
-		 * you can use pca180Servo() to specify that it move to angle between -90 to 90 degrees.
+		 * The 180 degree servo operates by angle. It starts at a 90 degree position, and
+		 * you can use pca180Servo() to specify that it move to angle between 0 to 180 degrees.
 		 * 
 		 * The continuous rotation servo operates by rotational velocity. A speed of 0
 		 * means the servo does not move. You can use pcaContServo() to specify a velocity
 		 * in some direction. A positive value will cause the servo to move in one direction,
 		 * while a negative value will cause the servo to move in the other direction.
 		 * 
+		 * You can also use pca180ServoTime() and pcaContServoTime() for time-based servo
+		 * control. Refer to all of those functions to understand the differences in their operation.
+		 * 
+		 * The neutral values listed above are approximate. You will need to do some calibration
+		 * to figure out the true neutral values for your servos.
+		 * 
 		 * Refer to the documentation on Canvas for how to properly wire a servo to your
 		 * Arduino and PCA board.
 		 *
-		 * <b>Note:</b> The arduino supports connecting up to 16 servos at one time.
+		 * <b>Note:</b> The arduino / PCA board supports connecting up to 16 servos at one time.
 		 * However, servos and motors share the same PCA board so the actual number you'll
 		 * use is much smaller.
 		 * 
@@ -788,35 +637,469 @@ class KNWRobot
 		 * @endcode
 		 */
 		bool setupServo(int id, int pin);
+
+		/**
+		 * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
+		 * 
+		 * DC Motors operate by providing them a speed value (which also determines direction
+		 * of rotation) and an optional time. You can use pcaDCMotor() to move a motor at
+		 * a set speed indefinitely (or until another pcaDC function is called), or you
+		 * can control two motors simultaneously using pcaDC2Motors() (useful for moving
+		 * in a given direction).
+		 * 
+		 * pcaDCMotortime() and pcaDC2MotorsTime() can be used to control 1 or 2 motors
+		 * simultaneously for a set amount of time. Refer to all of those functions for
+		 * specifics on their behavior.
+		 * 
+		 * The neutral values listed above are approximate. You will need to do some calibration
+		 * to figure out the true neutral values for your servos.
+		 * 
+		 * Refer to the documentation on Canvas for how to properly wire a motor to your
+		 * Arduino and PCA board.
+		 *
+		 * <b>Note:</b> The arduino / PCA board supports connecting up to 4 motors at one time.
+		 * 
+		 * @param id A unique identifier that you specify. You will use this identifier
+		 * when running the various pca motor functions, so it's recommended you assign it to a variable.
+		 * It is also recommended you make it equal to the pin number it is assigned to.
+		 * @param pin The pin on the PCA board that motor is connected to.
+		 * @return true If the motor was successfully assigned to the pin
+		 * @return false If the motor was not assigned to the pin
+		 *
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming a motor is wired and connected to PCA board pin 3
+		 * int motorId = 3;
+		 * bool success = myRobot->setupMotor(motorId, 3);
+		 * if (success) {
+		 *   // Now ready to use the motor with motorId
+		 * }
+		 * @endcode
+		 */
 		bool setupMotor(int id, int pin);
+
 		void pcaRaw(int id, int pulseSize); 
 		void pcaRawTime(int id, int pulseSize, int duration);
+		
+		/**
+		 * Stops a motor or servo with the provided identifier.
+		 * 
+		 * Assuming you setup a motor / servo using setupMotor() / setupServo(),
+		 * this function stops the motor / servo that was assigned the identifier
+		 * you provided. If the identifier has not been assigned, nothing
+		 * happens.
+		 * 
+		 * @param id The identifier that was passed as the first argument into
+		 * setupMotor() / setupServo()
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Assuming you've already run setupMotor()
+		 * myRobot->pcaDCMotor(motorId, 1023);
+		 * 
+		 * // Robot does whatever it needs to do
+		 * 
+		 * myRobot->pcaStop(motorId);
+		 * @endcode
+		 */
 		void pcaStop(int id);
+
+		/**
+		 * Stops all motors and servos connected to the PCA board.
+		 * 
+		 * All pins on the PCA board have their PWM signals reset, thereby
+		 * stopping all motors / servos.
+		 * 
+		 * * @code
+		 * // Assuming you've already run setupMotor()
+		 * myRobot->pca2DCMotor(motorId, 1023, motorId2, 1020);
+		 * 
+		 * // Robot does whatever it needs to do
+		 * 
+		 * myRobot->pcaStopAll();
+		 * @endcode
+		 */
 		void pcaStopAll();
+
+		/**
+		 * Moves a specified 180 degree servo to a specified angle.
+		 * 
+		 * This moves a 180 degree servo with a given identifier to a given angle.
+		 * The identifier should match one that was supplied as the first argument
+		 * to setupServo(). Once the servo moves to the given angle, it will
+		 * stay at that angle. Your program will continue running as soon as the
+		 * angle is applied. This behavior is different than the otherwise
+		 * similar function pca180ServoTime(). Refer to that function for specifics
+		 * on how it operates.
+		 * 
+		 * Note that this function is meant for use with 180 degree servos. For continuous
+		 * rotation servos (360 degree servos), use the pcaContServo() or pcaContServoTime()
+		 * functions.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupServo()
+		 * @param angle The angle between [0 - 180] to set the servo to.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have a ping sensor mounted on a servo
+		 * // and you have already run setupPing() and setupServo()
+		 * myRobot->pca180Servo(servoId, 0);
+		 * long pingReading = myRobot->getPing(pingId);
+		 * 
+		 * // Do something with ping reading
+		 * 
+		 * // Now move the servo to a new position and read again
+		 * myRobot->pca180Servo(servoId, 45);
+		 * pingReading = myRobot->getPing(pingId);
+		 * 
+		 * // Do something else with your ping reading
+		 * @endcode
+		 */
 		void pca180Servo(int id, int angle);
-		void pcaContServo(int id, int speed);
-		void pcaDCMotor(int id, int speed);
-		void pcaDC2Motors(int id1, int speed1, int id2, int speed2);
+
+		/**
+		 * Moves a specified 180 degree servo to a specified angle for the specified amount of time.
+		 * 
+		 * This moves a 180 degree servo with a given identifier to a given angle for a
+		 * given amount of time. The identifier should match one that was supplied as
+		 * the first argument to setupServo(). Unlike the pca180Servo() function, which
+		 * sets the angle and then immediately continues with your program, this function
+		 * sets an angle and then waits for the time to pass. It will then reset the servo
+		 * back to 0, at which point your program resumes.
+		 * 
+		 * Note that this function is meant for use with 180 degree servos. For continuous
+		 * rotation servos (360 degree servos), use the pcaContServo() or pcaContServoTime()
+		 * functions.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupServo()
+		 * @param angle The angle between [0 - 180] to set the servo to.
+		 * @param duration The duration <b><i>in milliseconds</i></b> to set the servo for.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupServo()
+		 * // Move a servo to a 45 degree position for 3 seconds
+		 * myRobot->pca180ServoTime(servoId, 45, 3000);
+		 * 
+		 * // After three seconds, your code resumes here.
+		 * @endcode
+		 */
 		void pca180ServoTime(int id, int angle, int duration);
+
+		/**
+		 * Moves a specified continuous rotation servo with a specified speed.
+		 * 
+		 * This moves a continuous rotation servo with a given identifier with the given speed.
+		 * The identifier should match one that was supplied as the first argument
+		 * to setupServo(). Once the servo moves with the given speed, it will
+		 * move at that speed indefinitely. Your program will continue running as soon as the
+		 * speed is applied. This behavior is different than the otherwise
+		 * similar function pcaContServoTime(). Refer to that function for specifics
+		 * on how it operates.
+		 * 
+		 * Note that this function is meant for use with continuous rotation servos. For 180
+		 * degree servos, use the pca180Servo() or pca180ServoTime() functions.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupServo()
+		 * @param angle The speed between [-90 - 90] to set the servo to. A negative value
+		 * moves the servo in one direction, while a positive value moves the servo in
+		 * the other.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Assuming you have run setupServo() already
+		 * myRobot->pcaContServo(servoId, -90);
+		 * 
+		 * // Servo will now run at full speed in one direction
+		 * // Code continues running, robot does cool things
+		 * 
+		 * myRobot->pcaStop(servoId);
+		 * @endcode
+		 */
+		void pcaContServo(int id, int speed);
+
+		/**
+		 * Moves a specified continuous rotation servo to a specified speed for the specified amount of time.
+		 * 
+		 * This moves a continuous rotation servo with a given identifier with a given speed for a
+		 * given amount of time. The identifier should match one that was supplied as
+		 * the first argument to setupServo(). Unlike the pcaContServo() function, which
+		 * sets the speed and then immediately continues with your program, this function
+		 * sets a speed and then waits for the time to pass. It will then reset the servo
+		 * back to 0, at which point your program resumes.
+		 * 
+		 * Note that this function is meant for use with continuous rotation servos. For 180 degree servos,
+		 * use the pca180Servo() or pca180ServoTime() functions.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupServo()
+		 * @param speed The speed between [-90 - 90] to set the servo to.
+		 * @param duration The duration <b><i>in milliseconds</i></b> to set the servo for.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupServo()
+		 * // Move a servo at full speed for 3.5 seconds
+		 * myRobot->pca180ServoTime(servoId, 45, 3500);
+		 * 
+		 * // After 3.5 seconds, your code resumes here.
+		 * @endcode
+		 */
 		void pcaContServoTime(int id, int speed, int duration);
+
+		/**
+		 * Moves a specified DC motor with a specified speed.
+		 * 
+		 * This moves a DC motor with a given identifier with the given speed.
+		 * The identifier should match one that was supplied as the first argument
+		 * to setupMotor(). Once the motor moves with the given speed, it will
+		 * move at that speed indefinitely. Your program will continue running as soon as the
+		 * speed is applied. This behavior is different than the otherwise
+		 * similar function pcaDCMotorTime(). Refer to that function for specifics
+		 * on how it operates.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupMotor()
+		 * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupMotor() and a setupPing() function
+		 * // Run a motor at full speed
+		 * myRobot->pcaDCMotor(motorId, 1023);
+		 * 
+		 * // While the motor runs, read a ping sensor value
+		 * long pingReading = myRobot->getPing(pingId);
+		 * if (pingReading < 30) {
+		 *   // Robot is less than 30 cm away from a wall, so stop the motor
+		 *   myRobot->pcaDCMotor(motorId, 0);
+		 *   
+		 *   // Alternatively, you can use pcaStop()
+		 *   myRobot->pcaStop(motorId);
+		 * }
+		 * @endcode
+		 */
+		void pcaDCMotor(int id, int speed);
+
+		/**
+		 * Moves two specified DC motors with two specified speeds.
+		 * 
+		 * This moves two DC motors with given identifiers to two speeds (potentially
+		 * the same values, potentially different values, depending on use case and calibration).
+		 * The identifiers should match ones that were supplied as the first argument
+		 * to setupMotor(). Once the motors are set with the given speeds, they will
+		 * move at that speed indefinitely. Your program will continue running as soon as the
+		 * speed is applied. This behavior is different than the otherwise
+		 * similar function pcaDC2MotorsTime(). Refer to that function for specifics
+		 * on how it operates.
+		 * 
+		 * @param id1 The identifier of the first motor you want to move. This is the value
+		 * that was passed as the first argument into setupMotor().
+		 * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * @param id2 The identifier of the second motor you want to move. This is the value
+		 * that was passed as the first argument into setupMotor().
+		 * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupMotor() and a setupPing() function
+		 * // Run both motors at full speed
+		 * myRobot->pcaDC2Motors(motorId, 1023, motorId2, 1023);
+		 * 
+		 * // While the motors run, read a ping sensor value
+		 * long pingReading = myRobot->getPing(pingId);
+		 * if (pingReading < 30) {
+		 *   // Robot is less than 30 cm away from a wall, so stop the robot from moving
+		 *   myRobot->pcaDC2Motors(motorId, 0, motorId2, 0);
+		 *   
+		 *   // Alternatively, you can use pcaStopAll()
+		 *   myRobot->pcaStopAll();
+		 * }
+		 * @endcode
+		 */
+		void pcaDC2Motors(int id1, int speed1, int id2, int speed2);
+
+		/**
+		 * Moves a specified DC motor with a specified speed for a specified amount of time.
+		 * 
+		 * This moves a DC motor with a given identifier with the given speed for a
+		 * given amount of time. The identifier should match one that was supplied as the
+		 * first argument to setupMotor(). Unlike the pcaDCMotor() function, which
+		 * sets the speed and then immediately continues with your program, this function
+		 * sets a speed and then waits for the time to pass. It will then reset the motor
+		 * back to 0, at which point your program resumes.
+		 * 
+		 * @param id The identifier that was passed as the first argument into setupMotor()
+		 * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * @param duration The duration <b><i>in milliseconds</i></b> to set the motor for.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupMotor()
+		 * // Run a motor at full speed for 5 seconds
+		 * myRobot->pcaDCMotor(motorId, 1023, 5000);
+		 * 
+		 * // The motor will run for five seconds. After five seconds, your program
+		 * // resumes here
+		 * @endcode
+		 */
 		void pcaDCMotorTime(int id, int speed, int duration);
+
+		/**
+		 * Moves two specified DC motors with specified speeds for a specified amount of time.
+		 * 
+		 * This moves two DC motors with given identifiers with the given speeds for a
+		 * given amount of time. These speeds do not have to match, in particular in cases
+		 * where calibration causese them to move at slightly different speeds.
+		 * The identifiers should match one that was supplied as the
+		 * first argument to setupMotor(). Unlike the pcaDC2Motors() function, which
+		 * sets the speed and then immediately continues with your program, this function
+		 * sets two speeds and then waits for the time to pass. It will then reset the motors
+		 * back to 0, at which point your program resumes.
+		 * 
+		 * @param id1 The identifier of the first motor you want to move. This identifier should
+		 * match one that was passed as the first argument into setupMotor().
+		 * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * @param id2 The identifier of the second motor you want to move. This identifier should
+		 * match one that was passed as the first argument into setupMotor().
+		 * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
+		 * moves the motor in one direction, while a positive value moves the motor in
+		 * the other.
+		 * @param duration The duration <b><i>in milliseconds</i></b> to set the motors for. Both
+		 * motors will stop at the same time when the duration is passed.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Suppose you have already run setupMotor() for both motors
+		 * // Run both motors at full speed for 5 seconds
+		 * myRobot->pcaDCMotor(motorId, 1023, motorId2, 1020, 5000);
+		 * 
+		 * // The motor will run for five seconds. After five seconds, your program
+		 * // resumes here
+		 * @endcode
+		 */
 		void pcaDC2MotorsTime(int id1, int speed1, int id2, int speed2, int duration);
 		
+		/**
+		 * Sets up and assigns an IR navigation sensor to run on the specified digital pin.
+		 * An IR navigation sensor is used to detect the values being emitted by the various
+		 * beacons placed around the field. Refer to documentation on Canvas for details
+		 * on how to properly wire and connect your IR sensor.
+		 *
+		 * <b>Note:</b> The arduino supports connecting up to 4 IR sensors
+		 * at one time.
+		 * 
+		 * @param id A unique identifier that you specify. You will use this identifier
+		 * when running scanIR(), so it's recommended you assign it to a variable.
+		 * It is also recommended you make it equal to the pin number it is assigned to.
+		 * @param pin The digital pin that the IR sensor is connected to.
+		 * @return true If the IR sensor was successfully assigned to the pin
+		 * @return false If the IR sensor was not assigned to the pin 
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Assuming an IR sensor is wired and connected to digital pin 10
+		 * int IRSensorId = 10;
+		 * bool success = myRobot->setupIR(IRSensorId, 10);
+		 * if (success) {
+		 *   // Now ready to use the IR sensor with pingSensorId
+		 * }
+		 * @endcode
+		 */
 		bool setupIR(int id, int pin);
+
+		/**
+		 * This uses the IR sensor with the given identifier to scan for beacons that
+		 * may be nearby.
+		 * 
+		 * This function uses the IR sensor to scan for IR signals coming from the beacons.
+		 * The values that it reads are stored in an internal character buffer, which you
+		 * can access using getIR() after running this function.
+		 * 
+		 * <b>Note</b>: every time you want to get fresh values from getIR(), you have to
+		 * run this function first.
+		 * 
+		 * @param id The identifier that was provided as the first argument to setupIR().
+		 * @return int The number of characters that were read in this given scan.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Assuming you have already run the code in setupIR()
+		 * int charactersReadFromIR = myRobot->scanIR(IRSensorId);
+		 * myRobot->printLCD("Chars read: ");
+		 * myRobot->printLCD(charactersReadFromIR);
+		 * 
+		 * // Now print the reading on the next line of the LCD
+		 * char* IRCharacters = myRobot->getIR();
+		 * myRobot->moveCursor(0, 1);
+		 * myRobot->printLCD(IRCharacters);
+		 * @endcode
+		 */
 		int scanIR(int id);
+
+		/**
+		 * This provides the characters that were reading from the most recent call to scanIR().
+		 * 
+		 * This function should be used in conjunction with scanIR(). Every time you want a fresh
+		 * IR reading, call scanIR() first. Then, call this function, storing the result in a char*
+		 * variable. If you don't call scanIR() before calling this, the internal character buffer
+		 * will not refresh and this will continuously provide the same value (or an empty value
+		 * if you never ran scanIR() in the first place).
+		 * 
+		 * @return char* A character buffer containing the characters read from the most recent
+		 * call to scanIR()
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Assuming you have already run the code in setupIR()
+		 * int charactersReadFromIR = myRobot->scanIR(IRSensorId);
+		 * myRobot->printLCD("Chars read: ");
+		 * myRobot->printLCD(charactersReadFromIR);
+		 * 
+		 * // Now print the reading on the next line of the LCD
+		 * char* IRCharacters = myRobot->getIR();
+		 * myRobot->moveCursor(0, 1);
+		 * myRobot->printLCD(IRCharacters);
+		 * @endcode
+		 */
 		unsigned char* getIR();
 	
 	private:
+
+		// Tracks which pins are being used and which are free
 		bool analogPins[16];
 		bool digitalPins[54];
 		bool pcaPins[16];
 
+		// Tracks which components are associated to what ID's / pins
 		Component pingSensors[8];
 		Component bumpSensors[8];
 		Component irSensors[4];
 		Component motors[4];
 		Component servos[16];
-		
+
+		// Tracks how many of each component the robot currently has attached	
 		int numPings;
 		int numBumps;
 		int numIR;
@@ -825,11 +1108,13 @@ class KNWRobot
 		int numMotors;
 		int numServos;
 		
+		// Specific pins for the conductivity probe
 		const int conductivityDigitalPin1 = 12;
 		const int conductivityDigitalPin2 = 13;
     	const int conductivityAnalogPin1 = 2;
 		const int conductivityAnalogPin2 = 3;
 
+		// Instance variables used in conjunction with the keypad
 		bool entered;
 		int numEntered;
 		char DATA[17];
@@ -846,9 +1131,11 @@ class KNWRobot
 		byte colPins[4] = {47,49,51,53}; 
 		Keypad* mykeypad;
 
+		// Used to control the LCD and PCA boards
 		LiquidCrystal_I2C* lcd;
 		Adafruit_PWMServoDriver* pwm;
 
+		// Instance variables used in conjunction with the IR sensor
 		unsigned char necState;
 		int num_chars;
 		unsigned long prev_time;
@@ -856,7 +1143,8 @@ class KNWRobot
 		unsigned char IRChar,IRCharBitMask,buffer[8];
 		boolean receiverState = false;
 		unsigned long cur_time,ticks;
-		
+
+		// Miscellaneous functions		
 		bool checkPin(int pin, char type); //check to see if avalible
 		int getPin(int id, char type); //from an ID
 		void secretFunction();
