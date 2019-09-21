@@ -794,5 +794,5 @@ int KNWRobot::scanIR(int id) {
 }
 
 unsigned char* KNWRobot::getIR() {
-  return buffer;
+    return buffer;
 }
