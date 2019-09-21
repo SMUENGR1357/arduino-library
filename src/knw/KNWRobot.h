@@ -610,27 +610,184 @@ class KNWRobot
 		 */
 		int getInput(int row); //if you want to format which line to print on (0 or 1)
 		
-		byte rowPins[4] = {39,41,43,45}; 
-		byte colPins[4] = {47,49,51,53}; 
-		Keypad* mykeypad;
-
-		//LCD 
-		LiquidCrystal_I2C* lcd;
+		/**
+		 * Clears the LCD of all content.
+		 * 
+		 * As the title says, any content on the LCD is cleared when you call this
+		 * function.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * myRobot->printLCD("Goodbye!");
+		 * myRobot->clearLCD();
+		 * @endcode
+		 */
 		void clearLCD();
-		void moveCursor(int col, int row);
-		void clearLine(int row);
-		void printLCD(char* input);
-		void printLCD(int input);
-		void printLCD(long input);
-		void printLCD(char input);
 
-		//PCA/MOTOR (digital PWM)
-		Adafruit_PWMServoDriver* pwm;
-		int numServos;
-		Component servos[16];
+		/**
+		 * Allows you to set the LCD cursor to control where output is displayed
+		 * 
+		 * The LCD consists of 2 rows and 16 columns. By calling this function,
+		 * subsequent calls to one of the various printLCD(char*) functions will
+		 * print the text on starting with that particular row / column position.
+		 * Note that the input values are 0-indexed.
+		 * 
+		 * @param col A value in the range [0 - 15] representing what column to start printing.
+		 * @param row A value in the range [0 - 1] representing what row to start printing.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Move the cursor to the second row, fourth column
+		 * myRobot->moveCursor(3, 1);
+		 * myRobot->printLCD("Hello!");
+		 * @endcode
+		 */
+		void moveCursor(int col, int row);
+
+		/**
+		 * Clears out a row of the LCD cursor.
+		 * 
+		 * Any content on the given row (either 0 or 1) is cleared out. The other
+		 * row is left untouched.
+		 * 
+		 * @param row A value in the range [0 - 1] representing what row to clear.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * myRobot->printLCD("Goodbye!");
+		 * myRobot->clearLine(0);
+		 * @endcode
+		 */
+		void clearLine(int row);
+
+		/**
+		 * Prints a line of text onto the LCD at the current cursor position
+		 * 
+		 * Note that each line has a max of 16 characters. Use this function
+		 * in conjunction with moveCursor(int, int) to properly show messages.
+		 * 
+		 * @param input A character array whose contents will be printed on the LCD.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Reset the cursor to the start of the screen
+		 * myRobot->moveCursor(0, 0);
+		 * myRobot->printLCD("Hello SMU");
+		 * 
+		 * // Move to the next line
+		 * myRobot->moveCursor(0, 1);
+		 * myRobot->printLCD("KNW 2300");
+		 * @endcode
+		 */
+		void printLCD(char* input);
+
+		/**
+		 * Prints an integer onto the LCD at the current cursor position.
+		 * 
+		 * Note that each line has a max of 16 characters. Use this function
+		 * in conjunction with moveCursor(int, int) to properly show messages.
+		 * 
+		 * @param input An integer whose value will be printed on the LCD.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Reset the cursor to the start of the screen
+		 * myRobot->moveCursor(0, 0);
+		 * 
+		 * // Assuming your conductivity sensor is properly connected
+		 * int conductivityReading = myRobot->getConductivity();
+		 * 
+		 * myRobot->printLCD(conductivityReading);
+		 * @endcode
+		 */
+		void printLCD(int input);
+
+		/**
+		 * Prints a long onto the LCD at the current cursor position.
+		 * 
+		 * Note that each line has a max of 16 characters. Use this function
+		 * in conjunction with moveCursor(int, int) to properly show messages.
+		 * 
+		 * @param input A long whose value will be printed on the LCD.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Reset the cursor to the start of the screen
+		 * myRobot->moveCursor(0, 0);
+		 * 
+		 * // Assuming your ping sensor is setup using setupPing()
+		 * long pingReading = myRobot->getPing(pingID);
+		 * 
+		 * myRobot->printLCD(pingReading);
+		 * @endcode
+		 */
+		void printLCD(long input);
+
+		/**
+		 * Prints a single character onto the LCD at the current cursor position.
+		 * 
+		 * Note that each line has a max of 16 characters. Use this function
+		 * in conjunction with moveCursor(int, int) to properly show messages.
+		 * 
+		 * @param input A character whose value will be printed on the LCD.
+		 * 
+		 * Example code:
+		 * 
+		 * @code
+		 * // Reset the cursor to the start of the screen
+		 * myRobot->moveCursor(0, 0);
+		 * myRobot->printLCD('S');
+		 * myRobot->printLCD('M');
+		 * myRobot->printLCD('U');
+		 * @endcode
+		 */
+		void printLCD(char input);
+		
+		/**
+		 * Sets up and assigns a servo motor to run on the specified pin on the PCA board.
+		 * There are two types of servo: a 180 degree servo and a continuous rotation servo
+		 * (sometimes colloquially known as a 360 degree servo).
+		 * 
+		 * The 180 degree servo operates by angle. It starts at a 0 degree position, and
+		 * you can use pca180Servo() to specify that it move to angle between -90 to 90 degrees.
+		 * 
+		 * The continuous rotation servo operates by rotational velocity. A speed of 0
+		 * means the servo does not move. You can use pcaContServo() to specify a velocity
+		 * in some direction. A positive value will cause the servo to move in one direction,
+		 * while a negative value will cause the servo to move in the other direction.
+		 * 
+		 * Refer to the documentation on Canvas for how to properly wire a servo to your
+		 * Arduino and PCA board.
+		 *
+		 * <b>Note:</b> The arduino supports connecting up to 16 servos at one time.
+		 * However, servos and motors share the same PCA board so the actual number you'll
+		 * use is much smaller.
+		 * 
+		 * @param id A unique identifier that you specify. You will use this identifier
+		 * when running the various pca servo functions, so it's recommended you assign it to a variable.
+		 * It is also recommended you make it equal to the pin number it is assigned to.
+		 * @param pin The pin on the PCA board that servo is connected to.
+		 * @return true If the servo was successfully assigned to the pin
+		 * @return false If the servo was not assigned to the pin
+		 *
+		 * Example usage:
+		 *
+		 * @code
+		 * // Assuming a servo is wired and connected to PCA board pin 2
+		 * int servoId = 1;
+		 * bool success = myRobot->setupServo(servoId, 2);
+		 * if (success) {
+		 *   // Now ready to use the servo with servoId
+		 * }
+		 * @endcode
+		 */
 		bool setupServo(int id, int pin);
-		int numMotors;
-		Component motors[4];
 		bool setupMotor(int id, int pin);
 		void pcaRaw(int id, int pulseSize); 
 		void pcaRawTime(int id, int pulseSize, int duration);
@@ -644,20 +801,10 @@ class KNWRobot
 		void pcaContServoTime(int id, int speed, int duration);
 		void pcaDCMotorTime(int id, int speed, int duration);
 		void pcaDC2MotorsTime(int id1, int speed1, int id2, int speed2, int duration);
-
-		//IR (digital)
-		int numIR;
-		Component irSensors[4];
+		
 		bool setupIR(int id, int pin);
 		int scanIR(int id);
 		unsigned char* getIR();
-		unsigned char necState;
-		int num_chars;
-		unsigned long prev_time;
-
-		unsigned char IRChar,IRCharBitMask,buffer[8];
-		boolean receiverState = false;
-		unsigned long cur_time,ticks;
 	
 	private:
 		bool analogPins[16];
@@ -666,10 +813,17 @@ class KNWRobot
 
 		Component pingSensors[8];
 		Component bumpSensors[8];
+		Component irSensors[4];
+		Component motors[4];
+		Component servos[16];
+		
 		int numPings;
 		int numBumps;
+		int numIR;
 		int inclinePin;
 		int tempPin;
+		int numMotors;
+		int numServos;
 		
 		const int conductivityDigitalPin1 = 12;
 		const int conductivityDigitalPin2 = 13;
@@ -687,6 +841,21 @@ class KNWRobot
   			{'7','8','9','C'},
   			{'*','0','#','D'}
 		};
+
+		byte rowPins[4] = {39,41,43,45}; 
+		byte colPins[4] = {47,49,51,53}; 
+		Keypad* mykeypad;
+
+		LiquidCrystal_I2C* lcd;
+		Adafruit_PWMServoDriver* pwm;
+
+		unsigned char necState;
+		int num_chars;
+		unsigned long prev_time;
+
+		unsigned char IRChar,IRCharBitMask,buffer[8];
+		boolean receiverState = false;
+		unsigned long cur_time,ticks;
 		
 		bool checkPin(int pin, char type); //check to see if avalible
 		int getPin(int id, char type); //from an ID
