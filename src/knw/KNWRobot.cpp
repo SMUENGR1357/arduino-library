@@ -353,12 +353,12 @@ bool KNWRobot::setupBump(int id, int pin)
     return false;
 }
 
-int KNWRobot::checkBump(int id)
+bool KNWRobot::getBump(int id)
 {
     int pin = getPin(id, 'b');
     if (pin == -1)
         return false; // not a valid ID
-    return digitalRead(pin);
+    return (bool)digitalRead(pin);
 }
 
 // ******************************************* //

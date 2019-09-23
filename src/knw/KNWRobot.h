@@ -202,7 +202,7 @@ class KNWRobot {
          * <b>Note:</b> The arduino support connecting up to 8 bump sensors at one time.
          *
          * @param id A unique identifier that you specify. You will use this identifier
-         * when running checkBump(int), so it's recommended you assign it to a variable.
+         * when running getBump(int), so it's recommended you assign it to a variable.
          * It is also recommended you make it equal to the pin number it is assigned to.
          * @param pin The digital pin that the bump sensor is connected to.
          * @return true If the bump sensor was successfully assigned to the pin
@@ -234,20 +234,20 @@ class KNWRobot {
          * that you used as the first argument in setupPin(). It is also recommended you make
          * it equal to the pin number it is assigned to.
          * @param pin The digital pin that the bump sensor is connected to.
-         * @return 1 The value of a "high" state. Depending on how you wire the bump sensor
+         * @return true: The value of a "high" state. Depending on how you wire the bump sensor
          * (see link in description), a "high" state can refer to the sensor being pressed, or it
          * can refer to a sensor being open.
-         * @return 0 The value of a "low" state, the opposite of a 1 value.
+         * @return false: The value of a "low" state, the opposite of a true value.
          *
          * Example usage:
          *
          * @code
          * // Assuming you ran the sample code in setupBump()
-         * long bumpSensorState = myRobot->checkBump(bumpSensorId);
+         * long bumpSensorState = myRobot->getBump(bumpSensorId);
          * myRobot->printLCD(bumpSensorState);
          * @endcode
          */
-        int checkBump(int id);
+        bool getBump(int id);
 
         /**
          * Sets up and assigns your inclinometer to run on the specified analog pin.
