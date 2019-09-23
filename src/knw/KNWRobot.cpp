@@ -101,6 +101,9 @@ KNWRobot::KNWRobot()
     setupIR();
 }
 
+// ******************************************* //
+// (Private) Component Setup Functions
+// ******************************************* //
 void KNWRobot::setupKeypad()
 {
     // setting up keypad
@@ -154,6 +157,10 @@ void KNWRobot::setupIR(){
     prev_time = 0;
     num_chars = 0;
 }
+
+// ******************************************* //
+// (Public) Component Reset Functions
+// ******************************************* //
 
 void KNWRobot::resetKeypad()
 {
@@ -296,13 +303,14 @@ bool KNWRobot::setupPing(int id, int pin)
     }
     return false;
 }
+
 // Check out this site for implementation details:
 // http://arduino.cc/en/Tutorial/Ping
 long KNWRobot::getPing(int id)
 {
     int channel = getPin(id, 'p');
     if (channel == -1)
-        return 0; // not a valid ID
+        return -1; // Ping sensor has not been set up properly; this is an invalid ID
 
     long duration, cm;
 

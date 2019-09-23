@@ -175,7 +175,7 @@ class KNWRobot {
          *
          * <b>Note:</b> Before running this function, be sure you have run the setupPing()
          * function for this identifier first. If a ping sensor with the provided ID has
-         * not been setup, this function will return 0 every time you call it.
+         * not been setup, this function will return -1 every time you call it.
          *
          * @param id The integer identifier specified during the setupPing() call
          * @return long The distance away <b>in centimers</b> that the ping sensor detects the
@@ -1089,6 +1089,10 @@ class KNWRobot {
          */
         unsigned char* getIR();
 
+        /** 
+        *   Reset functions to redo setup of keypad and LCD; these may
+        *   be called if the LCD was not activated on KNWRobot instantiation
+        */
         void resetKeypad();
 
         void resetLCD();
@@ -1158,6 +1162,9 @@ class KNWRobot {
         int getPin(int id, char type);      // from an ID
         void secretFunction();
 
+        /** Functions that perform setup on components; note that these have not been 
+        *   tested for use as reset functions
+        */
         void setupKeypad();
         void setupLCD();
         void setupPWM();
