@@ -689,9 +689,6 @@ public:
          */
     bool setupMotor(int id, int pin);
 
-    void pcaRaw(int id, int pulseSize);
-    void pcaRawTime(int id, int pulseSize, int duration);
-
     /**
          * Stops a motor or servo with the provided identifier.
          *
@@ -1060,7 +1057,7 @@ public:
          *
          * @code
          * // Assuming you have already run the code in setupIR()
-         * int charactersReadFromIR = myRobot->scanIR(IRSensorId);
+         * int numCharsReadFromIR = myRobot->scanIR(IRSensorId);
          * myRobot->printLCD("Chars read: ");
          * myRobot->printLCD(charactersReadFromIR);
          *
@@ -1168,7 +1165,10 @@ private:
     // Miscellaneous functions
     bool checkPin(int pin, char type); // check to see if avalible
     int getPin(int id, char type);     // from an ID
-    void secretFunction();
+    void secretFunction();    
+    void pcaRaw(int id, int pulseSize);
+    void pcaRawTime(int id, int pulseSize, int duration);
+
 
     /** Functions that perform setup on components; note that these have not been 
         *   tested for use as reset functions
