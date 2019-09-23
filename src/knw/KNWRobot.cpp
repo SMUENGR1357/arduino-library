@@ -151,7 +151,8 @@ void KNWRobot::setupSensors()
     numIR = 0;
 }
 
-void KNWRobot::setupIR(){
+void KNWRobot::setupIR()
+{
     // setting up IR handling
     necState = 0;
     prev_time = 0;
@@ -445,13 +446,13 @@ int KNWRobot::getTemp()
 // ******************************************* //
 // Keypad Functions
 // ******************************************* //
-int KNWRobot::getInput()
+int KNWRobot::getKeypadInput()
 {
     lcd->clear();
-    return getInput(0);
+    return getKeypadInput(0);
 }
 
-int KNWRobot::getInput(int row)
+int KNWRobot::getKeypadInput(int row)
 {
     int inInt = -1;
     char key;
@@ -549,6 +550,22 @@ void KNWRobot::clearLine(int row)
 void KNWRobot::printLCD(char *input)
 {
     lcd->print(input);
+}
+
+void KNWRobot::printLCD(double input, short decimalPlaces)
+{
+    long multiplier = pow(10, decimalPlaces);
+    long wholeValue = (long)input;
+    printLCD(wholeValue); //whole number value
+    printLCD('.');        //decimal point
+    input -= wholeValue;  //gives us just the digits after the decimal
+    input *= multiplier;  //put digits we want to print in front of decimal
+    long decimalDigits = (long)input;   //discard everything we won't use
+    printLCD(decimalDigits);            //print remaining digits as param specifies
+}
+
+void KNWRobot::printLCD(double input){
+    printLCD(input, (short)3);
 }
 
 void KNWRobot::printLCD(int input)
