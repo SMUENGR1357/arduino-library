@@ -1150,7 +1150,7 @@ class KNWRobot {
         unsigned long prev_time;
 
         unsigned char IRChar, IRCharBitMask, buffer[8];
-        boolean receiverState = false;
+        bool receiverState = false;
         unsigned long cur_time, ticks;
 
         // Miscellaneous functions
@@ -1160,6 +1160,9 @@ class KNWRobot {
 
         void setupKeypad();
         void setupLCD();
+        void setupPWM();
+        void setupSensors();
+        void setupIR();
 };
 
 #endif  // SRC_KNW_KNWROBOT_H_

@@ -58,7 +58,8 @@
 // ******************************************* //
 // KNWRobot Constructor
 // ******************************************* //
-KNWRobot::KNWRobot(){
+KNWRobot::KNWRobot()
+{
     // Set pointers to null to avoid seg fault on reset calls
     lcd = nullptr;
     pwm = nullptr;
@@ -94,32 +95,14 @@ KNWRobot::KNWRobot(){
     memset(pcaPins, 0, sizeof(pcaPins));
 
     setupKeypad();
-
     setupLCD();
-   
-
-    // setting up PWM board
-    pwm = new Adafruit_PWMServoDriver();
-    pwm->begin();
-    pwm->setPWMFreq(60); // Analog servos run at ~60 Hz updates
-
-    // setting up Sensors
-    numPings = 0;
-    numMotors = 0;
-    numServos = 0;
-    numBumps = 0;
-    inclinePin = -1;
-    tempPin = -1;
-    numIR = 0;
-
-    // setting up IR handling
-    necState = 0;
-    prev_time = 0;
-    num_chars = 0;
-
+    setupPWM();
+    setupSensors();
+    setupIR();
 }
 
-void KNWRobot::setupKeypad() {
+void KNWRobot::setupKeypad()
+{
     // setting up keypad
     entered = false;
     numEntered = 0;
@@ -136,25 +119,55 @@ void KNWRobot::setupKeypad() {
     }
 }
 
-void KNWRobot::setupLCD() {
- // setting up LCD
+void KNWRobot::setupLCD()
+{
+    // setting up LCD
     lcd = new LiquidCrystal_I2C(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
     lcd->begin(16, 2); // initialize the lcd
     lcd->home();       // go to the top line
     lcd->print("SMU Lyle KNW2300");
 }
 
-void KNWRobot::resetKeypad(){
-   delete keypad;
-   keypad = nullptr;
-   
+void KNWRobot::setupPWM()
+{
+    // setting up PWM board
+    pwm = new Adafruit_PWMServoDriver();
+    pwm->begin();
+    pwm->setPWMFreq(60); // Analog servos run at ~60 Hz updates
 }
 
-void KNWRobot::resetLCD(){
+void KNWRobot::setupSensors()
+{
+    // setting up Sensors
+    numPings = 0;
+    numMotors = 0;
+    numServos = 0;
+    numBumps = 0;
+    inclinePin = -1;
+    tempPin = -1;
+    numIR = 0;
+}
+
+void KNWRobot::setupIR(){
+    // setting up IR handling
+    necState = 0;
+    prev_time = 0;
+    num_chars = 0;
+}
+
+void KNWRobot::resetKeypad()
+{
+    delete keypad;
+    keypad = nullptr;
+    setupKeypad();
+}
+
+void KNWRobot::resetLCD()
+{
     delete[] lcd;
     lcd = nullptr;
+    setupLCD();
 }
-
 
 // ******************************************* //
 // Pin Mapping Functions
