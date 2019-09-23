@@ -1138,7 +1138,7 @@ class KNWRobot {
 
         byte rowPins[4] = {39, 41, 43, 45};
         byte colPins[4] = {47, 49, 51, 53};
-        Keypad* mykeypad;
+        Keypad* keypad;
 
         // Used to control the LCD and PCA boards
         LiquidCrystal_I2C* lcd;
