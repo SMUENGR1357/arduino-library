@@ -1047,6 +1047,8 @@ public:
          * The values that it reads are stored in an internal character buffer, which you
          * can access using getIR() after running this function.
          *
+         * <b>Note</b>: the function will return -1 if the pin passed for scanIR() is invalid
+         * 
          * <b>Note</b>: every time you want to get fresh values from getIR(), you have to
          * run this function first.
          *
@@ -1165,10 +1167,9 @@ private:
     // Miscellaneous functions
     bool checkPin(int pin, char type); // check to see if avalible
     int getPin(int id, char type);     // from an ID
-    void secretFunction();    
+    void secretFunction();
     void pcaRaw(int id, int pulseSize);
     void pcaRawTime(int id, int pulseSize, int duration);
-
 
     /** Functions that perform setup on components; note that these have not been 
         *   tested for use as reset functions
