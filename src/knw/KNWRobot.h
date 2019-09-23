@@ -1089,6 +1089,12 @@ class KNWRobot {
          */
         unsigned char* getIR();
 
+        void resetKeypad();
+
+        void resetLCD();
+
+
+
  private:
         // Tracks which pins are being used and which are free
         bool analogPins[16];
@@ -1151,6 +1157,9 @@ class KNWRobot {
         bool checkPin(int pin, char type);  // check to see if avalible
         int getPin(int id, char type);      // from an ID
         void secretFunction();
+
+        void setupKeypad();
+        void setupLCD();
 };
 
 #endif  // SRC_KNW_KNWROBOT_H_
