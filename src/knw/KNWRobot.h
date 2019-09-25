@@ -4,11 +4,11 @@
 #define SRC_KNW_KNWROBOT_H_
 
 #if ARDUINO >= 100
-    #include "Arduino.h"
+#include "Arduino.h"
 #else
-    #include "WProgram.h"
-    #include "pins_arduino.h"
-    #include "WConstants.h"
+#include "WProgram.h"
+#include "pins_arduino.h"
+#include "WConstants.h"
 #endif
 
 #include "Wire.h"
@@ -27,12 +27,12 @@
  * Students typically do not reference these directly; rather, they are using the
  * various `getValue()` functions that use these Components behind the scenes.
  */
-struct Component {
-    int ID = 0;     // User defined
-    int PIN = 0;    // physical pin
-    char TYPE = 0;  // either analog(a), digital (d), or pca (p)
+struct Component
+{
+    int ID = 0;    // User defined
+    int PIN = 0;   // physical pin
+    char TYPE = 0; // either analog(a), digital (d), or pca (p)
 };
-
 
 /**
  * KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA's.
@@ -43,9 +43,10 @@ struct Component {
  * are all defined here.
  */
 
-class KNWRobot {
- public:
-        /**
+class KNWRobot
+{
+public:
+    /**
          * Constructor used to establish a connection to the Arduino.
          * Initalizes the mapping for the analog and digital pins, and sets up
         * the LCD controller / PWM controller.
@@ -67,9 +68,9 @@ class KNWRobot {
         * delete myRobot;
         * @endcode
          */
-        KNWRobot();
+    KNWRobot();
 
-        /**
+    /**
          * Accessor function to get what analog pins are currently assigned.
          * The returned array contains 16 elements, each of which refers
          * to an analog pin on the arduino. If element 0 is `true`, then
@@ -89,9 +90,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool* getAnalogPins();
+    bool *getAnalogPins();
 
-        /**
+    /**
          * Accessor function to get what digital pins are currently assigned.
          * The returned array contains 54 elements, each of which refers
          * to a digital pin on the arduino. If element 0 is `true`, then
@@ -111,9 +112,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool* getDigitalPins();
+    bool *getDigitalPins();
 
-        /**
+    /**
          * Accessor function to get what PCA board pins are currently assigned.
          * The PCA9685 board is what is used to control motors and servos.
          * The returned array contains 16 elements, each of which refers
@@ -132,9 +133,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool* getPCAPins();
+    bool *getPCAPins();
 
-        /**
+    /**
          * Sets up and assigns a ping sensor to run on the specified digital pin.
          * A <a href="https://www.arduino.cc/en/tutorial/ping">ping sensor</a>
          * sends a high frequency audio burst out in front of it and waits for
@@ -163,9 +164,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupPing(int id, int pin);
+    bool setupPing(int id, int pin);
 
-        /**
+    /**
          * Triggers a ping sensor to sense how far it is away from an object in front of it.
          * A <a href="https://www.arduino.cc/en/tutorial/ping">ping sensor</a>
          * sends a high frequency audio burst out in front of it and waits for
@@ -175,7 +176,7 @@ class KNWRobot {
          *
          * <b>Note:</b> Before running this function, be sure you have run the setupPing()
          * function for this identifier first. If a ping sensor with the provided ID has
-         * not been setup, this function will return 0 every time you call it.
+         * not been setup, this function will return -1 every time you call it.
          *
          * @param id The integer identifier specified during the setupPing() call
          * @return long The distance away <b>in centimers</b> that the ping sensor detects the
@@ -190,9 +191,9 @@ class KNWRobot {
          * myRobot->printLCD(distanceInCm);
          * @endcode
          */
-        long getPing(int id);
+    long getPing(int id);
 
-        /**
+    /**
          * Sets up and assigns a bump sensor to run on the specified digital pin.
          * A <a href="https://www.instructables.com/id/Cheap-Robot-Bump-Sensors-for-Arduino/">bump sensor</a>
          * can either be a "high" state or "low" state. Depending on how you wired the sensor,
@@ -202,7 +203,7 @@ class KNWRobot {
          * <b>Note:</b> The arduino support connecting up to 8 bump sensors at one time.
          *
          * @param id A unique identifier that you specify. You will use this identifier
-         * when running checkBump(int), so it's recommended you assign it to a variable.
+         * when running getBump(int), so it's recommended you assign it to a variable.
          * It is also recommended you make it equal to the pin number it is assigned to.
          * @param pin The digital pin that the bump sensor is connected to.
          * @return true If the bump sensor was successfully assigned to the pin
@@ -219,9 +220,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupBump(int id, int pin);
+    bool setupBump(int id, int pin);
 
-        /**
+    /**
          * Checks to see if a bump sensor is pressed or not, or more specifically, in a high or low state.
          * A <a href="https://www.instructables.com/id/Cheap-Robot-Bump-Sensors-for-Arduino/">bump sensor</a>
          * can either be a "high" state or "low" state. Depending on how you wired the sensor,
@@ -234,23 +235,23 @@ class KNWRobot {
          * that you used as the first argument in setupPin(). It is also recommended you make
          * it equal to the pin number it is assigned to.
          * @param pin The digital pin that the bump sensor is connected to.
-         * @return 1 The value of a "high" state. Depending on how you wire the bump sensor
+         * @return true: The value of a "high" state. Depending on how you wire the bump sensor
          * (see link in description), a "high" state can refer to the sensor being pressed, or it
          * can refer to a sensor being open.
-         * @return 0 The value of a "low" state, the opposite of a 1 value.
+         * @return false: The value of a "low" state, the opposite of a true value.
          *
          * Example usage:
          *
          * @code
          * // Assuming you ran the sample code in setupBump()
-         * long bumpSensorState = myRobot->checkBump(bumpSensorId);
+         * long bumpSensorState = myRobot->getBump(bumpSensorId);
          * myRobot->printLCD(bumpSensorState);
          * @endcode
          */
-        int checkBump(int id);
+    bool getBump(int id);
 
-        /**
-         * Sets up and assigns your inclinometer to run on the specified analog pin.
+    /**
+         * Sets up and assigns an inclinometer to run on the specified analog pin.
          * An inclinometer is a sensor that, when built and calibrated properly, can
          * detect the angle at which your robot is currently oriented relative to a
          * flat plane. Instructions for building the circuit are found on Canvas. For
@@ -270,9 +271,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupIncline(int pin);
+    bool setupIncline(int pin);
 
-        /**
+    /**
          * Provides a reading of the current value of your inclinometer.
          *
          * This function returns a value in the range of [0 - 1023], which is the min - max
@@ -298,13 +299,13 @@ class KNWRobot {
          * // This is NOT a good interpolating function. Your function will need to be more
          * // precise & accurate than this. This is just an example to show converting from
          * // a raw sensor reading to an angle before printing to the LCD screen.
-         * int angle = inclineReading / 6;
+         * double angle = inclineReading / 6;
          * myRobot->printLCD(angle);
          * @endcode
          */
-        int getIncline();
+    int getIncline();
 
-        /**
+    /**
          * Provides a reading of the conductivity probe.
          *
          * The full documentation for building and calibrating your conductivity probe can
@@ -335,9 +336,9 @@ class KNWRobot {
          * myRobot->printLCD(conductivityReading);
          * @endcode
          */
-        int getConductivity();
+    int getConductivity();
 
-        /**
+    /**
          * Sets up and assigns your temperature probe to run on the specified analog pin.
          * A temperature probe is a sensor that, when built and calibrated properly, can
          * detect the temperature by using a thermal resistor.
@@ -358,9 +359,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupTemp(int pin);
+    bool setupTemp(int pin);
 
-        /**
+    /**
          * Provides a reading of the current value of your temperature probe.
          *
          * This function returns a value in the range of [0 - 1023], which is the min - max
@@ -381,9 +382,9 @@ class KNWRobot {
          * myRobot->printLCD(temperatureProbeReading);
          * @endcode
          */
-        int getTemp();
+    int getTemp();
 
-        /**
+    /**
          * Clears out the LCD, and gets input from the number pad.
          *
          * As defined in the wiring guide, the number pad is plugged into the row of
@@ -407,7 +408,7 @@ class KNWRobot {
          * Example code
          *
          * @code
-         * int quadrant = myRobot->getInput();
+         * int quadrant = myRobot->getKeypadInput();
          * // Enter A B C or D, followed by #
          * if (quadrant == 'A') {
          *   // Perform the starting function for quadrant A that you define
@@ -418,21 +419,21 @@ class KNWRobot {
          *   executeQuadrantB();
          * }
          *
-         * int servoPosition = myRobot->getInput();
+         * int servoPosition = myRobot->getKeypadInput();
          * // Enter a value, such as 45, followed by #
          * // Assuming you've run the setupServo() sample code already
          * myRobot->pca180Servo(servoID, servoPosition);
          * @endcode
          */
-        int getInput();
+    int getKeypadInput();
 
-        /**
+    /**
          * Gets input from the number pad, printing the input on the specified row.
          *
-         * This is fundamentally the same as getInput(), but instead of clearing out
+         * This is fundamentally the same as getKeypadInput(), but instead of clearing out
          * the LCD, you specify what row to print your input on. Useful for if you
          * want to print a statement on row 1, and display your keypad input on line 2.
-         * Refer to getInput() for full details.
+         * Refer to getKeypadInput() for full details.
          *
          * @param row Either 0 or 1, the row you wwant to print input on.
          * @return int The numbers / characters you input.
@@ -444,15 +445,15 @@ class KNWRobot {
          *
          * // Prompt on first line, display input on next line
          * myRobot->printLCD("Servo angle:");
-         * int servoPosition = myRobot->getInput(1);
+         * int servoPosition = myRobot->getKeypadInput(1);
          *
          * // Assuming you've run the setupServo sample code already
          * myRobot->pca180Servo(servoID, servoPosition);
          * @endcode
          */
-        int getInput(int row);
+    int getKeypadInput(int row);
 
-        /**
+    /**
          * Clears the LCD of all content.
          *
          * As the title says, any content on the LCD is cleared when you call this
@@ -465,9 +466,9 @@ class KNWRobot {
          * myRobot->clearLCD();
          * @endcode
          */
-        void clearLCD();
+    void clearLCD();
 
-        /**
+    /**
          * Allows you to set the LCD cursor to control where output is displayed
          *
          * The LCD consists of 2 rows and 16 columns. By calling this function,
@@ -486,9 +487,9 @@ class KNWRobot {
          * myRobot->printLCD("Hello!");
          * @endcode
          */
-        void moveCursor(int col, int row);
+    void moveCursor(int col, int row);
 
-        /**
+    /**
          * Clears out a row of the LCD cursor.
          *
          * Any content on the given row (either 0 or 1) is cleared out. The other
@@ -503,9 +504,9 @@ class KNWRobot {
          * myRobot->clearLine(0);
          * @endcode
          */
-        void clearLine(int row);
+    void clearLine(int row);
 
-        /**
+    /**
          * Prints a line of text onto the LCD at the current cursor position
          *
          * Note that each line has a max of 16 characters. Use this function
@@ -525,9 +526,9 @@ class KNWRobot {
          * myRobot->printLCD("KNW 2300");
          * @endcode
          */
-        void printLCD(char* input);
+    void printLCD(char *input);
 
-        /**
+    /**
          * Prints an integer onto the LCD at the current cursor position.
          *
          * Note that each line has a max of 16 characters. Use this function
@@ -547,9 +548,9 @@ class KNWRobot {
          * myRobot->printLCD(conductivityReading);
          * @endcode
          */
-        void printLCD(int input);
+    void printLCD(int input);
 
-        /**
+    /**
          * Prints a long onto the LCD at the current cursor position.
          *
          * Note that each line has a max of 16 characters. Use this function
@@ -569,9 +570,19 @@ class KNWRobot {
          * myRobot->printLCD(pingReading);
          * @endcode
          */
-        void printLCD(long input);
+    void printLCD(long input);
 
-        /**
+    /**
+         * Use this to print the double value input with n digits after the decimal point (n being decimalPlaces)
+         */
+    void printLCD(double input, short decimalPlaces);
+
+    /**
+         * Calls printLCD(double, int) with 3 digits after decimal
+         */
+    void printLCD(double input);
+
+    /**
          * Prints a single character onto the LCD at the current cursor position.
          *
          * Note that each line has a max of 16 characters. Use this function
@@ -589,9 +600,9 @@ class KNWRobot {
          * myRobot->printLCD('U');
          * @endcode
          */
-        void printLCD(char input);
+    void printLCD(char input);
 
-        /**
+    /**
          * Sets up and assigns a servo motor to run on the specified pin on the PCA board.
          * There are two types of servo: a 180 degree servo and a continuous rotation servo
          * (sometimes colloquially known as a 360 degree servo).
@@ -635,9 +646,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupServo(int id, int pin);
+    bool setupServo(int id, int pin);
 
-        /**
+    /**
          * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
          *
          * DC Motors operate by providing them a speed value (which also determines direction
@@ -676,12 +687,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupMotor(int id, int pin);
+    bool setupMotor(int id, int pin);
 
-        void pcaRaw(int id, int pulseSize);
-        void pcaRawTime(int id, int pulseSize, int duration);
-
-        /**
+    /**
          * Stops a motor or servo with the provided identifier.
          *
          * Assuming you setup a motor / servo using setupMotor() / setupServo(),
@@ -703,9 +711,9 @@ class KNWRobot {
          * myRobot->pcaStop(motorId);
          * @endcode
          */
-        void pcaStop(int id);
+    void pcaStop(int id);
 
-        /**
+    /**
          * Stops all motors and servos connected to the PCA board.
          *
          * All pins on the PCA board have their PWM signals reset, thereby
@@ -720,9 +728,9 @@ class KNWRobot {
          * myRobot->pcaStopAll();
          * @endcode
          */
-        void pcaStopAll();
+    void pcaStopAll();
 
-        /**
+    /**
          * Moves a specified 180 degree servo to a specified angle.
          *
          * This moves a 180 degree servo with a given identifier to a given angle.
@@ -757,9 +765,9 @@ class KNWRobot {
          * // Do something else with your ping reading
          * @endcode
          */
-        void pca180Servo(int id, int angle);
+    void pca180Servo(int id, int angle);
 
-        /**
+    /**
          * Moves a specified 180 degree servo to a specified angle for the specified amount of time.
          *
          * This moves a 180 degree servo with a given identifier to a given angle for a
@@ -787,9 +795,9 @@ class KNWRobot {
          * // After three seconds, your code resumes here.
          * @endcode
          */
-        void pca180ServoTime(int id, int angle, int duration);
+    void pca180ServoTime(int id, int angle, int duration);
 
-        /**
+    /**
          * Moves a specified continuous rotation servo with a specified speed.
          *
          * This moves a continuous rotation servo with a given identifier with the given speed.
@@ -820,9 +828,9 @@ class KNWRobot {
          * myRobot->pcaStop(servoId);
          * @endcode
          */
-        void pcaContServo(int id, int speed);
+    void pcaContServo(int id, int speed);
 
-        /**
+    /**
          * Moves a specified continuous rotation servo to a specified speed for the specified amount of time.
          *
          * This moves a continuous rotation servo with a given identifier with a given speed for a
@@ -849,9 +857,9 @@ class KNWRobot {
          * // After 3.5 seconds, your code resumes here.
          * @endcode
          */
-        void pcaContServoTime(int id, int speed, int duration);
+    void pcaContServoTime(int id, int speed, int duration);
 
-        /**
+    /**
          * Moves a specified DC motor with a specified speed.
          *
          * This moves a DC motor with a given identifier with the given speed.
@@ -885,9 +893,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        void pcaDCMotor(int id, int speed);
+    void pcaDCMotor(int id, int speed);
 
-        /**
+    /**
          * Moves two specified DC motors with two specified speeds.
          *
          * This moves two DC motors with given identifiers to two speeds (potentially
@@ -928,9 +936,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        void pcaDC2Motors(int id1, int speed1, int id2, int speed2);
+    void pcaDC2Motors(int id1, int speed1, int id2, int speed2);
 
-        /**
+    /**
          * Moves a specified DC motor with a specified speed for a specified amount of time.
          *
          * This moves a DC motor with a given identifier with the given speed for a
@@ -957,9 +965,9 @@ class KNWRobot {
          * // resumes here
          * @endcode
          */
-        void pcaDCMotorTime(int id, int speed, int duration);
+    void pcaDCMotorTime(int id, int speed, int duration);
 
-        /**
+    /**
          * Moves two specified DC motors with specified speeds for a specified amount of time.
          *
          * This moves two DC motors with given identifiers with the given speeds for a
@@ -995,14 +1003,14 @@ class KNWRobot {
          * // resumes here
          * @endcode
          */
-        void pcaDC2MotorsTime(
-            int id1,
-            int speed1,
-            int id2,
-            int speed2,
-            int duration);
+    void pcaDC2MotorsTime(
+        int id1,
+        int speed1,
+        int id2,
+        int speed2,
+        int duration);
 
-        /**
+    /**
          * Sets up and assigns an IR navigation sensor to run on the specified digital pin.
          * An IR navigation sensor is used to detect the values being emitted by the various
          * beacons placed around the field. Refer to documentation on Canvas for details
@@ -1029,9 +1037,9 @@ class KNWRobot {
          * }
          * @endcode
          */
-        bool setupIR(int id, int pin);
+    bool setupIR(int id, int pin);
 
-        /**
+    /**
          * This uses the IR sensor with the given identifier to scan for beacons that
          * may be nearby.
          *
@@ -1039,6 +1047,8 @@ class KNWRobot {
          * The values that it reads are stored in an internal character buffer, which you
          * can access using getIR() after running this function.
          *
+         * <b>Note</b>: the function will return -1 if the pin passed for scanIR() is invalid
+         * 
          * <b>Note</b>: every time you want to get fresh values from getIR(), you have to
          * run this function first.
          *
@@ -1049,7 +1059,7 @@ class KNWRobot {
          *
          * @code
          * // Assuming you have already run the code in setupIR()
-         * int charactersReadFromIR = myRobot->scanIR(IRSensorId);
+         * int numCharsReadFromIR = myRobot->scanIR(IRSensorId);
          * myRobot->printLCD("Chars read: ");
          * myRobot->printLCD(charactersReadFromIR);
          *
@@ -1059,9 +1069,9 @@ class KNWRobot {
          * myRobot->printLCD(IRCharacters);
          * @endcode
          */
-        int scanIR(int id);
+    int scanIR(int id);
 
-        /**
+    /**
          * This provides the characters that were reading from the most recent call to scanIR().
          *
          * This function should be used in conjunction with scanIR(). Every time you want a fresh
@@ -1087,70 +1097,88 @@ class KNWRobot {
          * myRobot->printLCD(IRCharacters);
          * @endcode
          */
-        unsigned char* getIR();
+    unsigned char *getIR();
 
- private:
-        // Tracks which pins are being used and which are free
-        bool analogPins[16];
-        bool digitalPins[54];
-        bool pcaPins[16];
+    /** 
+        *   Reset functions to redo setup of keypad and LCD; these may
+        *   be called if the LCD was not activated on KNWRobot instantiation
+        */
+    void resetKeypad();
 
-        // Tracks which components are associated to what ID's / pins
-        Component pingSensors[8];
-        Component bumpSensors[8];
-        Component irSensors[4];
-        Component motors[4];
-        Component servos[16];
+    void resetLCD();
 
-        // Tracks how many of each component the robot currently has attached
-        int numPings;
-        int numBumps;
-        int numIR;
-        int inclinePin;
-        int tempPin;
-        int numMotors;
-        int numServos;
+private:
+    // Tracks which pins are being used and which are free
+    bool analogPins[16];
+    bool digitalPins[54];
+    bool pcaPins[16];
 
-        // Specific pins for the conductivity probe
-        const int conductivityDigitalPin1 = 12;
-        const int conductivityDigitalPin2 = 13;
-        const int conductivityAnalogPin1 = 2;
-        const int conductivityAnalogPin2 = 3;
+    // Tracks which components are associated to what ID's / pins
+    Component pingSensors[8];
+    Component bumpSensors[8];
+    Component irSensors[4];
+    Component motors[4];
+    Component servos[16];
 
-        // Instance variables used in conjunction with the keypad
-        bool entered;
-        int numEntered;
-        char DATA[17];
-        byte ROWS = 4;
-        byte COLS = 4;
-        char keys[4][4] = {
-              {'1', '2', '3', 'A'},
-              {'4', '5', '6', 'B'},
-              {'7', '8', '9', 'C'},
-              {'*', '0', '#', 'D'}
-        };
+    // Tracks how many of each component the robot currently has attached
+    int numPings;
+    int numBumps;
+    int numIR;
+    int inclinePin;
+    int tempPin;
+    int numMotors;
+    int numServos;
 
-        byte rowPins[4] = {39, 41, 43, 45};
-        byte colPins[4] = {47, 49, 51, 53};
-        Keypad* mykeypad;
+    // Specific pins for the conductivity probe
+    const int conductivityDigitalPin1 = 12;
+    const int conductivityDigitalPin2 = 13;
+    const int conductivityAnalogPin1 = 2;
+    const int conductivityAnalogPin2 = 3;
 
-        // Used to control the LCD and PCA boards
-        LiquidCrystal_I2C* lcd;
-        Adafruit_PWMServoDriver* pwm;
+    // Instance variables used in conjunction with the keypad
+    bool entered;
+    int numEntered;
+    char DATA[17];
+    byte ROWS = 4;
+    byte COLS = 4;
+    char keys[4][4] = {
+        {'1', '2', '3', 'A'},
+        {'4', '5', '6', 'B'},
+        {'7', '8', '9', 'C'},
+        {'*', '0', '#', 'D'}};
 
-        // Instance variables used in conjunction with the IR sensor
-        unsigned char necState;
-        int num_chars;
-        unsigned long prev_time;
+    byte rowPins[4] = {39, 41, 43, 45};
+    byte colPins[4] = {47, 49, 51, 53};
+    Keypad *keypad;
 
-        unsigned char IRChar, IRCharBitMask, buffer[8];
-        boolean receiverState = false;
-        unsigned long cur_time, ticks;
+    // Used to control the LCD and PCA boards
+    LiquidCrystal_I2C *lcd;
+    Adafruit_PWMServoDriver *pwm;
 
-        // Miscellaneous functions
-        bool checkPin(int pin, char type);  // check to see if avalible
-        int getPin(int id, char type);      // from an ID
-        void secretFunction();
+    // Instance variables used in conjunction with the IR sensor
+    unsigned char necState;
+    int num_chars;
+    unsigned long prev_time;
+
+    unsigned char IRChar, IRCharBitMask, buffer[8];
+    bool receiverState = false;
+    unsigned long cur_time, ticks;
+
+    // Miscellaneous functions
+    bool checkPin(int pin, char type); // check to see if avalible
+    int getPin(int id, char type);     // from an ID
+    void secretFunction();
+    void pcaRaw(int id, int pulseSize);
+    void pcaRawTime(int id, int pulseSize, int duration);
+
+    /** Functions that perform setup on components; note that these have not been 
+        *   tested for use as reset functions
+        */
+    void setupKeypad();
+    void setupLCD();
+    void setupPWM();
+    void setupSensors();
+    void setupIR();
 };
 
-#endif  // SRC_KNW_KNWROBOT_H_
+#endif // SRC_KNW_KNWROBOT_H_
