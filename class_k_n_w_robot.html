@@ -555,7 +555,7 @@ Analog Pin 3 </li>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>long The distance away <b>in centimers</b> that the ping sensor detects the object in front of it to be. If the ping sensor has not been setup, this will return 0.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>long The distance away <b>in centimers</b> that the ping sensor detects the object in front of it to be. If the ping sensor has not been setup, this will return -1.</dd></dl>
 <p>Example usage:</p>
 <div class="fragment"><div class="line"><span class="comment">// Assuming you ran the sample code in setupPing()</span></div><div class="line"><span class="keywordtype">long</span> distanceInCm = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e">getPing</a>(pingSensorId);</div><div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#ab7425515e1a3a19335604913716239df">printLCD</a>(distanceInCm);</div></div><!-- fragment --> 
 </div>
