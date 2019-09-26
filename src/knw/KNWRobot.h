@@ -181,7 +181,7 @@ public:
          * @param id The integer identifier specified during the setupPing() call
          * @return long The distance away <b>in centimers</b> that the ping sensor detects the
          * object in front of it to be. If the ping sensor has not been setup, this will
-         * return 0.
+         * return -1.
          *
          * Example usage:
          *
