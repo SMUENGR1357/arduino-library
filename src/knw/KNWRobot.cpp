@@ -19,7 +19,6 @@
 #include "LiquidCrystal_I2C.h"
 #include "Keypad.h"
 #include "Adafruit_PWMServoDriver.h"
-#include "Servo.h"
 
 // PCA DETAILS (Calibrated by Prof Matt Saari)
 // Configuration parameters for each type of motor.
@@ -68,7 +67,7 @@ KNWRobot::KNWRobot()
     // analog pins that can't be used
     for (int i = 0; i < 16; i++)
     {
-        if (i < 4)
+        if (i >= 2 && i < 4)
         {
             analogPins[i] = true;
         }
