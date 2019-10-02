@@ -1,6 +1,7 @@
 var class_k_n_w_robot =
 [
     [ "KNWRobot", "class_k_n_w_robot.html#a646b4429008350a0db1b4a544703c5cb", null ],
+    [ "~KNWRobot", "class_k_n_w_robot.html#a606adcedbf7271c5b9c3260a6a7a7010", null ],
     [ "clearLCD", "class_k_n_w_robot.html#ae83682079482b655e3ef07f92d275d68", null ],
     [ "clearLine", "class_k_n_w_robot.html#a608637eef629e27f9d01170dab792812", null ],
     [ "getAnalogPins", "class_k_n_w_robot.html#a97d13b03aa286d2a8315a42807f2b6a6", null ],
