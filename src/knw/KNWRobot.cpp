@@ -101,6 +101,13 @@ KNWRobot::KNWRobot()
     setupIR();
 }
 
+KNWRobot::~KNWRobot()
+{
+    delete keypad;
+    delete lcd;
+    delete pwm;
+}
+
 // ******************************************* //
 // (Private) Component Setup Functions
 // ******************************************* //
@@ -556,15 +563,16 @@ void KNWRobot::printLCD(double input, short decimalPlaces)
 {
     long multiplier = pow(10, decimalPlaces);
     long wholeValue = (long)input;
-    printLCD(wholeValue); //whole number value
-    printLCD('.');        //decimal point
-    input -= wholeValue;  //gives us just the digits after the decimal
-    input *= multiplier;  //put digits we want to print in front of decimal
-    long decimalDigits = (long)input;   //discard everything we won't use
-    printLCD(decimalDigits);            //print remaining digits as param specifies
+    printLCD(wholeValue);             //whole number value
+    printLCD('.');                    //decimal point
+    input -= wholeValue;              //gives us just the digits after the decimal
+    input *= multiplier;              //put digits we want to print in front of decimal
+    long decimalDigits = (long)input; //discard everything we won't use
+    printLCD(decimalDigits);          //print remaining digits as param specifies
 }
 
-void KNWRobot::printLCD(double input){
+void KNWRobot::printLCD(double input)
+{
     printLCD(input, (short)3);
 }
 
