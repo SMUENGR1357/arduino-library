@@ -1106,7 +1106,7 @@ public:
         */
      void resetKeypad();
 
-     void resetLCD();
+     void resetLCD(long lcdPin);
 
 protected:
      // Tracks which pins are being used and which are free

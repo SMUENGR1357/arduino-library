@@ -176,11 +176,11 @@ void KNWRobot::resetKeypad()
     setupKeypad();
 }
 
-void KNWRobot::resetLCD()
+void KNWRobot::resetLCD(long lcdAddress)
 {
     delete[] lcd;
     lcd = nullptr;
-    setupLCD();
+    setupLCD(lcdAddress);
 }
 
 // ******************************************* //
