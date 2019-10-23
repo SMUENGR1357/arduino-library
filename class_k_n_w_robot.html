@@ -106,6 +106,8 @@ $(document).ready(function(){initNavTree('class_k_n_w_robot.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_k_n_w_robot-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">KNWRobot Class Reference</div>  </div>
@@ -119,9 +121,9 @@ $(document).ready(function(){initNavTree('class_k_n_w_robot.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a646b4429008350a0db1b4a544703c5cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a646b4429008350a0db1b4a544703c5cb">KNWRobot</a> ()</td></tr>
-<tr class="memdesc:a646b4429008350a0db1b4a544703c5cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used to establish a connection to the Arduino.  <a href="#a646b4429008350a0db1b4a544703c5cb">More...</a><br /></td></tr>
-<tr class="separator:a646b4429008350a0db1b4a544703c5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55703f81f04348fcff64f4946fb64250"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a55703f81f04348fcff64f4946fb64250">KNWRobot</a> (long lcdAddress=0x27)</td></tr>
+<tr class="memdesc:a55703f81f04348fcff64f4946fb64250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used to establish a connection to the Arduino.  <a href="#a55703f81f04348fcff64f4946fb64250">More...</a><br /></td></tr>
+<tr class="separator:a55703f81f04348fcff64f4946fb64250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d13b03aa286d2a8315a42807f2b6a6"><td class="memItemLeft" align="right" valign="top">bool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a97d13b03aa286d2a8315a42807f2b6a6">getAnalogPins</a> ()</td></tr>
 <tr class="memdesc:a97d13b03aa286d2a8315a42807f2b6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor function to get what analog pins are currently assigned.  <a href="#a97d13b03aa286d2a8315a42807f2b6a6">More...</a><br /></td></tr>
 <tr class="separator:a97d13b03aa286d2a8315a42807f2b6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -245,19 +247,173 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af491a48a6fbdf51950e48cb3867d0689"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af491a48a6fbdf51950e48cb3867d0689"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetLCD</b> ()</td></tr>
 <tr class="separator:af491a48a6fbdf51950e48cb3867d0689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:abebf83a834d0abaa8cca7725d13c97e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abebf83a834d0abaa8cca7725d13c97e6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkPin</b> (int pin, char type)</td></tr>
+<tr class="separator:abebf83a834d0abaa8cca7725d13c97e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb466557785d4de0b35038aceba59bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcb466557785d4de0b35038aceba59bb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getPin</b> (int id, char type)</td></tr>
+<tr class="separator:afcb466557785d4de0b35038aceba59bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930579fce44f9a252e5085d1dc3669e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a930579fce44f9a252e5085d1dc3669e9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>secretFunction</b> ()</td></tr>
+<tr class="separator:a930579fce44f9a252e5085d1dc3669e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93a06b316df5eba9c16426112bffd31a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93a06b316df5eba9c16426112bffd31a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRaw</b> (int id, int pulseSize)</td></tr>
+<tr class="separator:a93a06b316df5eba9c16426112bffd31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a894e10aad382b9431b77bcf731df42f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894e10aad382b9431b77bcf731df42f6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pcaRawTime</b> (int id, int pulseSize, int duration)</td></tr>
+<tr class="separator:a894e10aad382b9431b77bcf731df42f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eea5bcedf6f7cd2685b5e1811feec5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eea5bcedf6f7cd2685b5e1811feec5a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a9eea5bcedf6f7cd2685b5e1811feec5a">setupKeypad</a> ()</td></tr>
+<tr class="memdesc:a9eea5bcedf6f7cd2685b5e1811feec5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions that perform setup on components; note that these have not been tested for use as reset functions. <br /></td></tr>
+<tr class="separator:a9eea5bcedf6f7cd2685b5e1811feec5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae685cf5d2ce1bab6148c6e2accaff51f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae685cf5d2ce1bab6148c6e2accaff51f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupLCD</b> (long)</td></tr>
+<tr class="separator:ae685cf5d2ce1bab6148c6e2accaff51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bb1982dd5b262c9197b5b849c8f0daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bb1982dd5b262c9197b5b849c8f0daf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupPWM</b> ()</td></tr>
+<tr class="separator:a6bb1982dd5b262c9197b5b849c8f0daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e15a7c5f721ddb60f7c90d94b47b38"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10e15a7c5f721ddb60f7c90d94b47b38"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupSensors</b> ()</td></tr>
+<tr class="separator:a10e15a7c5f721ddb60f7c90d94b47b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a267853cecd5b562ed70b61cf11d3ee46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a267853cecd5b562ed70b61cf11d3ee46"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupIR</b> ()</td></tr>
+<tr class="separator:a267853cecd5b562ed70b61cf11d3ee46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ace29350913058ea80765d66b7c65131d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace29350913058ea80765d66b7c65131d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>analogPins</b> [16]</td></tr>
+<tr class="separator:ace29350913058ea80765d66b7c65131d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959d35750a0bf186d2562679f0c81e55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959d35750a0bf186d2562679f0c81e55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>digitalPins</b> [54]</td></tr>
+<tr class="separator:a959d35750a0bf186d2562679f0c81e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d71e4d26846a5e8e1ecd6eae919a5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08d71e4d26846a5e8e1ecd6eae919a5d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pcaPins</b> [16]</td></tr>
+<tr class="separator:a08d71e4d26846a5e8e1ecd6eae919a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a622479b7cbf685e6d0c6e7c246165595"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a622479b7cbf685e6d0c6e7c246165595"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pingSensors</b> [8]</td></tr>
+<tr class="separator:a622479b7cbf685e6d0c6e7c246165595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14eb121a82683d4fbf4577e9bd1a5ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad14eb121a82683d4fbf4577e9bd1a5ee"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bumpSensors</b> [8]</td></tr>
+<tr class="separator:ad14eb121a82683d4fbf4577e9bd1a5ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb079a0af35a2e586e6506df6a531f0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb079a0af35a2e586e6506df6a531f0e"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>irSensors</b> [4]</td></tr>
+<tr class="separator:adb079a0af35a2e586e6506df6a531f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ded7af28486e1d75bc2b8eed690cc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4ded7af28486e1d75bc2b8eed690cc3"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>motors</b> [4]</td></tr>
+<tr class="separator:ab4ded7af28486e1d75bc2b8eed690cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b2173ced6688df0b8d1842e23bf1ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2b2173ced6688df0b8d1842e23bf1ec"></a>
+<a class="el" href="struct_component.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><b>servos</b> [16]</td></tr>
+<tr class="separator:ab2b2173ced6688df0b8d1842e23bf1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ff6077375f2c2c1ce24214d1884607"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44ff6077375f2c2c1ce24214d1884607"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numPings</b></td></tr>
+<tr class="separator:a44ff6077375f2c2c1ce24214d1884607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5edc924c29fe83299f6694630fa4ed9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5edc924c29fe83299f6694630fa4ed9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numBumps</b></td></tr>
+<tr class="separator:ad5edc924c29fe83299f6694630fa4ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995941a69ef375d9abfd5e1c1a15390c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a995941a69ef375d9abfd5e1c1a15390c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numIR</b></td></tr>
+<tr class="separator:a995941a69ef375d9abfd5e1c1a15390c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c70af0f3df7c2613e8a81bc3490253"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c70af0f3df7c2613e8a81bc3490253"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>inclinePin</b></td></tr>
+<tr class="separator:a92c70af0f3df7c2613e8a81bc3490253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603564750c72c655c3373a8d755bedc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a603564750c72c655c3373a8d755bedc5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>tempPin</b></td></tr>
+<tr class="separator:a603564750c72c655c3373a8d755bedc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a811c609d9e74a85062a484839cb5817a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a811c609d9e74a85062a484839cb5817a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numMotors</b></td></tr>
+<tr class="separator:a811c609d9e74a85062a484839cb5817a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab238414ca34ee77806be2a8f900549a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab238414ca34ee77806be2a8f900549a8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numServos</b></td></tr>
+<tr class="separator:ab238414ca34ee77806be2a8f900549a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a6b06b3a8abf2135894f4198f00f09d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a6b06b3a8abf2135894f4198f00f09d"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>conductivityDigitalPin1</b> = 12</td></tr>
+<tr class="separator:a7a6b06b3a8abf2135894f4198f00f09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5680ed8d6af8fd5858a08d4cda23c63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5680ed8d6af8fd5858a08d4cda23c63"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>conductivityDigitalPin2</b> = 13</td></tr>
+<tr class="separator:ab5680ed8d6af8fd5858a08d4cda23c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8298ba57a2c9266d9430c873cf301365"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8298ba57a2c9266d9430c873cf301365"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>conductivityAnalogPin1</b> = 2</td></tr>
+<tr class="separator:a8298ba57a2c9266d9430c873cf301365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04769bcb3de399e765ec1c296f246f47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04769bcb3de399e765ec1c296f246f47"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>conductivityAnalogPin2</b> = 3</td></tr>
+<tr class="separator:a04769bcb3de399e765ec1c296f246f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce53064ac1a17daac91796abdebe5a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ce53064ac1a17daac91796abdebe5a5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>entered</b></td></tr>
+<tr class="separator:a4ce53064ac1a17daac91796abdebe5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ee96356d5dff45033f1ef0f7b1eef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4ee96356d5dff45033f1ef0f7b1eef4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>numEntered</b></td></tr>
+<tr class="separator:ac4ee96356d5dff45033f1ef0f7b1eef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a633e9f43dadaa0fa765a4954543b6444"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a633e9f43dadaa0fa765a4954543b6444"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>DATA</b> [17]</td></tr>
+<tr class="separator:a633e9f43dadaa0fa765a4954543b6444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a341baf345717efe9d0a31f1f1c353346"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a341baf345717efe9d0a31f1f1c353346"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>ROWS</b> = 4</td></tr>
+<tr class="separator:a341baf345717efe9d0a31f1f1c353346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade56afe414b5c6877e5211cd50351373"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade56afe414b5c6877e5211cd50351373"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>COLS</b> = 4</td></tr>
+<tr class="separator:ade56afe414b5c6877e5211cd50351373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034d372f12dad6014de4c1f89419508b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><b>keys</b> [4][4]</td></tr>
+<tr class="separator:a034d372f12dad6014de4c1f89419508b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91155bc2cf77036f3644970d08b1d03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae91155bc2cf77036f3644970d08b1d03"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>rowPins</b> [4] = {39, 41, 43, 45}</td></tr>
+<tr class="separator:ae91155bc2cf77036f3644970d08b1d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ee7c3e902c4ee5a5f4d290ce220e14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15ee7c3e902c4ee5a5f4d290ce220e14"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>colPins</b> [4] = {47, 49, 51, 53}</td></tr>
+<tr class="separator:a15ee7c3e902c4ee5a5f4d290ce220e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43d45a76b88a8dc929aad857bd2d76af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43d45a76b88a8dc929aad857bd2d76af"></a>
+Keypad *&#160;</td><td class="memItemRight" valign="bottom"><b>keypad</b></td></tr>
+<tr class="separator:a43d45a76b88a8dc929aad857bd2d76af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628e7f9a22fd41f53115ae279232ad1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a628e7f9a22fd41f53115ae279232ad1f"></a>
+LiquidCrystal_I2C *&#160;</td><td class="memItemRight" valign="bottom"><b>lcd</b></td></tr>
+<tr class="separator:a628e7f9a22fd41f53115ae279232ad1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05fcf341232599a77b6b23ebffc0573"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa05fcf341232599a77b6b23ebffc0573"></a>
+Adafruit_PWMServoDriver *&#160;</td><td class="memItemRight" valign="bottom"><b>pwm</b></td></tr>
+<tr class="separator:aa05fcf341232599a77b6b23ebffc0573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab831ad3858f2d61a2065652404c2e006"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab831ad3858f2d61a2065652404c2e006"></a>
+unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>necState</b></td></tr>
+<tr class="separator:ab831ad3858f2d61a2065652404c2e006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd19000d1a610c871a6f35de7b95207a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd19000d1a610c871a6f35de7b95207a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>num_chars</b></td></tr>
+<tr class="separator:afd19000d1a610c871a6f35de7b95207a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49ffc3ec34aee0c413d0f8105da3585b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49ffc3ec34aee0c413d0f8105da3585b"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>prev_time</b></td></tr>
+<tr class="separator:a49ffc3ec34aee0c413d0f8105da3585b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4801127bdf5dc69426a71c13dd0c58a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4801127bdf5dc69426a71c13dd0c58a8"></a>
+unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>IRChar</b></td></tr>
+<tr class="separator:a4801127bdf5dc69426a71c13dd0c58a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1d9948283f7329da05d631a023e61d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d1d9948283f7329da05d631a023e61d"></a>
+unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>IRCharBitMask</b></td></tr>
+<tr class="separator:a9d1d9948283f7329da05d631a023e61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38132d63826019fbf4f143b1ea1efdd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38132d63826019fbf4f143b1ea1efdd0"></a>
+unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>buffer</b> [8]</td></tr>
+<tr class="separator:a38132d63826019fbf4f143b1ea1efdd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad92b41da78475b11fb879116ac30b86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad92b41da78475b11fb879116ac30b86"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>receiverState</b> = false</td></tr>
+<tr class="separator:aad92b41da78475b11fb879116ac30b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaeb180a8cc779fe6500e99f35f07949"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeaeb180a8cc779fe6500e99f35f07949"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>cur_time</b></td></tr>
+<tr class="separator:aeaeb180a8cc779fe6500e99f35f07949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5fbf4c160f6539fc8582a57cab848d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5fbf4c160f6539fc8582a57cab848d2"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>ticks</b></td></tr>
+<tr class="separator:af5fbf4c160f6539fc8582a57cab848d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_k_n_w_robot.html" title="KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA&#39;s. ">KNWRobot</a> Library 2.0, brought to you with love by the fabulous KNW TA's. </p>
 <p>This library contains the functions needed to communicate with the various hardware components of your robot. Defining what pins are being used, reading data from environmental sensors, and defining motor / servo motions are all defined here. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a646b4429008350a0db1b4a544703c5cb"></a>
+<a class="anchor" id="a55703f81f04348fcff64f4946fb64250"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">KNWRobot::KNWRobot </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>lcdAddress</em> = <code>0x27</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -266,7 +422,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetLCD</b> ()</td><
 <p>Constructor used to establish a connection to the Arduino. </p>
 <p>Initalizes the mapping for the analog and digital pins, and sets up the LCD controller / PWM controller.</p>
 <p>Example usage:</p>
-<div class="fragment"><div class="line"><span class="comment">// Create an instance of the robot</span></div><div class="line"><a class="code" href="class_k_n_w_robot.html">KNWRobot</a>* myRobot = <span class="keyword">new</span> <a class="code" href="class_k_n_w_robot.html#a646b4429008350a0db1b4a544703c5cb">KNWRobot</a>();</div><div class="line"></div><div class="line"><span class="comment">// Use the instance to setup a ping sensor on digital pin 8 with</span></div><div class="line"><span class="comment">// an ID of 1.</span></div><div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#ab9d1d1ded6ca8ce7b445ae26de76dff0">setupPing</a>(1, 8);</div><div class="line"><span class="keywordtype">int</span> pingSensorValue = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e">getPing</a>(1);</div><div class="line"></div><div class="line"><span class="comment">// Do something with pingSensorValue</span></div><div class="line"></div><div class="line"><span class="comment">// Don&#39;t forget to cleanup the instance at the end of your program</span></div><div class="line"><span class="keyword">delete</span> myRobot;</div></div><!-- fragment --> 
+<div class="fragment"><div class="line"><span class="comment">// Create an instance of the robot</span></div><div class="line"><a class="code" href="class_k_n_w_robot.html">KNWRobot</a>* myRobot = <span class="keyword">new</span> <a class="code" href="class_k_n_w_robot.html#a55703f81f04348fcff64f4946fb64250">KNWRobot</a>();</div><div class="line"></div><div class="line"><span class="comment">// Use the instance to setup a ping sensor on digital pin 8 with</span></div><div class="line"><span class="comment">// an ID of 1.</span></div><div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#ab9d1d1ded6ca8ce7b445ae26de76dff0">setupPing</a>(1, 8);</div><div class="line"><span class="keywordtype">int</span> pingSensorValue = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e">getPing</a>(1);</div><div class="line"></div><div class="line"><span class="comment">// Do something with pingSensorValue</span></div><div class="line"></div><div class="line"><span class="comment">// Don&#39;t forget to cleanup the instance at the end of your program</span></div><div class="line"><span class="keyword">delete</span> myRobot;</div></div><!-- fragment --> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -1422,6 +1578,27 @@ false If the servo was not assigned to the pin</dd></dl>
 false If the temperature probe was not assigned to the pin</dd></dl>
 <p>Example usage:</p>
 <div class="fragment"><div class="line"><span class="comment">// Assuming your temperature probe is wired and connected to analog pin 8</span></div><div class="line"><span class="keywordtype">bool</span> success = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55">setupTemp</a>(8);</div><div class="line"><span class="keywordflow">if</span> (success) {</div><div class="line">  <span class="comment">// Now ready to use the temperature probe</span></div><div class="line">}</div></div><!-- fragment --> 
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a034d372f12dad6014de4c1f89419508b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char KNWRobot::keys[4][4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">         {<span class="charliteral">&#39;1&#39;</span>, <span class="charliteral">&#39;2&#39;</span>, <span class="charliteral">&#39;3&#39;</span>, <span class="charliteral">&#39;A&#39;</span>},</div><div class="line">         {<span class="charliteral">&#39;4&#39;</span>, <span class="charliteral">&#39;5&#39;</span>, <span class="charliteral">&#39;6&#39;</span>, <span class="charliteral">&#39;B&#39;</span>},</div><div class="line">         {<span class="charliteral">&#39;7&#39;</span>, <span class="charliteral">&#39;8&#39;</span>, <span class="charliteral">&#39;9&#39;</span>, <span class="charliteral">&#39;C&#39;</span>},</div><div class="line">         {<span class="charliteral">&#39;*&#39;</span>, <span class="charliteral">&#39;0&#39;</span>, <span class="charliteral">&#39;#&#39;</span>, <span class="charliteral">&#39;D&#39;</span>}}</div></div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
