@@ -57,7 +57,7 @@
 // ******************************************* //
 // KNWRobot Constructor
 // ******************************************* //
-KNWRobot::KNWRobot()
+KNWRobot::KNWRobot(long lcdAddress = 0x27)
 {
     // Set pointers to null to avoid seg fault on reset calls
     lcd = nullptr;
@@ -94,7 +94,7 @@ KNWRobot::KNWRobot()
     memset(pcaPins, 0, sizeof(pcaPins));
 
     setupKeypad();
-    setupLCD();
+    setupLCD(lcdAddress);
     setupPWM();
     setupSensors();
     setupIR();
@@ -128,10 +128,10 @@ void KNWRobot::setupKeypad()
     }
 }
 
-void KNWRobot::setupLCD()
+void KNWRobot::setupLCD(long lcdAddress)
 {
     // setting up LCD
-    lcd = new LiquidCrystal_I2C(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+    lcd = new LiquidCrystal_I2C(lcdAddress, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
     lcd->begin(16, 2); // initialize the lcd
     lcd->home();       // go to the top line
     lcd->print("SMU Lyle KNW2300");

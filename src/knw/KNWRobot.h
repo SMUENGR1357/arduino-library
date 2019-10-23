@@ -68,7 +68,7 @@ public:
         * delete myRobot;
         * @endcode
          */
-     KNWRobot();
+     KNWRobot(long lcdAddress = 0x27);
      ~KNWRobot();
 
      /**
@@ -1108,7 +1108,7 @@ public:
 
      void resetLCD();
 
-private:
+protected:
      // Tracks which pins are being used and which are free
      bool analogPins[16];
      bool digitalPins[54];
@@ -1176,7 +1176,7 @@ private:
         *   tested for use as reset functions
         */
      void setupKeypad();
-     void setupLCD();
+     void setupLCD(long);
      void setupPWM();
      void setupSensors();
      void setupIR();
