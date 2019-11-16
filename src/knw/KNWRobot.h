@@ -70,7 +70,7 @@ public:
          */
      KNWRobot(long lcdAddress = 0x27);
      ~KNWRobot();
-
+     void printVersion();
      /**
          * Accessor function to get what analog pins are currently assigned.
          * The returned array contains 16 elements, each of which refers
