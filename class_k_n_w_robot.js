@@ -36,6 +36,7 @@ var class_k_n_w_robot =
     [ "printLCD", "class_k_n_w_robot.html#aeeb1a377ba615f85450c977343fe4b49", null ],
     [ "printLCD", "class_k_n_w_robot.html#a6852e8d3889fe8067b9fb5601c9d8368", null ],
     [ "printLCD", "class_k_n_w_robot.html#ac33b91ee3c56c3035379499150c0a3df", null ],
+    [ "printVersion", "class_k_n_w_robot.html#ae1a0d4eb9aa2b1240a6f8f4ab1559f34", null ],
     [ "resetKeypad", "class_k_n_w_robot.html#ad076021647bd82e847b01146f07f315f", null ],
     [ "resetLCD", "class_k_n_w_robot.html#a4ef2b96d06037fb792d8a17e29f0a031", null ],
     [ "scanIR", "class_k_n_w_robot.html#a2f19ae94e6d68900c0c9ddd16b4bb326", null ],
