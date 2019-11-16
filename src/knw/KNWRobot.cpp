@@ -1018,6 +1018,7 @@ unsigned char *KNWRobot::getIR()
     return buffer;
 }
 
-void KNWRobot::getVersion(){
-	printLCD("KNW2300 Library v1.3");
+void KNWRobot::printVersion()
+{
+    printLCD("KNW2300 Library v1.3");
 }
