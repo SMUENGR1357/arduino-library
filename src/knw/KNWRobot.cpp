@@ -57,7 +57,7 @@
 // ******************************************* //
 // KNWRobot Constructor
 // ******************************************* //
-KNWRobot::KNWRobot()
+KNWRobot::KNWRobot(long lcdAddress = 0x27)
 {
     // Set pointers to null to avoid seg fault on reset calls
     lcd = nullptr;
@@ -94,7 +94,7 @@ KNWRobot::KNWRobot()
     memset(pcaPins, 0, sizeof(pcaPins));
 
     setupKeypad();
-    setupLCD();
+    setupLCD(lcdAddress);
     setupPWM();
     setupSensors();
     setupIR();
@@ -128,10 +128,10 @@ void KNWRobot::setupKeypad()
     }
 }
 
-void KNWRobot::setupLCD()
+void KNWRobot::setupLCD(long lcdAddress)
 {
     // setting up LCD
-    lcd = new LiquidCrystal_I2C(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+    lcd = new LiquidCrystal_I2C(lcdAddress, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
     lcd->begin(16, 2); // initialize the lcd
     lcd->home();       // go to the top line
     lcd->print("SMU Lyle KNW2300");
@@ -176,11 +176,11 @@ void KNWRobot::resetKeypad()
     setupKeypad();
 }
 
-void KNWRobot::resetLCD()
+void KNWRobot::resetLCD(long lcdAddress)
 {
     delete[] lcd;
     lcd = nullptr;
-    setupLCD();
+    setupLCD(lcdAddress);
 }
 
 // ******************************************* //
@@ -412,11 +412,11 @@ int KNWRobot::getConductivity()
     for (unsigned long i = 0; i < loopCount; ++i)
     {
         // The AND turns off pin 13, OR turns on pin 12
-        PORTB = B00010000 | (PORTB & B11011111);
+        PORTB = B01000000 | (PORTB & B01111111);
         delay(5);
 
         // AND turns off pin 12, OR turns on pin 13
-        PORTB = B00100000 | (PORTB & B11101111);
+        PORTB = B10000000 | (PORTB & B10111111);
         delay(5);
     }
 
@@ -1016,4 +1016,9 @@ int KNWRobot::scanIR(int id)
 unsigned char *KNWRobot::getIR()
 {
     return buffer;
+}
+
+void KNWRobot::printVersion()
+{
+    printLCD("KNW2300 Library v1.3");
 }

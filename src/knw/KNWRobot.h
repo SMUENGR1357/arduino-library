@@ -68,9 +68,9 @@ public:
         * delete myRobot;
         * @endcode
          */
-     KNWRobot();
+     KNWRobot(long lcdAddress = 0x27);
      ~KNWRobot();
-
+     void printVersion();
      /**
          * Accessor function to get what analog pins are currently assigned.
          * The returned array contains 16 elements, each of which refers
@@ -1106,9 +1106,9 @@ public:
         */
      void resetKeypad();
 
-     void resetLCD();
+     void resetLCD(long lcdPin);
 
-private:
+protected:
      // Tracks which pins are being used and which are free
      bool analogPins[16];
      bool digitalPins[54];
@@ -1176,7 +1176,7 @@ private:
         *   tested for use as reset functions
         */
      void setupKeypad();
-     void setupLCD();
+     void setupLCD(long);
      void setupPWM();
      void setupSensors();
      void setupIR();
