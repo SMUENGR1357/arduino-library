@@ -41,6 +41,62 @@ struct Component
  * hardware components of your robot. Defining what pins are being used,
  * reading data from environmental sensors, and defining motor / servo motions
  * are all defined here.
+ * 
+ * Here is an example program showing how to initialize a robot object and perform
+ * some basic actions:
+ * 
+ * @code
+ * 
+#include "KNWRobot.h"
+
+// Define a few constants to identify what pins each motor is plugged into
+const int LEFT_MOTOR = 2;
+const int RIGHT_MOTOR = 6;
+
+// Define constants for each motor's speed. Note that each motor may have different
+// speeds in order for the robot to actually drive straight.
+const int LEFT_MOTOR_SPEED = 200;
+const int RIGHT_MOTOR_SPEED = -150;
+
+// Define a constant for a bump sensor
+const int FRONT_BUMP = 7;
+
+// This is what interacts with the Arduino
+KNWRobot *robot;
+bool startBump;
+
+// This setup function is run ONCE when the arduino receives power, when
+// the program is uploaded to the arduino, or when the reset button is pressed
+// (located on the arduino itself)
+void setup()
+{
+    // Initialize the connection to the arduino and the various components
+    robot = new KNWRobot();
+    robot->setupMotor(LEFT_MOTOR, LEFT_MOTOR);
+    robot->setupMotor(RIGHT_MOTOR, RIGHT_MOTOR);
+    robot->setupBump(FRONT_BUMP, FRONT_BUMP);
+    robot->resetKeypad();
+
+    // Print message on success
+    robot->printLCD((char *)("TA Bot Initialized."));
+    robot->getKeypadInput();
+    startBump = robot->getBump(FRONT_BUMP);
+}
+
+// This function is run repeatedly until the arduino is power cycled
+// or reset.
+void loop()
+{
+    // Move the robot forward until it detects a change in the bump sensor readings
+    robot->pcaDC2Motors(LEFT_MOTOR, LEFT_MOTOR_SPEED + 70, RIGHT_MOTOR, RIGHT_MOTOR_SPEED + 20);
+    while (robot->getBump(FRONT_BUMP) == startBump)
+        ;
+    
+    // Stop the motor, then pause 0.3 seconds. Then repeat
+    robot->pcaStopAll();
+    delay(300);
+}
+ * @endcode
  */
 
 class KNWRobot

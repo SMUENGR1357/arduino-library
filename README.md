@@ -3,16 +3,25 @@ Controling Arduino: MEGA 2560
 
 Author: Alexandria Hancock
 
+## Function Documentation
+
+You can find the full KNWRobot class documentation, including function documentation and examples,
+by following [this link](https://smuknw2300.github.io/arduino-library/class_k_n_w_robot.html).
+
 ## Setup
-Before using the library, you must first setup your laptop to be able to compile code written using Arduino C++. You will then need to add additional libraries that the code uses behind the scenes (they are included in this repo). Follow these steps:
+Before using the library, you must first setup your laptop to be able to compile code written using Arduino C++.
+You will then need to add additional libraries that the code uses behind the scenes (they are included in this
+repo). Follow these steps:
 
 1) Download the [Arduino IDE](https://www.arduino.cc/en/Main/Software) for your operating system. Go through the installation steps.
 	* Windows: proceed with the default installation options.
 	* Mac OSX: drag and drop the application into your Applications directory (most often `/Applications`).
 
-After finishing the installation, open the Arduino IDE. Continue selecting default options until you see a text editor with some empty functions. Close the application for now.
+After finishing the installation, open the Arduino IDE. Continue selecting default options until you see a text
+editor with some empty functions. Close the application for now.
 
-2) [Download the latest release of this repository](https://github.com/SMUKNW2300/arduino-library/releases). Unzip the files onto your computer.
+2) [Download the latest release of this repository](https://github.com/SMUKNW2300/arduino-library/releases).
+Unzip the files onto your computer.
 
 3) Copy over the contents of the `lib` folder in this repo into the `libraries` folder of your Arduino installation.
 	* Windows: Open File Explorer, go to `My Documents`. You should see an `Arduino` folder. Within that folder is a `libraries` folder (create one if it doesn't exist). Copy the directories in `lib` into the `libraries` folder.
