@@ -567,7 +567,7 @@ void KNWRobot::printLCD(double input, short decimalPlaces)
     input -= wholeValue;              //gives us just the digits after the decimal
     input *= multiplier;              //put digits we want to print in front of decimal
     long decimalDigits = (long)input; //discard everything we won't use
-    printLCD(decimalDigits);          //print remaining digits as param specifies
+    printLCD(abs(decimalDigits));          //print remaining digits as param specifies
 }
 
 void KNWRobot::printLCD(double input)
