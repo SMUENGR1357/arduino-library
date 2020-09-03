@@ -37,7 +37,20 @@ Unzip the files onto your computer.
 
 6) At the top left of the Arduino IDE, click the checkmark icon (Verify). This will compile the code. If you followed the steps correctly, you will see a message like `Done compiling`. If a step was missed, you will see error messages. If this happens, please ask a TA for help.
 
+## Using just the Conductivity Module
 
+In the above directions, you setup a helper KNWRobot class. You can also add a single module for conductivity.
+For example:
+
+```cpp
+#include <Conductivity.h>
+```
+
+You can then interface with your conductivity probe as such (for example, in your `loop()` function):
+
+```cpp
+int probeReading = getConductivity();
+```
 
 ## Using the library
 When first starting to interface with the MEGA 2560 to get the robot
