@@ -118,7 +118,7 @@ int getIntValueAtAddress(unsigned int address) {
  * This function writes an int value to the given address.
  * <b>NOTE:</b>This function <b>DOES NOT</b> increment the sample counter value.
  * You will either need to call incrementCountOfDataSamples() or manage the
- * counter value on your own.
+ * counter value on your own using setCountOfDataSamples(unsigned int).
  * 
  * @param address The location on the EEPROM memory space to save an integer into
  * @param value The integer value to store at the given address
