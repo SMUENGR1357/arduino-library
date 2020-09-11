@@ -46,7 +46,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_conductivity_8h.html"
+"_k_n_w_robot_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

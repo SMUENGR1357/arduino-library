@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SMU KNW 2300 Arduino Library: src/Conductivity/Conductivity.h File Reference</title>
+<title>SMU KNW 2300 Arduino Library: src/conductivity Directory Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_conductivity_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('dir_30028e2618fcaf503325ff878c8be223.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,60 +83,22 @@ $(document).ready(function(){initNavTree('_conductivity_8h.html',''); initResiza
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Conductivity.h File Reference</div>  </div>
+<div class="title">conductivity Directory Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="_conductivity_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a75cf675c220b17e388b29c2d18edfa9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f">getConductivity</a> ()</td></tr>
-<tr class="memdesc:a75cf675c220b17e388b29c2d18edfa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a reading of the conductivity probe.  <a href="_conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f">More...</a><br /></td></tr>
-<tr class="separator:a75cf675c220b17e388b29c2d18edfa9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:conductivity_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conductivity_8h.html">conductivity.h</a> <a href="conductivity_8h_source.html">[code]</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a75cf675c220b17e388b29c2d18edfa9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75cf675c220b17e388b29c2d18edfa9f">&#9670;&nbsp;</a></span>getConductivity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getConductivity </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Provides a reading of the conductivity probe. </p>
-<p>The full documentation for building and calibrating your conductivity probe can be found on Canvas.</p>
-<p>Your probe must be connected to the following pins: </p><ul>
-<li>
-Digital Pin 12 </li>
-<li>
-Digital Pin 13 </li>
-<li>
-Analog Pin 2 </li>
-<li>
-Analog Pin 3 </li>
-</ul>
-<p>The raw returned value is a range between [0 - 1023], denoting the absolute difference between analog pins 2 and 3. You are required to calibrate your sensor by reading sensor values at various salinity levels and then generating an interpolating function. This function can then be used to convert new values while your machine is performing its tasks. The more data points, the more likely your function is accurate. It is also very likely that you will have to periodically recalibrate your sensor. Rebuilding your circuit (for example, changing the resistors or fixing a broken connection) will require you to recalibrate.</p>
-<dl class="section return"><dt>Returns</dt><dd>int A value between [0 - 1023] telling you the raw analog pin reading. </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_cf8f4799a1b1b16211bab6d0330dbd8f.html">Conductivity</a></li><li class="navelem"><a class="el" href="_conductivity_8h.html">Conductivity.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_30028e2618fcaf503325ff878c8be223.html">conductivity</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
