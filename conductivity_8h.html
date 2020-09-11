@@ -98,7 +98,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:a75cf675c220b17e388b29c2d18edfa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a reading of the conductivity probe.  <a href="conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f">More...</a><br /></td></tr>
 <tr class="separator:a75cf675c220b17e388b29c2d18edfa9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This library provides a helper function for getting a reading using your conductivity probe. To use the library, include the following include statement at the top of your source code (before any other functions that you define, including setup() and loop()):</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="conductivity_8h.html">conductivity.h</a>&gt;</span></div>
+</div><!-- fragment --><p>You will then be able to use the function in this helper:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> conductivityReading = <a class="code" href="conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f">getConductivity</a>();</div>
+<div class="line"><span class="keywordtype">int</span> salinity = myCalibrationFunction(conductivityReading);</div>
+<div class="line">Serial.println(<span class="stringliteral">&quot;Salinity Reading:&quot;</span>);</div>
+<div class="line">Serial.println(salinity);</div>
+</div><!-- fragment --><p>The myCalibrationFunction() shown above is one that you define: you must calibrate your sensor to provide salinity concentration values. See the documentation for <a class="el" href="conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f" title="Provides a reading of the conductivity probe.">getConductivity()</a> for details on what arduino pins are needed to make this function work, as well as Canvas for circuitry details. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a75cf675c220b17e388b29c2d18edfa9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a75cf675c220b17e388b29c2d18edfa9f">&#9670;&nbsp;</a></span>getConductivity()</h2>
 
@@ -133,6 +142,8 @@ Analog Pin 3 </li>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aconductivity_8h_html"><div class="ttname"><a href="conductivity_8h.html">conductivity.h</a></div></div>
+<div class="ttc" id="aconductivity_8h_html_a75cf675c220b17e388b29c2d18edfa9f"><div class="ttname"><a href="conductivity_8h.html#a75cf675c220b17e388b29c2d18edfa9f">getConductivity</a></div><div class="ttdeci">int getConductivity()</div><div class="ttdoc">Provides a reading of the conductivity probe.</div><div class="ttdef"><b>Definition:</b> conductivity.h:53</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

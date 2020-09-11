@@ -99,6 +99,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a3a20925facb599d684f16b927cf852c6"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eepromhelper_8h.html#a3a20925facb599d684f16b927cf852c6">getCountOfDataSamples</a> ()</td></tr>
 <tr class="memdesc:a3a20925facb599d684f16b927cf852c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the number of data samples that have been recorded on the EEPROM.  <a href="eepromhelper_8h.html#a3a20925facb599d684f16b927cf852c6">More...</a><br /></td></tr>
 <tr class="separator:a3a20925facb599d684f16b927cf852c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a710f77e36eeed3ec1a49758628d3086e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eepromhelper_8h.html#a710f77e36eeed3ec1a49758628d3086e">setCountOfDataSamples</a> (unsigned int sampleCount)</td></tr>
+<tr class="memdesc:a710f77e36eeed3ec1a49758628d3086e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set the number of data samples that have been recorded onto the EEPROM.  <a href="eepromhelper_8h.html#a710f77e36eeed3ec1a49758628d3086e">More...</a><br /></td></tr>
+<tr class="separator:a710f77e36eeed3ec1a49758628d3086e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09c3e255eeb4cc5a2f44eef2b50d455"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eepromhelper_8h.html#aa09c3e255eeb4cc5a2f44eef2b50d455">incrementCountOfDataSamples</a> ()</td></tr>
 <tr class="memdesc:aa09c3e255eeb4cc5a2f44eef2b50d455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the number of samples that have been stored on the EEPROM, and stores it back into the appropriate spot in the EEPROM.  <a href="eepromhelper_8h.html#aa09c3e255eeb4cc5a2f44eef2b50d455">More...</a><br /></td></tr>
 <tr class="separator:aa09c3e255eeb4cc5a2f44eef2b50d455"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,7 +127,14 @@ Variables</h2></td></tr>
 <tr class="memdesc:a9a06ee95a448d4bbd39fdb4140ca1501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant that is used to keep track of how many bytes an integer uses (for pin readings)  <a href="eepromhelper_8h.html#a9a06ee95a448d4bbd39fdb4140ca1501">More...</a><br /></td></tr>
 <tr class="separator:a9a06ee95a448d4bbd39fdb4140ca1501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is an optional helper file that can read / write to the Arduino's EEPROM on-board memory.</p>
+<p>The Arduino EEPROM is essentially a "tiny hard drive": you can read and write data that's stored on the arduino, and this data will persist even if you unplug the Arduino from its source of power. This is different from variables that are defined in code: every time your arduino is removed from power those variables are effectively "reset" back to their original values. With EEPROM, however, you can persist these values across power cycles. To find out more (as well as what functions the raw Arduino library lets you use), you can refer to <a href="https://www.arduino.cc/en/Reference/EEPROM">this page</a> for more details. In particular, it is recommended that you look at the get() and put() functions: those allow you to read and write to the EEPROM, respectively.</p>
+<p>The functions in this helper file let you write integer values to and from EEPROM. However, that may not be sufficient in your programs. You may need to read / write additional data, or data of different types (e.g. floats, strings, etc.). You can use the source code of these functions to help get you started. The code for these functions can be found at &lt;a href="https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h&gt;"this publicly available repository. That, in tandem with the get() and put() functions from the arduino site linked above, will provide you with the information needed to store custom data.</p>
+<p>The functions in this file can be used by writing the following include statement at the top of your code:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="eepromhelper_8h.html">eepromhelper.h</a>&gt;</span></div>
+</div><!-- fragment --><p>You can then use these functions to read / write with the EEPROM. In particular, refer to the <a href="https://github.com/SMUKNW2300/arduino-library/blob/master/samples/sample_data_logger.ino">sample file on the github repository</a> for an introduction on how to use this library to store / retrieve data </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a554c5a03b9188048d822da5ff61aa71a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a554c5a03b9188048d822da5ff61aa71a">&#9670;&nbsp;</a></span>appendIntValueToEEPROM()</h2>
 
@@ -248,6 +258,34 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a710f77e36eeed3ec1a49758628d3086e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710f77e36eeed3ec1a49758628d3086e">&#9670;&nbsp;</a></span>setCountOfDataSamples()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int setCountOfDataSamples </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>sampleCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to set the number of data samples that have been recorded onto the EEPROM. </p>
+<p>Note that this does not actually verify that there are that many samples stored in EEPROM; it is up to the programmer to verify that the number is indeed accurate</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sampleCount</td><td>The number of samples to be recorded in EEPROM </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The same sampleCount value that was passed in. </dd></dl>
+
+</div>
+</div>
 <a id="a2ddcc254cf078d3e3bcf1f7f85d58cb6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ddcc254cf078d3e3bcf1f7f85d58cb6">&#9670;&nbsp;</a></span>setIntValueAtAddress()</h2>
 
@@ -322,6 +360,7 @@ Variables</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aeepromhelper_8h_html"><div class="ttname"><a href="eepromhelper_8h.html">eepromhelper.h</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
