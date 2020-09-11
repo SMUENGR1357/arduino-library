@@ -19,7 +19,7 @@
  * that may not be sufficient in your programs. You may need to read / write additional
  * data, or data of different types (e.g. floats, strings, etc.). You can use the source
  * code of these functions to help get you started. The code for these functions can be
- * found at <a href="https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h>"this publicly available repository</a>.
+ * found at <a href="https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h">this publicly available repository</a>.
  * That, in tandem with the get() and put() functions from the arduino site linked above,
  * will provide you with the information needed to store custom data.
  * 
