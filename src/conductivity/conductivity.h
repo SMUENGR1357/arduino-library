@@ -1,3 +1,28 @@
+/**
+ * @file conductivity.h
+ *
+ * This library provides a helper function for getting a reading using your conductivity
+ * probe. To use the library, include the following include statement at the top of your 
+ * source code (before any other functions that you define, including setup() and loop()):
+ * 
+ * @code
+ * #include <conductivity.h>
+ * @endcode
+ * 
+ * You will then be able to use the function in this helper:
+ * 
+ * @code
+ * int conductivityReading = getConductivity();
+ * int salinity = myCalibrationFunction(conductivityReading);
+ * Serial.println("Salinity Reading:");
+ * Serial.println(salinity);
+ * @endcode
+ * 
+ * The myCalibrationFunction() shown above is one that you define: you must calibrate
+ * your sensor to provide salinity concentration values. See the documentation
+ * for getConductivity() for details on what arduino pins are needed to make this
+ * function work, as well as Canvas for circuitry details.
+ */
 
 /**
  * Provides a reading of the conductivity probe.

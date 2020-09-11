@@ -5,8 +5,10 @@ Author: Alexandria Hancock
 
 ## Function Documentation
 
-You can find the full KNWRobot class documentation, including function documentation and examples,
-by following [this link](https://smuknw2300.github.io/arduino-library/class_k_n_w_robot.html).
+- Conductivity function documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/conductivity_8h.html)
+- EEPROM helper documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html)
+- For semesters prior to Fall 2020: You can find the full KNWRobot class documentation, including
+function documentation and examples,by following [this link](https://smuknw2300.github.io/arduino-library/).
 
 ## Setup
 Before using the library, you must first setup your laptop to be able to compile code written using Arduino C++.
@@ -27,32 +29,56 @@ Unzip the files onto your computer.
 	* Windows: Open File Explorer, go to `My Documents`. You should see an `Arduino` folder. Within that folder is a `libraries` folder (create one if it doesn't exist). Copy the directories in `lib` into the `libraries` folder.
 	* Mac: Open finder, go to your Documents directory (/Users/[username]/Documents). You should see an `Arduino` folder. Within that folder is a `libraries` folder (create one if it doesn't exist). Copy the directories in `lib` into the `libraries` folder.
 
-4) Copy the `knw` folder (located in `src`) into the `libraries` folder you opened in step 3.
+4) Copy over the contents of the `src` folder into the `libraries` folder you opened in step 3.
 
-5) Open the Arduino IDE again. At the top of the file, add the following line:
 
-```cpp
-#include <KNWRobot.h>
-```
 
-6) At the top left of the Arduino IDE, click the checkmark icon (Verify). This will compile the code. If you followed the steps correctly, you will see a message like `Done compiling`. If a step was missed, you will see error messages. If this happens, please ask a TA for help.
+## Using the Conductivity Module
 
-## Using just the Conductivity Module
-
-In the above directions, you setup a helper KNWRobot class. You can also add a single module for conductivity.
-For example:
+To add the functions necessary to interface with your conductivity probe, add the following at the top
+of your arduino source code:
 
 ```cpp
-#include <Conductivity.h>
+#include <conductivity.h>
 ```
 
 You can then interface with your conductivity probe as such (for example, in your `loop()` function):
 
 ```cpp
-int probeReading = getConductivity();
+void loop() {
+	int probeReading = getConductivity();
+	// Do something with probeReading
+}
 ```
 
-## Using the library
+Refer to [this page](https://smuknw2300.github.io/arduino-library/conductivity_8h.html) for full documentation on the conductivity module.
+
+## Using the EEPROM Helper library (optional)
+
+To add the functions necessary to interface with the arduino's EEPROM memory, add the following
+at the top of your arduino source code:
+
+```cpp
+#include <eepromhelper.h>
+```
+
+You can then interface with some helper functions for reading / writing to the EEPROM. Note that these
+functions are used to read / write integer values for long-term storage. This may be enough for your needs,
+but additional functions (and additional functionality) may be needed. Please refer to
+[this page](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html) for details on how to use
+the library, as well as [this source file](https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
+if you want to see exactly what these functions do behind the scenes. This can help guide your implementation.
+It is also recommended that you refer to [Arduino's EEPROM Reference page](https://www.arduino.cc/en/Reference/EEPROM).
+
+## Using the library (Prior to Fall 2020)
+Open the Arduino IDE again. At the top of the file, add the following line:
+
+```cpp
+#include <KNWRobot.h>
+```
+
+At the top left of the Arduino IDE, click the checkmark icon (Verify). This will compile the code. If you followed the steps correctly, you will see a message like `Done compiling`. If a step was missed, you will see error messages. If this happens, please ask a TA for help.
+
 When first starting to interface with the MEGA 2560 to get the robot
 runnning, a couple things must first be wired so you can use the library.
 
