@@ -62,8 +62,9 @@ at the top of your arduino source code:
 #include <eepromhelper.h>
 ```
 
-You can then interface with some helper functions for reading / writing to the EEPROM. Note that these
-functions are used to read / write integer values for long-term storage. This may be enough for your needs,
+You can then interface with some helper functions for reading / writing to the EEPROM. To see a sample of the
+functions in action, refer to [this source file in the samples directory](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/sample_data_logger.ino).
+Note that these functions are used to read / write integer values for long-term storage. This may be enough for your needs,
 but additional functions (and additional functionality) may be needed. Please refer to
 [this page](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html) for details on how to use
 the library, as well as [this source file](https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
