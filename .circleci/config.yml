@@ -26,12 +26,12 @@ jobs:
       - run:
           name: Install and configure dependencies
           command: |
-            npm install -g --silent gh-pages
+            npm install -g --silent gh-pages@2.1.1
             git config user.email "cayala@smu.edu"
             git config user.name "ChristianAyala"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist . --dest docs
+          command: gh-pages --dist docs
 
 workflows:
   version: 2
