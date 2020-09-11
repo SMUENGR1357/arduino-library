@@ -1,4 +1,4 @@
-#include <EEPROMHelper.h>
+#include <eepromhelper.h>
 #include <Sleep_n0m1.h>
 
 Sleep sleep;
