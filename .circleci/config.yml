@@ -31,7 +31,7 @@ jobs:
             git config user.name "ChristianAyala"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist docs
+          command: gh-pages --dist . --dest docs
 
 workflows:
   version: 2
