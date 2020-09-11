@@ -1,7 +1,7 @@
 # KNWRobot - Robotics Control Library for SMU KNW2300
 Controling Arduino: MEGA 2560
 
-Author: Alexandria Hancock
+Author: KNW Staff and Faculty
 
 ## Function Documentation
 
