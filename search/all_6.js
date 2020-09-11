@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['scanir_27',['scanIR',['../class_k_n_w_robot.html#a2f19ae94e6d68900c0c9ddd16b4bb326',1,'KNWRobot']]],
-  ['setupbump_28',['setupBump',['../class_k_n_w_robot.html#a6d3863838f5fae8481f70c71cc6fad04',1,'KNWRobot']]],
-  ['setupincline_29',['setupIncline',['../class_k_n_w_robot.html#a44560025bb80b5fbebc42713582d927d',1,'KNWRobot']]],
-  ['setupir_30',['setupIR',['../class_k_n_w_robot.html#a1d8eaa7d3d286d00f8a48f5bb6049e14',1,'KNWRobot']]],
-  ['setupkeypad_31',['setupKeypad',['../class_k_n_w_robot.html#a9eea5bcedf6f7cd2685b5e1811feec5a',1,'KNWRobot']]],
-  ['setupmotor_32',['setupMotor',['../class_k_n_w_robot.html#a79c83d9b2f0d080d7725964d2bcfc8dc',1,'KNWRobot']]],
-  ['setupping_33',['setupPing',['../class_k_n_w_robot.html#ab9d1d1ded6ca8ce7b445ae26de76dff0',1,'KNWRobot']]],
-  ['setupservo_34',['setupServo',['../class_k_n_w_robot.html#a94753ae378d8167ed01912d315d45da5',1,'KNWRobot']]],
-  ['setuptemp_35',['setupTemp',['../class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55',1,'KNWRobot']]]
+  ['id_38',['ID',['../struct_component.html#a4b7bb6151d084914d587d50e7715f8aa',1,'Component']]],
+  ['inclinepin_39',['inclinePin',['../class_k_n_w_robot.html#a92c70af0f3df7c2613e8a81bc3490253',1,'KNWRobot']]],
+  ['incrementcountofdatasamples_40',['incrementCountOfDataSamples',['../_e_e_p_r_o_m_helper_8h.html#aa09c3e255eeb4cc5a2f44eef2b50d455',1,'EEPROMHelper.h']]],
+  ['ir_5fwait_41',['IR_WAIT',['../_k_n_w_robot_8cpp.html#a7c2a355d18e3692ea6dc2f68fa930775',1,'KNWRobot.cpp']]],
+  ['irchar_42',['IRChar',['../class_k_n_w_robot.html#a4801127bdf5dc69426a71c13dd0c58a8',1,'KNWRobot']]],
+  ['ircharbitmask_43',['IRCharBitMask',['../class_k_n_w_robot.html#a9d1d9948283f7329da05d631a023e61d',1,'KNWRobot']]],
+  ['irsensors_44',['irSensors',['../class_k_n_w_robot.html#adb079a0af35a2e586e6506df6a531f0e',1,'KNWRobot']]]
 ];

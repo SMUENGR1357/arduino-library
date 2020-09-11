@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resetkeypad_63',['resetKeypad',['../class_k_n_w_robot.html#ad076021647bd82e847b01146f07f315f',1,'KNWRobot']]]
+  ['movecursor_145',['moveCursor',['../class_k_n_w_robot.html#a383b4f79a253c4a0ac26b75988ca9542',1,'KNWRobot']]]
 ];

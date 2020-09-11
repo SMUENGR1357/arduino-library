@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['clearlcd_38',['clearLCD',['../class_k_n_w_robot.html#ae83682079482b655e3ef07f92d275d68',1,'KNWRobot']]],
-  ['clearline_39',['clearLine',['../class_k_n_w_robot.html#a608637eef629e27f9d01170dab792812',1,'KNWRobot']]]
+  ['appendintvaluetoeeprom_126',['appendIntValueToEEPROM',['../_e_e_p_r_o_m_helper_8h.html#a554c5a03b9188048d822da5ff61aa71a',1,'EEPROMHelper.h']]]
 ];

@@ -1,13 +1,7 @@
 var searchData=
 [
-  ['getanalogpins_3',['getAnalogPins',['../class_k_n_w_robot.html#a97d13b03aa286d2a8315a42807f2b6a6',1,'KNWRobot']]],
-  ['getbump_4',['getBump',['../class_k_n_w_robot.html#a395601b885bf4be2d4014e5921e5884b',1,'KNWRobot']]],
-  ['getconductivity_5',['getConductivity',['../class_k_n_w_robot.html#a48b47453e55df71edbee2ab255b07620',1,'KNWRobot']]],
-  ['getdigitalpins_6',['getDigitalPins',['../class_k_n_w_robot.html#aaa6c18bcf060536a263d8c00ea060303',1,'KNWRobot']]],
-  ['getincline_7',['getIncline',['../class_k_n_w_robot.html#a8d0ef37de9f7938515e46c25884d290a',1,'KNWRobot']]],
-  ['getir_8',['getIR',['../class_k_n_w_robot.html#a3c5a352580aa262ab1e22550a08092f6',1,'KNWRobot']]],
-  ['getkeypadinput_9',['getKeypadInput',['../class_k_n_w_robot.html#acbd878cb6aa6348769b63a2bd41d305d',1,'KNWRobot::getKeypadInput()'],['../class_k_n_w_robot.html#a1f14fe06acfa34f69caa799bf08d697a',1,'KNWRobot::getKeypadInput(int row)']]],
-  ['getpcapins_10',['getPCAPins',['../class_k_n_w_robot.html#a377ad5d4e18d56c3e7c377cc7344f6d1',1,'KNWRobot']]],
-  ['getping_11',['getPing',['../class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e',1,'KNWRobot']]],
-  ['gettemp_12',['getTemp',['../class_k_n_w_robot.html#a3fafe105acec3db470e488542882c992',1,'KNWRobot']]]
+  ['buffer_2',['buffer',['../class_k_n_w_robot.html#a38132d63826019fbf4f143b1ea1efdd0',1,'KNWRobot']]],
+  ['bumpsensors_3',['bumpSensors',['../class_k_n_w_robot.html#ad14eb121a82683d4fbf4577e9bd1a5ee',1,'KNWRobot']]],
+  ['bytes_5ffor_5fsample_5fcounter_4',['BYTES_FOR_SAMPLE_COUNTER',['../_e_e_p_r_o_m_helper_8h.html#a1d286a1a0050637baf03787ea056c7cc',1,'EEPROMHelper.h']]],
+  ['bytes_5fper_5finteger_5',['BYTES_PER_INTEGER',['../_e_e_p_r_o_m_helper_8h.html#a9a06ee95a448d4bbd39fdb4140ca1501',1,'EEPROMHelper.h']]]
 ];

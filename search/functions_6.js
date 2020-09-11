@@ -1,12 +1,17 @@
 var searchData=
 [
-  ['scanir_64',['scanIR',['../class_k_n_w_robot.html#a2f19ae94e6d68900c0c9ddd16b4bb326',1,'KNWRobot']]],
-  ['setupbump_65',['setupBump',['../class_k_n_w_robot.html#a6d3863838f5fae8481f70c71cc6fad04',1,'KNWRobot']]],
-  ['setupincline_66',['setupIncline',['../class_k_n_w_robot.html#a44560025bb80b5fbebc42713582d927d',1,'KNWRobot']]],
-  ['setupir_67',['setupIR',['../class_k_n_w_robot.html#a1d8eaa7d3d286d00f8a48f5bb6049e14',1,'KNWRobot']]],
-  ['setupkeypad_68',['setupKeypad',['../class_k_n_w_robot.html#a9eea5bcedf6f7cd2685b5e1811feec5a',1,'KNWRobot']]],
-  ['setupmotor_69',['setupMotor',['../class_k_n_w_robot.html#a79c83d9b2f0d080d7725964d2bcfc8dc',1,'KNWRobot']]],
-  ['setupping_70',['setupPing',['../class_k_n_w_robot.html#ab9d1d1ded6ca8ce7b445ae26de76dff0',1,'KNWRobot']]],
-  ['setupservo_71',['setupServo',['../class_k_n_w_robot.html#a94753ae378d8167ed01912d315d45da5',1,'KNWRobot']]],
-  ['setuptemp_72',['setupTemp',['../class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55',1,'KNWRobot']]]
+  ['pca180servo_146',['pca180Servo',['../class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6',1,'KNWRobot']]],
+  ['pca180servotime_147',['pca180ServoTime',['../class_k_n_w_robot.html#a0ef5545959defdfd33ec5296d931bc00',1,'KNWRobot']]],
+  ['pcacontservo_148',['pcaContServo',['../class_k_n_w_robot.html#af4ad97037ff87e997aa2764da4b4ce18',1,'KNWRobot']]],
+  ['pcacontservotime_149',['pcaContServoTime',['../class_k_n_w_robot.html#a0e53f71b815b641f93d7b5797d531f7d',1,'KNWRobot']]],
+  ['pcadc2motors_150',['pcaDC2Motors',['../class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6',1,'KNWRobot']]],
+  ['pcadc2motorstime_151',['pcaDC2MotorsTime',['../class_k_n_w_robot.html#a77eb3749b0285c58ffbc538a9e036226',1,'KNWRobot']]],
+  ['pcadcmotor_152',['pcaDCMotor',['../class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a',1,'KNWRobot']]],
+  ['pcadcmotortime_153',['pcaDCMotorTime',['../class_k_n_w_robot.html#ae89027e1edff8419dae20976f32a19ac',1,'KNWRobot']]],
+  ['pcaraw_154',['pcaRaw',['../class_k_n_w_robot.html#a93a06b316df5eba9c16426112bffd31a',1,'KNWRobot']]],
+  ['pcarawtime_155',['pcaRawTime',['../class_k_n_w_robot.html#a894e10aad382b9431b77bcf731df42f6',1,'KNWRobot']]],
+  ['pcastop_156',['pcaStop',['../class_k_n_w_robot.html#a9bac41a5aacbf64ebcf2a159e785370a',1,'KNWRobot']]],
+  ['pcastopall_157',['pcaStopAll',['../class_k_n_w_robot.html#a04b7aaed9340548ba0552ca08aca3d01',1,'KNWRobot']]],
+  ['printlcd_158',['printLCD',['../class_k_n_w_robot.html#ab7425515e1a3a19335604913716239df',1,'KNWRobot::printLCD(char *input)'],['../class_k_n_w_robot.html#a3250d2307519e6fc799b815a57316aa5',1,'KNWRobot::printLCD(int input)'],['../class_k_n_w_robot.html#a9e21c8e3573bf218c1b465883a195c97',1,'KNWRobot::printLCD(long input)'],['../class_k_n_w_robot.html#aeeb1a377ba615f85450c977343fe4b49',1,'KNWRobot::printLCD(double input, short decimalPlaces)'],['../class_k_n_w_robot.html#a6852e8d3889fe8067b9fb5601c9d8368',1,'KNWRobot::printLCD(double input)'],['../class_k_n_w_robot.html#ac33b91ee3c56c3035379499150c0a3df',1,'KNWRobot::printLCD(char input)']]],
+  ['printversion_159',['printVersion',['../class_k_n_w_robot.html#ae1a0d4eb9aa2b1240a6f8f4ab1559f34',1,'KNWRobot']]]
 ];
