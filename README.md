@@ -3,12 +3,13 @@ Controling Arduino: MEGA 2560
 
 Author: KNW Staff and Faculty
 
-## Function Documentation
-
-- Conductivity function documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/conductivity_8h.html)
-- EEPROM helper documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html)
-- For semesters prior to Fall 2020: You can find the full KNWRobot class documentation, including
-function documentation and examples,by following [this link](https://smuknw2300.github.io/arduino-library/).
+# Table of Contents
+- [Setup](#setup)
+- [Using the Low-Power Sleep Library](#using-the-low-power-sleep-library)
+- [Using the Servo Library](#using-the-servo-library)
+- [Using the Conductivity Module](#using-the-conductivity-module)
+- [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
+- [In-depth Function Document](#in-depth-function-documentation)
 
 ## Setup
 Before using the library, you must first setup your laptop to be able to compile code written using Arduino C++.
@@ -82,9 +83,9 @@ void loop() {
 
 Refer to [this page](https://smuknw2300.github.io/arduino-library/conductivity_8h.html) for full documentation on the conductivity module.
 
-## Using the EEPROM Helper library (optional)
+## Using the EEPROM Helper library
 
-To add the functions necessary to interface with the arduino's EEPROM memory, add the following
+[OPTIONAL] To add the functions necessary to interface with the arduino's EEPROM memory, add the following
 at the top of your arduino source code:
 
 ```cpp
@@ -99,6 +100,13 @@ but additional functions (and additional functionality) may be needed. Please re
 the library, as well as [this source file](https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
 if you want to see exactly what these functions do behind the scenes. This can help guide your implementation.
 It is also recommended that you refer to [Arduino's EEPROM Reference page](https://www.arduino.cc/en/Reference/EEPROM).
+
+## In-depth Function Documentation
+
+- Conductivity function documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/conductivity_8h.html)
+- EEPROM helper documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html)
+- For semesters prior to Fall 2020: You can find the full KNWRobot class documentation, including
+function documentation and examples,by following [this link](https://smuknw2300.github.io/arduino-library/).
 
 ## Using the library (Prior to Fall 2020)
 Open the Arduino IDE again. At the top of the file, add the following line:
@@ -134,4 +142,4 @@ If you edit the source code and run into errors that you cannot fix, we will tel
 you to delete the edited library and re-download it to its original state. TA's
 will also announce when this library is updated. Updating it requires you to
 re-download this library (see step 2 above) and following steps 2 - 4 in the
-installation guide,
+installation guide.
