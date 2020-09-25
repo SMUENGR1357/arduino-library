@@ -2,10 +2,13 @@
     "configurations": [
         {
             "name": "Mac",
+            "defines": [ "ARDUINO=100", "USBCON", "PORTB" ],
             "includePath": [
                 "/Applications/Arduino.app/Contents/Java/tools/**",
                 "/Applications/Arduino.app/Contents/Java/libraries/**",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**"
+                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
+                "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/avr/include",
+                "~/Documents/Arduino/libraries/**"
             ],
             "forcedInclude": [
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino/Arduino.h"

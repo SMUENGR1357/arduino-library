@@ -31,7 +31,36 @@ Unzip the files onto your computer.
 
 4) Copy over the contents of the `src` folder into the `libraries` folder you opened in step 3.
 
+## Using the low-power sleep library
 
+When running your arduino long-term in a data collection setting, you will need to use the included
+sleep library. This library will take place of the built-in delay() function; the sleep library has
+been optimized to limit power consumption when calling a sleep() function. To use it, add the following
+at the top of your source code:
+
+```cpp
+#include <Sleep_n0m1.h>
+```
+
+Then in your code:
+
+```cpp
+void setup() {
+	sleep.pwrDownMode(); // Future calls to sleep.sleepDelay() will put the arduino in a
+	                     // very low power state while it sleeps
+}
+
+void loop() {
+	// Do something
+	sleep.sleepDelay(3000); // Low power sleep delay for 3 seconds (3000 milliseconds)
+}
+```
+
+A more in-depth example can be found in the [sample_data_logger.ino file](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/data_logger/sample_data_logger.ino).
+
+## Using the servo library
+
+For servos, refer to the built-in [arduino servo library documentation](https://www.arduino.cc/reference/en/libraries/servo/write/)
 
 ## Using the Conductivity Module
 
