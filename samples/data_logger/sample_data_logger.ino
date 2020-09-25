@@ -43,7 +43,6 @@ void showContentsOfEEPROM() {
   unsigned int count = 0;
   unsigned int address;
   int analogPinReading;
-
   Serial.begin(9600);  // open serial port to print to the serial console
   delay(1000);
   count = getCountOfDataSamples();

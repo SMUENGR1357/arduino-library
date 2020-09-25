@@ -38,7 +38,7 @@ void setup() {
   lcd->begin(16, 2); // initialize the lcd. Don't worry about the int values above.
   lcd->home();       // go to the top line
   lcd->print("SMU Lyle KNW2300"); // Print a welcome message
-  delay(3);                       // Let the message show for 3 seconds
+  delay(3000);                       // Let the message show for 3 seconds
 }
 
 void loop() {
@@ -49,5 +49,5 @@ void loop() {
   lcd->print(loopCount);      // Print out the number of times we've looped
 
   loopCount++; // Increment the loop counter
-  delay(2);    // Delay for two seconds
+  delay(2000);    // Delay for two seconds
 }
