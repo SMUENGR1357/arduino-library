@@ -9,6 +9,7 @@ Author: KNW Staff and Faculty
 - [Using the Servo Library](#using-the-servo-library)
 - [Using the Conductivity Module](#using-the-conductivity-module)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
+- [Using the LCD Display](#using-the-lcd-display)
 - [In-depth Function Document](#in-depth-function-documentation)
 
 ## Setup
@@ -100,6 +101,13 @@ but additional functions (and additional functionality) may be needed. Please re
 the library, as well as [this source file](https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
 if you want to see exactly what these functions do behind the scenes. This can help guide your implementation.
 It is also recommended that you refer to [Arduino's EEPROM Reference page](https://www.arduino.cc/en/Reference/EEPROM).
+
+## Using the LCD Display
+
+[OPTIONAL] If your team wants to use an LCD component, then refer to the wiring guide on Canvas for how
+to properly wire it to your Arduino. Then, refer to the
+[sample LCD file](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/lcd/sample_lcd.ino)
+for some basic commands to write data onto the display
 
 ## In-depth Function Documentation
 
