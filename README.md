@@ -6,6 +6,7 @@ Author: KNW Staff and Faculty
 # Table of Contents
 - [Setup](#setup)
 - [Using the Low-Power Sleep Library](#using-the-low-power-sleep-library)
+  - [How the sleep library works](#how-the-sleep-library-works)
 - [Using the Servo Library](#using-the-servo-library)
 - [Using the Conductivity Module](#using-the-conductivity-module)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
@@ -59,6 +60,50 @@ void loop() {
 ```
 
 A more in-depth example can be found in the [sample_data_logger.ino file](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/data_logger/sample_data_logger.ino).
+
+### How the sleep library works
+
+The sleep library has various different modes that can be explored in the [source repository](https://github.com/n0m1/Sleep_n0m1).
+For this class, we are sticking to the lowest power setting, `pwrDownMode()`. If you read through that repository's documentation,
+you'll see that the arduino has multiple different timers and chips that control various things. When using `pwrDownMode()`,
+calling `sleepDelay()` shuts off _all_ chips except for a timer to wake the arduino back up. This saves a lot of power,
+but it does make certain scenarios _appear_ to be disfunctional.
+
+In the example below, we expect to move a servo from 0 degrees to 180 degrees, with 2 second delays in between. If you
+actually run it on an arduino, you'll find that nothing appears to happen (your servo will not move). 
+
+```cpp
+#include <Servo.h>
+#include <Sleep_n0m1.h>
+
+Servo servo;
+Sleep sleep;
+
+void setup() {
+  servo.attach(6);
+  sleep.pwrDownMode();
+}
+
+void loop() {
+  sleep.sleepDelay(2000);
+  servo.write(180);
+  // Try adding a delay(1000) here and see the change
+  sleep.sleepDelay(2000);
+  servo.write(0);
+  // Add a delay here as well and see the change
+}
+```
+This is because the code does a `servo.write()`, which generates a PWM signal that instructs the servo to move to that position.
+The `sleep.sleepDelay(2000)` immediately afterwards shuts down the chip that generates the PWM, so your servo does not move.
+A quick fix would be to add a `delay(1000)` immediately after `servo.write()`: `delay()` is an _active_ sleep, while `sleepDelay()`
+is an `inactive` sleep.
+
+There are two recommendations when using this library:
+1) Use normal `delay()` calls when your arduino is _actively_ doing something, but needs to wait a second or two to let something
+finish or doing something else (e.g. letting a servo move to a position)
+2) Use `sleep.sleepDelay()` for when your arduino is _inactive_ for "long" periods of time (i.e. more than 5 seconds). If you
+are moving a servo / motor / other physical part, be sure you're adding a short `delay()` before you call `sleepDelay()`,
+otherwise it may appear to not move.
 
 ## Using the servo library
 
