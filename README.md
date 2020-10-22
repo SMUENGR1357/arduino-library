@@ -48,6 +48,8 @@ at the top of your source code:
 Then in your code:
 
 ```cpp
+Sleep sleep; // sleep library is now a global variable
+
 void setup() {
 	sleep.pwrDownMode(); // Future calls to sleep.sleepDelay() will put the arduino in a
 	                     // very low power state while it sleeps
