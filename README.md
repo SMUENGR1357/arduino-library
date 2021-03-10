@@ -1,7 +1,7 @@
-# KNWRobot - Robotics Control Library for SMU KNW2300
+# KNWRobot - Robotics Control Library for SMU ENGR1357
 Controling Arduino: MEGA 2560
 
-Author: KNW Staff and Faculty
+Author: ENGR 1357 Staff and Faculty
 
 # Table of Contents
 - [Setup](#setup)
@@ -10,6 +10,7 @@ Author: KNW Staff and Faculty
 - [Using the Servo Library](#using-the-servo-library)
 - [Using the Conductivity Module](#using-the-conductivity-module)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
+- [Using the Temperature Probe](#using-the-temperature-probe)
 - [Using the LCD Display](#using-the-lcd-display)
 - [In-depth Function Document](#in-depth-function-documentation)
 
@@ -25,7 +26,7 @@ repo). Follow these steps:
 After finishing the installation, open the Arduino IDE. Continue selecting default options until you see a text
 editor with some empty functions. Close the application for now.
 
-2) [Download the latest release of this repository](https://github.com/SMUKNW2300/arduino-library/releases).
+2) [Download the latest release of this repository](https://github.com/SMUENGR1357/arduino-library/releases).
 Unzip the files onto your computer.
 
 3) Copy over the contents of the `lib` folder in this repo into the `libraries` folder of your Arduino installation.
@@ -61,7 +62,7 @@ void loop() {
 }
 ```
 
-A more in-depth example can be found in the [sample_data_logger.ino file](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/data_logger/sample_data_logger.ino).
+A more in-depth example can be found in the [sample_data_logger.ino file](https://github.com/SMUENGR1357/arduino-library/blob/master/samples/data_logger/sample_data_logger.ino).
 
 ### How the sleep library works
 
@@ -129,7 +130,7 @@ void loop() {
 }
 ```
 
-Refer to [this page](https://smuknw2300.github.io/arduino-library/conductivity_8h.html) for full documentation on the conductivity module.
+Refer to [this page](https://SMUENGR1357.github.io/arduino-library/conductivity_8h.html) for full documentation on the conductivity module.
 
 ## Using the EEPROM Helper library
 
@@ -141,27 +142,35 @@ at the top of your arduino source code:
 ```
 
 You can then interface with some helper functions for reading / writing to the EEPROM. To see a sample of the
-functions in action, refer to [this source file in the samples directory](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/sample_data_logger.ino).
+functions in action, refer to [this source file in the samples directory](https://github.com/SMUENGR1357/arduino-library/blob/master/samples/sample_data_logger.ino).
 Note that these functions are used to read / write integer values for long-term storage. This may be enough for your needs,
 but additional functions (and additional functionality) may be needed. Please refer to
-[this page](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html) for details on how to use
-the library, as well as [this source file](https://github.com/SMUKNW2300/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
+[this page](https://SMUENGR1357.github.io/arduino-library/eepromhelper_8h.html) for details on how to use
+the library, as well as [this source file](https://github.com/SMUENGR1357/arduino-library/blob/master/src/eepromhelper/eepromhelper.h)
 if you want to see exactly what these functions do behind the scenes. This can help guide your implementation.
 It is also recommended that you refer to [Arduino's EEPROM Reference page](https://www.arduino.cc/en/Reference/EEPROM).
+
+## Using the Temperature Probe
+
+There are no helper functions in this library specific to the temperature probe. Instead, you'll directly get
+analog readings by using the built-in arduino [analogRead](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/)
+function. From there, you will need to calibrate your sensor to convert readings from 10-bit precision voltages to temperature. Refer to [this documentation](https://smuengr1357.github.io/arduino-library/class_k_n_w_robot.html#a8d0ef37de9f7938515e46c25884d290a) for more info.
+While it specifically refers to an inclinometer, the instructions around calibration are effectively the same.
+
 
 ## Using the LCD Display
 
 [OPTIONAL] If your team wants to use an LCD component, then refer to the wiring guide on Canvas for how
 to properly wire it to your Arduino. Then, refer to the
-[sample LCD file](https://github.com/SMUKNW2300/arduino-library/blob/master/samples/lcd/sample_lcd.ino)
+[sample LCD file](https://github.com/SMUENGR1357/arduino-library/blob/master/samples/lcd/sample_lcd.ino)
 for some basic commands to write data onto the display
 
 ## In-depth Function Documentation
 
-- Conductivity function documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/conductivity_8h.html)
-- EEPROM helper documentation can be found by following [this link](https://smuknw2300.github.io/arduino-library/eepromhelper_8h.html)
+- Conductivity function documentation can be found by following [this link](https://smuengr1357.github.io/arduino-library/conductivity_8h.html)
+- EEPROM helper documentation can be found by following [this link](https://smuengr1357.github.io/arduino-library/eepromhelper_8h.html)
 - For semesters prior to Fall 2020: You can find the full KNWRobot class documentation, including
-function documentation and examples,by following [this link](https://smuknw2300.github.io/arduino-library/).
+function documentation and examples,by following [this link](https://smuengr1357.github.io/arduino-library/).
 
 ## Using the library (Prior to Fall 2020)
 Open the Arduino IDE again. At the top of the file, add the following line:
