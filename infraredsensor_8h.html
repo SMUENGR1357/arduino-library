@@ -108,8 +108,10 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad48d7281478134f274eaafe1b113a008"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008">scanIR</a> (int pin)</td></tr>
+<tr class="memdesc:ad48d7281478134f274eaafe1b113a008"><td class="mdescLeft">&#160;</td><td class="mdescRight">This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.  <a href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008">More...</a><br /></td></tr>
 <tr class="separator:ad48d7281478134f274eaafe1b113a008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44e56e0276b3249d15dd2e86b66e297e"><td class="memItemLeft" align="right" valign="top">unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e">getIR</a> ()</td></tr>
+<tr class="memdesc:a44e56e0276b3249d15dd2e86b66e297e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This provides the characters that were reading from the most recent call to <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a>.  <a href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e">More...</a><br /></td></tr>
 <tr class="separator:a44e56e0276b3249d15dd2e86b66e297e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -206,6 +208,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>This provides the characters that were reading from the most recent call to <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a>. </p>
+<p>This function should be used in conjunction with <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a>. Every time you want a fresh IR reading, call <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a> first. Then, call this function, storing the result in a char* variable. If you don't call <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a> before calling this, the internal character buffer will not refresh and this will continuously provide the same value (or an empty value if you never ran <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a> in the first place).</p>
+<dl class="section return"><dt>Returns</dt><dd>char* A character buffer containing the characters read from the most recent call to <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a></dd></dl>
+<p>Example code:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="infraredsensor_8h.html">infraredsensor.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> charactersReadFromIR = <a class="code" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008">scanIR</a>(IRSensorId);</div>
+<div class="line">myRobot-&gt;printLCD(<span class="stringliteral">&quot;Chars read: &quot;</span>);</div>
+<div class="line">myRobot-&gt;printLCD(charactersReadFromIR);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Now print the reading on the next line of the LCD</span></div>
+<div class="line"><span class="keywordtype">char</span>* IRCharacters = <a class="code" href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e">getIR</a>();</div>
+<div class="line">myRobot-&gt;moveCursor(0, 1);</div>
+<div class="line">myRobot-&gt;printLCD(IRCharacters);</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ad48d7281478134f274eaafe1b113a008"></a>
@@ -224,6 +241,30 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>This uses the IR sensor at the given digital pin to scan for beacons that may be nearby. </p>
+<p>This function uses the IR sensor to scan for IR signals coming from the beacons. The values that it reads are stored in an internal character buffer, which you can access using <a class="el" href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e" title="This provides the characters that were reading from the most recent call to scanIR().">getIR()</a> after running this function.</p>
+<p><b>Note</b>: the function will return -1 if the pin passed for <a class="el" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008" title="This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.">scanIR()</a> is invalid</p>
+<p><b>Note</b>: every time you want to get fresh values from <a class="el" href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e" title="This provides the characters that were reading from the most recent call to scanIR().">getIR()</a>, you have to run this function first.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>The digital pin number that the IR sensor is connected to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int The number of characters that were read in this given scan.</dd></dl>
+<p>Example code:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="infraredsensor_8h.html">infraredsensor.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> IRSensorPin = 20;</div>
+<div class="line"><span class="keywordtype">int</span> numCharsReadFromIR = <a class="code" href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008">scanIR</a>(IRSensorPin);</div>
+<div class="line">myRobot-&gt;printLCD(<span class="stringliteral">&quot;Chars read: &quot;</span>);</div>
+<div class="line">myRobot-&gt;printLCD(charactersReadFromIR);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Now print the reading on the next line of the LCD</span></div>
+<div class="line"><span class="keywordtype">char</span>* IRCharacters = <a class="code" href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e">getIR</a>();</div>
+<div class="line">myRobot-&gt;moveCursor(0, 1);</div>
+<div class="line">myRobot-&gt;printLCD(IRCharacters);</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -355,6 +396,9 @@ Variables</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="ainfraredsensor_8h_html"><div class="ttname"><a href="infraredsensor_8h.html">infraredsensor.h</a></div></div>
+<div class="ttc" id="ainfraredsensor_8h_html_ad48d7281478134f274eaafe1b113a008"><div class="ttname"><a href="infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008">scanIR</a></div><div class="ttdeci">int scanIR(int pin)</div><div class="ttdoc">This uses the IR sensor at the given digital pin to scan for beacons that may be nearby.</div><div class="ttdef"><b>Definition:</b> infraredsensor.h:51</div></div>
+<div class="ttc" id="ainfraredsensor_8h_html_a44e56e0276b3249d15dd2e86b66e297e"><div class="ttname"><a href="infraredsensor_8h.html#a44e56e0276b3249d15dd2e86b66e297e">getIR</a></div><div class="ttdeci">unsigned char * getIR()</div><div class="ttdoc">This provides the characters that were reading from the most recent call to scanIR().</div><div class="ttdef"><b>Definition:</b> infraredsensor.h:204</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
