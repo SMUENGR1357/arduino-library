@@ -26,7 +26,7 @@ repo). Follow these steps:
 After finishing the installation, open the Arduino IDE. Continue selecting default options until you see a text
 editor with some empty functions. Close the application for now.
 
-2) [Download the latest release of this repository](https://github.com/SMUENGR1357/arduino-library/releases).
+2) [Download the latest release of this repository](https://github.com/SMUENGR1357/arduino-library/archive/refs/heads/master.zip).
 Unzip the files onto your computer.
 
 3) Copy over the contents of the `lib` folder in this repo into the `libraries` folder of your Arduino installation.
