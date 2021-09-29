@@ -10,6 +10,7 @@ Author: ENGR 1357 Staff and Faculty
 - [Using the Servo Library for Servos and Motors](#using-the-servo-library-for-servos-and-motors)
 - [Using the Conductivity Module](#using-the-conductivity-module)
 - [Using the New Ping Library for Ultrasonic Sensors](#using-the-new-ping-library-for-ultrasonic-sensors)
+- [Using the IR Sensor Library](#using-the-ir-sensor-library)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
 - [Using the Temperature Probe](#using-the-temperature-probe)
 - [Using the LCD Display](#using-the-lcd-display)
@@ -197,6 +198,28 @@ void loop() {
 	Serial.println(distance);
 	
 	// distance will now contain the distance to some object in centimeters
+}
+```
+
+## Using the IR Sensor Library
+
+The infrared sensor library is a library that the ENGR staff provide for you. There are two functions that you
+will use: `scanIR` and `getIR`. The following code snippet shows how to use the library.
+
+For full documentation, refer to [this page](https://smuengr1357.github.io/arduino-library/infraredsensor_8h.html).
+
+```cpp
+#include <infraredsensor.h>
+void loop() {
+	int IRSensorPin = 20;
+	int numCharsReadFromIR = scanIR(IRSensorPin);
+	myRobot->printLCD("Chars read: ");
+	myRobot->printLCD(charactersReadFromIR);
+	
+	// Now print the reading on the next line of the LCD
+	char* IRCharacters = getIR();
+	myRobot->moveCursor(0, 1);
+	myRobot->printLCD(IRCharacters);
 }
 ```
 
