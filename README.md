@@ -7,8 +7,9 @@ Author: ENGR 1357 Staff and Faculty
 - [Setup](#setup)
 - [Using the Low-Power Sleep Library](#using-the-low-power-sleep-library)
   - [How the sleep library works](#how-the-sleep-library-works)
-- [Using the Servo Library](#using-the-servo-library)
+- [Using the Servo Library for servos and motors](#using-the-servo-library)
 - [Using the Conductivity Module](#using-the-conductivity-module)
+- [Using the New Ping Library for Ultrasonic Sensors](#using-the-new-ping-library-for-ultrasonic-sensors)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
 - [Using the Temperature Probe](#using-the-temperature-probe)
 - [Using the LCD Display](#using-the-lcd-display)
@@ -131,6 +132,38 @@ void loop() {
 ```
 
 Refer to [this page](https://SMUENGR1357.github.io/arduino-library/conductivity_8h.html) for full documentation on the conductivity module.
+
+## Using the New Ping Library for Ultrasonic Sensors
+
+A new and improved library for your ping sensors has now been added into this repo. The library has a plethora of functions for you to use,
+and you can find the full documentation for the library here: https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home.
+
+However, you'll really just be using the function to provide distance in centimeters. The following code sample shows how to use the library.
+Be sure that you have followed the setup steps above to have the `NewPing` library accessible in your Arduino IDE.
+
+```cpp
+#include <NewPing.h>
+
+// If you're using a 4-pin ultrasonic sensor, then these are the middle two pins.
+// If you're using a 3-pin ultrasonic sensor, then use the same value for both of these ints.
+int TRIGGER_PIN = 12;
+int ECHO_PIN = 11;
+int MAX_PING_DISTANCE = 200; // centimeters
+
+NewPing pingSensor(TRIGGER_PIN, ECHO_PIN, MAX_PING_DISTANCE)
+
+void setup() {
+	Serial.begin(9600);
+}
+
+void loop() {
+	int distance = sonar.ping_cm();
+	Serial.print("Distance in centimeters: ");
+	Serial.println(distance);
+	
+	// distance will now contain the distance to some object in centimeters
+}
+```
 
 ## Using the EEPROM Helper library
 
