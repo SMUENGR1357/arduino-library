@@ -7,7 +7,7 @@ Author: ENGR 1357 Staff and Faculty
 - [Setup](#setup)
 - [Using the Low-Power Sleep Library](#using-the-low-power-sleep-library)
   - [How the sleep library works](#how-the-sleep-library-works)
-- [Using the Servo Library for servos and motors](#using-the-servo-library)
+- [Using the Servo Library for Servos and Motors](#using-the-servo-library-for-servos-and-motors)
 - [Using the Conductivity Module](#using-the-conductivity-module)
 - [Using the New Ping Library for Ultrasonic Sensors](#using-the-new-ping-library-for-ultrasonic-sensors)
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
@@ -109,9 +109,44 @@ finish or doing something else (e.g. letting a servo move to a position)
 are moving a servo / motor / other physical part, be sure you're adding a short `delay()` before you call `sleepDelay()`,
 otherwise it may appear to not move.
 
-## Using the servo library
+## Using the Servo Library for Servos and Motors
 
-For servos, refer to the built-in [arduino servo library documentation](https://www.arduino.cc/reference/en/libraries/servo/write/)
+For servos, refer to the built-in [arduino servo library documentation](https://www.arduino.cc/reference/en/libraries/servo/write/).
+Note that this also controls motors as well: "angles" specified in the servo-related function calls will dictate direction and
+velocity of rotation for motors.
+
+The following demonstrates a sample program:
+
+```cpp
+#include <Servo.h>
+
+int ARM_SERVO_DIGITAL_PIN = 15;
+int DRIVE_MOTOR_DIGITAL_PIN = 16;
+Servo armServo;
+Servo driveMotor;
+
+void setup() {
+	armServo.attach(ARM_SERVO_DIGITAL_PIN);
+	driveMotor.attach(DRIVE_MOTOR_DIGITAL_PIN);
+}
+
+void loop() {
+	armServo.write(0); // Move the servo to 0 degrees
+	driveMotor.write(0); // Move the motor full speed in one direction
+
+	delay(5000); // Let them run for 5 seconds
+
+	armServo.write(180); // Move the servo to 180 degrees
+	driveMotor.write(180); // Move the motor full speed in the other direction
+
+	delay(5000); // Let them run for another 5 seconds
+
+	armServo.write(90); // Move the servo to a midpoint
+	driveMotor.write(90); // Make the motor stop. NOTE: This may need to be adjusted up or down a bit, depending on your motor
+
+	delay(3000); // Let them stay for 3 seconds before starting over
+}
+```
 
 ## Using the Conductivity Module
 
@@ -205,7 +240,7 @@ for some basic commands to write data onto the display
 - For semesters prior to Fall 2020: You can find the full KNWRobot class documentation, including
 function documentation and examples,by following [this link](https://smuengr1357.github.io/arduino-library/).
 
-## Using the library (Prior to Fall 2020)
+## Using the KNWRobot library
 Open the Arduino IDE again. At the top of the file, add the following line:
 
 ```cpp
