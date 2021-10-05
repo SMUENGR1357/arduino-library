@@ -1,17 +1,17 @@
 #include <Keypad.h>
 
 
-const byte ROWS = 4; //four rows
-const byte COLS = 3; //three columns
-char keys[ROWS][COLS] = {
-	{'1','2','3'},
-	{'4','5','6'},
-	{'7','8','9'},
-	{'*','0','#'}
-};
-byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {8, 7, 6}; //connect to the column pinouts of the keypad
+byte ROWS = 4;
+byte COLS = 4;
+char keys[4][4] = {
+         {'1', '2', '3', 'A'},
+         {'4', '5', '6', 'B'},
+         {'7', '8', '9', 'C'},
+         {'*', '0', '#', 'D'}};
 
+     byte rowPins[4] = {39, 41, 43, 45};
+     byte colPins[4] = {47, 49, 51, 53};
+     
 Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 unsigned long loopCount = 0;
