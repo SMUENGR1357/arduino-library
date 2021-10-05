@@ -24,11 +24,14 @@
  * cursor to 7 and 1. COLUMN GOES FIRST, FOLLOWED BY ROW.
  * 
  * The print() function lets you print the following types: int, double, char*, long.
+ * 
+ * !! NOTE !!: The LCD Address can either be 0x27 or 0x3F depending on the version
+ *              of LCD screen.
  */
 
 #include <LiquidCrystal_I2C.h>
 
-int lcdAddress = 0x27;
+int lcdAddress = 0x27; //or 0x3F
 int loopCount = 0;
 
 LiquidCrystal_I2C *lcd;
