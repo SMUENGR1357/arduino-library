@@ -186,14 +186,14 @@ int TRIGGER_PIN = 12;
 int ECHO_PIN = 11;
 int MAX_PING_DISTANCE = 200; // centimeters
 
-NewPing pingSensor(TRIGGER_PIN, ECHO_PIN, MAX_PING_DISTANCE)
+NewPing pingSensor(TRIGGER_PIN, ECHO_PIN, MAX_PING_DISTANCE);
 
 void setup() {
 	Serial.begin(9600);
 }
 
 void loop() {
-	int distance = sonar.ping_cm();
+	int distance = pingSensor.ping_cm();
 	Serial.print("Distance in centimeters: ");
 	Serial.println(distance);
 	
