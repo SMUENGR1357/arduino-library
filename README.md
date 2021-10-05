@@ -14,6 +14,7 @@ Author: ENGR 1357 Staff and Faculty
 - [Using the EEPROM Helper Library](#using-the-eeprom-helper-library)
 - [Using the Temperature Probe](#using-the-temperature-probe)
 - [Using the LCD Display](#using-the-lcd-display)
+- [Using the Keypad](#using-the-keypad)
 - [In-depth Function Document](#in-depth-function-documentation)
 
 ## Setup
@@ -255,6 +256,42 @@ While it specifically refers to an inclinometer, the instructions around calibra
 to properly wire it to your Arduino. Then, refer to the
 [sample LCD file](https://github.com/SMUENGR1357/arduino-library/blob/master/samples/lcd/sample_lcd.ino)
 for some basic commands to write data onto the display
+
+## Using the Keypad
+
+- Funtionality for the keypad has been adapted from [this source](https://www.arduino.cc/reference/en/libraries/keypad/).
+- Our keypads hardware is set up a little bit differently, so the examples from the website linked above will not be plug-and-play.
+- The code below will print out to your Serial Monitor the key that you press on a new line, assuming wiring is the same as the wiring guide.
+```cpp
+#include <Keypad.h>
+
+byte ROWS = 4;
+byte COLS = 4;
+char keys[4][4] = {
+         {'1', '2', '3', 'A'},
+         {'4', '5', '6', 'B'},
+         {'7', '8', '9', 'C'},
+         {'*', '0', '#', 'D'}};
+
+     byte rowPins[4] = {39, 41, 43, 45};
+     byte colPins[4] = {47, 49, 51, 53};
+
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop(){
+  char key = keypad.getKey();
+
+  if (key){
+    Serial.println(key);
+  }
+}
+
+```
+The excerpt above was taken directly from helloKeypad.ino in lib > Keypad > examples, where you can find a few other examples as well!
 
 ## In-depth Function Documentation
 
