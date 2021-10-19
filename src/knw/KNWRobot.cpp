@@ -9,8 +9,7 @@
   Author: Alexandria Hancock
   Other Contributors: Morgan VandenBerg
   
-  RE-Written Fall 2021 By: Christian Gould
-  Other Contributors: Zach Suzuki
+  RE-Written Fall 2021 By: Christian Gould, Zach Suzuki
 
   For more details on functions, look in KNWRobot.h
 */
