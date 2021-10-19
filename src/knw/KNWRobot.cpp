@@ -606,7 +606,7 @@ void KNWRobot::pcaStop(int id)
     }
     if (pin != -1)
     {
-        
+        pwm->setPWM(pin,0,0);
     }
 }
 
