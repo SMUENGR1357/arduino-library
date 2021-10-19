@@ -34,6 +34,22 @@ struct Component
      char TYPE = 0; // either analog(a), digital (d), or pca (p)
 };
 
+struct PingSensor
+{
+    int ID = 0;
+    int ECHO = 0;
+    int TRIG = 0;
+    char TYPE = 0;
+};
+
+struct ServoObj
+{
+    int ID = 0;
+    int PIN = 0;
+    char TYPE = 0;
+    Servo OBJ;
+}
+
 /**
  * KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA's.
  *
@@ -1171,11 +1187,11 @@ protected:
      bool pcaPins[16];
 
      // Tracks which components are associated to what ID's / pins
-     Component pingSensors[8];
+     PingSensor pingSensors[8];
      Component bumpSensors[8];
      Component irSensors[4];
-     Component motors[4];
-     Component servos[16];
+     ServoObj motors[4];
+     ServoObj servos[16];
 
      // Tracks how many of each component the robot currently has attached
      int numPings;

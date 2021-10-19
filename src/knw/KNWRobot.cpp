@@ -4,10 +4,13 @@
   ---------------------------------
   |        KNW Robot Library      |
   ---------------------------------
-  KNWRobot.cpp - Library written to control robots for SMU KNW2300
+  KNWRobot.cpp - Library written to control robots for SMU KNW 2300
   Controling Arduino: MEGA 2560
   Author: Alexandria Hancock
   Other Contributors: Morgan VandenBerg
+  
+  RE-Written Fall 2021 By: Christian Gould
+  Other Contributors: Zach Suzuki
 
   For more details on functions, look in KNWRobot.h
 */
@@ -19,6 +22,7 @@
 #include "LiquidCrystal_I2C.h"
 #include "Keypad.h"
 #include "Adafruit_PWMServoDriver.h"
+#include "NewPing.h"
 
 // PCA DETAILS (Calibrated by Prof Matt Saari)
 // Configuration parameters for each type of motor.
@@ -297,50 +301,37 @@ int KNWRobot::getPin(int id, char type)
 // ******************************************* //
 // Ping Sensor Functions
 // ******************************************* //
-bool KNWRobot::setupPing(int id, int pin)
+
+
+bool KNWRobot::setupPing(int id, int trigger, int echo)
 {
     if (checkPin(pin, 'd') && numPings < 8)
     {
+        // set the trigger pin
         pingSensors[numPings].ID = id;
-        pingSensors[numPings].PIN = pin;
+        pingSensors[numPings].TRIG = trigger;
+        pingSensors[numPings].ECHO = echo;
         pingSensors[numPings].TYPE = 'd';
         numPings++;
-        digitalPins[pin] = true;
+        digitalPins[trigger] = true;
+        digitalPins[echo] = true;
         return true;
     }
     return false;
 }
 
 // Check out this site for implementation details:
-// http://arduino.cc/en/Tutorial/Ping
 long KNWRobot::getPing(int id)
 {
-    int channel = getPin(id, 'p');
-    if (channel == -1)
-        return -1; // Ping sensor has not been set up properly; this is an invalid ID
+    int TRIGGER_PIN = getPin(id, 'p');
+    int ECHO_PIN = getPin(id+1, 'p');
+    int MAX_PING_DISTANCE = 200; // centimeters
 
-    long duration, cm;
+    if (TRIGGER_PIN == -1 || ECHO_PIN == -1)
+            return -1; // Ping sensor has not been set up properly; this is an invalid ID
 
-    // The PING is triggered by a HIGH pulse of 2 or more microseconds.
-    // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-    pinMode(channel, OUTPUT);
-    digitalWrite(channel, LOW);
-    delayMicroseconds(2);
-    digitalWrite(channel, HIGH);
-    delayMicroseconds(5);
-    digitalWrite(channel, LOW);
-
-    // The same pin is used to read the signal from the PING: a HIGH pulse
-    // whose duration is the time (in microseconds) from the sending of the ping
-    // to the reception of its echo off of an object.
-    pinMode(channel, INPUT);
-    duration = pulseIn(channel, HIGH); // returned in microseconds ms
-
-    // convert the time into a distance
-    // 73.746 ms per inch (sound travels at 1130 ft/sec)
-    // 29ish ms per cm (roughly 342 m/sec)
-    // duration is time there and back, so divid by 2
-    return cm = duration / 29 / 2;
+    NewPing pingSensor(TRIGGER_PIN, ECHO_PIN, MAX_PING_DISTANCE);
+    return pingSensor.ping_cm();
 }
 
 // ******************************************* //
@@ -395,6 +386,12 @@ int KNWRobot::getIncline()
 int KNWRobot::getConductivity()
 {
     const unsigned long seconds = 3;
+
+    const int conductivityDigitalPin1 = 12;
+    const int conductivityDigitalPin2 = 13;
+    const int conductivityAnalogPin1 = 2;
+    const int conductivityAnalogPin2 = 3;
+
     int reading1, reading2, result;
 
     // One period of the wave is 10ms. So we want to
@@ -427,28 +424,6 @@ int KNWRobot::getConductivity()
 
     return result = abs(reading1 - reading2);
 }
-
-// ******************************************* //
-// Temperature Functions
-// ******************************************* //
-bool KNWRobot::setupTemp(int pin)
-{
-    if (checkPin(pin, 'a'))
-    {
-        tempPin = pin;
-        analogPins[pin] = true;
-        return true;
-    }
-    return false;
-}
-
-int KNWRobot::getTemp()
-{
-    if (tempPin == -1)
-        return -1;
-    return analogRead(tempPin);
-}
-
 // ******************************************* //
 // Keypad Functions
 // ******************************************* //
@@ -603,6 +578,7 @@ bool KNWRobot::setupServo(int id, int pin)
         numServos++;
         pcaPins[pin] = true;
         return true;
+
     }
     return false;
 }
@@ -621,34 +597,6 @@ bool KNWRobot::setupMotor(int id, int pin)
     return false;
 }
 
-void KNWRobot::pcaRaw(int id, int pulseSize)
-{
-    int pin = getPin(id, 's');
-    if (pin == -1)
-    {
-        pin = getPin(id, 'm');
-    }
-    if (pin != -1)
-    {
-        pwm->setPWM(pin, 0, pulseSize);
-    }
-}
-
-void KNWRobot::pcaRawTime(int id, int pulseSize, int duration)
-{
-    int pin = getPin(id, 's');
-    if (pin == -1)
-    {
-        pin = getPin(id, 'm');
-    }
-    if (pin != -1)
-    {
-        pwm->setPWM(pin, 0, pulseSize);
-        delay(duration);
-        pwm->setPWM(pin, 0, 0);
-    }
-}
-
 void KNWRobot::pcaStop(int id)
 {
     int pin = getPin(id, 's');
@@ -658,7 +606,7 @@ void KNWRobot::pcaStop(int id)
     }
     if (pin != -1)
     {
-        pwm->setPWM(pin, 0, 0);
+        
     }
 }
 
@@ -1020,5 +968,5 @@ unsigned char *KNWRobot::getIR()
 
 void KNWRobot::printVersion()
 {
-    printLCD("KNW2300 Library v1.3");
+    printLCD("ENGR 1357 v1.0");
 }
