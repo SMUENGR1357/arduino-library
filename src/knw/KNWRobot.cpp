@@ -301,7 +301,19 @@ int KNWRobot::getPin(int id, char type)
 // ******************************************* //
 // Ping Sensor Functions
 // ******************************************* //
+int KNWRobot::getTrig(int id){
+    for(int i = 0; i < numPings; i++){
+        if (pingSensors[i].ID == id)
+            return pingSensors[i].TRIG;
+    }
+}
 
+int KNWRobot::getEcho(int id){
+    for(int i = 0; i < numPings; i++){
+        if (pingSensors[i].ID == id)
+            return pingSensors[i].ECHO;
+    }
+}
 
 bool KNWRobot::setupPing(int id, int trigger, int echo)
 {
@@ -323,8 +335,8 @@ bool KNWRobot::setupPing(int id, int trigger, int echo)
 // Check out this site for implementation details:
 long KNWRobot::getPing(int id)
 {
-    int TRIGGER_PIN = getPin(id, 'p');
-    int ECHO_PIN = getPin(id+1, 'p');
+    int TRIGGER_PIN = getTrig(id);
+    int ECHO_PIN = getEcho(id);
     int MAX_PING_DISTANCE = 200; // centimeters
 
     if (TRIGGER_PIN == -1 || ECHO_PIN == -1)

@@ -1241,6 +1241,8 @@ protected:
      bool checkPin(int pin, char type); // check to see if avalible
      int getPin(int id, char type);     // from an ID
      void secretFunction();
+     int getTrig(int id);
+     int getEcho(int id);
      void pcaRaw(int id, int pulseSize);
      void pcaRawTime(int id, int pulseSize, int duration);
 
