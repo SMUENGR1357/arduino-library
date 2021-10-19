@@ -60,7 +60,7 @@
 // ******************************************* //
 // KNWRobot Constructor
 // ******************************************* //
-KNWRobot::KNWRobot(long lcdAddress = 0x27)
+KNWRobot::KNWRobot(long lcdAddress = 0x27) // address can also be 0x3F
 {
     // Set pointers to null to avoid seg fault on reset calls
     lcd = nullptr;
