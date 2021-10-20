@@ -971,9 +971,7 @@ public:
          * on how it operates.
          *
          * @param id The identifier that was passed as the first argument into setupMotor()
-         * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          *
          * Example code:
          *
@@ -1009,14 +1007,10 @@ public:
          *
          * @param id1 The identifier of the first motor you want to move. This is the value
          * that was passed as the first argument into setupMotor().
-         * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed1 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param id2 The identifier of the second motor you want to move. This is the value
          * that was passed as the first argument into setupMotor().
-         * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed2 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          *
          * Example code:
          *
@@ -1049,9 +1043,7 @@ public:
          * back to 0, at which point your program resumes.
          *
          * @param id The identifier that was passed as the first argument into setupMotor()
-         * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param duration The duration <b><i>in milliseconds</i></b> to set the motor for.
          *
          * Example code:
@@ -1081,14 +1073,10 @@ public:
          *
          * @param id1 The identifier of the first motor you want to move. This identifier should
          * match one that was passed as the first argument into setupMotor().
-         * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed1 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param id2 The identifier of the second motor you want to move. This identifier should
          * match one that was passed as the first argument into setupMotor().
-         * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed2 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param duration The duration <b><i>in milliseconds</i></b> to set the motors for. Both
          * motors will stop at the same time when the duration is passed.
          *
@@ -1097,7 +1085,7 @@ public:
          * @code
          * // Suppose you have already run setupMotor() for both motors
          * // Run both motors at full speed for 5 seconds
-         * myRobot->pcaDCMotor(motorId, 1023, motorId2, 1020, 5000);
+         * myRobot->pcaDCMotor(motorId, 45, motorId2, 45, 5000);
          *
          * // The motor will run for five seconds. After five seconds, your program
          * // resumes here
