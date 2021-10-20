@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['motors_205',['motors',['../class_k_n_w_robot.html#ab4ded7af28486e1d75bc2b8eed690cc3',1,'KNWRobot']]]
+  ['motors_218',['motors',['../class_k_n_w_robot.html#ae317a0d421af3edcf9061e6dc6775b7e',1,'KNWRobot']]]
 ];

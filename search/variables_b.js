@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['receiverstate_219',['receiverState',['../class_k_n_w_robot.html#aad92b41da78475b11fb879116ac30b86',1,'KNWRobot::receiverState()'],['../infraredsensor_8h.html#a78fdd77aa6c404e2c4cf7ee807b07041',1,'receiverState():&#160;infraredsensor.h']]],
-  ['rowpins_220',['rowPins',['../class_k_n_w_robot.html#ae91155bc2cf77036f3644970d08b1d03',1,'KNWRobot']]],
-  ['rows_221',['ROWS',['../class_k_n_w_robot.html#a341baf345717efe9d0a31f1f1c353346',1,'KNWRobot']]]
+  ['pcapins_228',['pcaPins',['../class_k_n_w_robot.html#a08d71e4d26846a5e8e1ecd6eae919a5d',1,'KNWRobot']]],
+  ['pin_229',['PIN',['../struct_component.html#a327c33a3c11928b66e52ae010b9dea95',1,'Component::PIN()'],['../struct_motor.html#a91fc088f46d9d39958a4b8e7219c96ac',1,'Motor::PIN()']]],
+  ['pingsensors_230',['pingSensors',['../class_k_n_w_robot.html#af16fd5171e3949e02e3dec88155670e0',1,'KNWRobot']]],
+  ['prev_5ftime_231',['prev_time',['../class_k_n_w_robot.html#a49ffc3ec34aee0c413d0f8105da3585b',1,'KNWRobot::prev_time()'],['../infraredsensor_8h.html#a9ca3f7169eb38c20654002ac810c1d45',1,'prev_time():&#160;infraredsensor.h']]],
+  ['pwm_232',['pwm',['../class_k_n_w_robot.html#aa05fcf341232599a77b6b23ebffc0573',1,'KNWRobot']]]
 ];

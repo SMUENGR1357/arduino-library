@@ -1,19 +1,9 @@
 var searchData=
 [
-  ['scanir_102',['scanIR',['../class_k_n_w_robot.html#a2f19ae94e6d68900c0c9ddd16b4bb326',1,'KNWRobot::scanIR()'],['../infraredsensor_8h.html#ad48d7281478134f274eaafe1b113a008',1,'scanIR():&#160;infraredsensor.h']]],
-  ['secretfunction_103',['secretFunction',['../class_k_n_w_robot.html#a930579fce44f9a252e5085d1dc3669e9',1,'KNWRobot']]],
-  ['servos_104',['servos',['../class_k_n_w_robot.html#ab2b2173ced6688df0b8d1842e23bf1ec',1,'KNWRobot']]],
-  ['setcountofdatasamples_105',['setCountOfDataSamples',['../eepromhelper_8h.html#a710f77e36eeed3ec1a49758628d3086e',1,'eepromhelper.h']]],
-  ['setintvalueataddress_106',['setIntValueAtAddress',['../eepromhelper_8h.html#a2ddcc254cf078d3e3bcf1f7f85d58cb6',1,'eepromhelper.h']]],
-  ['setupbump_107',['setupBump',['../class_k_n_w_robot.html#a6d3863838f5fae8481f70c71cc6fad04',1,'KNWRobot']]],
-  ['setupincline_108',['setupIncline',['../class_k_n_w_robot.html#a44560025bb80b5fbebc42713582d927d',1,'KNWRobot']]],
-  ['setupir_109',['setupIR',['../class_k_n_w_robot.html#a1d8eaa7d3d286d00f8a48f5bb6049e14',1,'KNWRobot::setupIR(int id, int pin)'],['../class_k_n_w_robot.html#a267853cecd5b562ed70b61cf11d3ee46',1,'KNWRobot::setupIR()']]],
-  ['setupkeypad_110',['setupKeypad',['../class_k_n_w_robot.html#a9eea5bcedf6f7cd2685b5e1811feec5a',1,'KNWRobot']]],
-  ['setuplcd_111',['setupLCD',['../class_k_n_w_robot.html#ae685cf5d2ce1bab6148c6e2accaff51f',1,'KNWRobot']]],
-  ['setupmotor_112',['setupMotor',['../class_k_n_w_robot.html#a79c83d9b2f0d080d7725964d2bcfc8dc',1,'KNWRobot']]],
-  ['setupping_113',['setupPing',['../class_k_n_w_robot.html#ab9d1d1ded6ca8ce7b445ae26de76dff0',1,'KNWRobot']]],
-  ['setuppwm_114',['setupPWM',['../class_k_n_w_robot.html#a6bb1982dd5b262c9197b5b849c8f0daf',1,'KNWRobot']]],
-  ['setupsensors_115',['setupSensors',['../class_k_n_w_robot.html#a10e15a7c5f721ddb60f7c90d94b47b38',1,'KNWRobot']]],
-  ['setupservo_116',['setupServo',['../class_k_n_w_robot.html#a94753ae378d8167ed01912d315d45da5',1,'KNWRobot']]],
-  ['setuptemp_117',['setupTemp',['../class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55',1,'KNWRobot']]]
+  ['receiverstate_102',['receiverState',['../class_k_n_w_robot.html#aad92b41da78475b11fb879116ac30b86',1,'KNWRobot::receiverState()'],['../infraredsensor_8h.html#a78fdd77aa6c404e2c4cf7ee807b07041',1,'receiverState():&#160;infraredsensor.h']]],
+  ['resetkeypad_103',['resetKeypad',['../class_k_n_w_robot.html#ad076021647bd82e847b01146f07f315f',1,'KNWRobot']]],
+  ['resetlcd_104',['resetLCD',['../class_k_n_w_robot.html#a4ef2b96d06037fb792d8a17e29f0a031',1,'KNWRobot']]],
+  ['resetsamplecount_105',['resetSampleCount',['../eepromhelper_8h.html#a15667106583780bf011083653ee6cb64',1,'eepromhelper.h']]],
+  ['rowpins_106',['rowPins',['../class_k_n_w_robot.html#ae91155bc2cf77036f3644970d08b1d03',1,'KNWRobot']]],
+  ['rows_107',['ROWS',['../class_k_n_w_robot.html#a341baf345717efe9d0a31f1f1c353346',1,'KNWRobot']]]
 ];
