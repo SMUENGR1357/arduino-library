@@ -48,7 +48,7 @@ struct ServoObj
     int PIN = 0;
     char TYPE = 0;
     Servo OBJ;
-}
+};
 
 /**
  * KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA's.
@@ -237,7 +237,7 @@ public:
          * }
          * @endcode
          */
-     bool setupPing(int id, int pin);
+     bool setupPing(int id, int trigger, int echo);
 
      /**
          * Triggers a ping sensor to sense how far it is away from an object in front of it.

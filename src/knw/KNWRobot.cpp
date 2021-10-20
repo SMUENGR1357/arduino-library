@@ -16,12 +16,11 @@
 
 #include "KNWRobot.h"
 #include "Arduino.h"
-
 #include "Wire.h"
-#include "LiquidCrystal_I2C.h"
-#include "Keypad.h"
-#include "Adafruit_PWMServoDriver.h"
-#include "NewPing.h"
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <NewPing.h>
 
 // PCA DETAILS (Calibrated by Prof Matt Saari)
 // Configuration parameters for each type of motor.
@@ -95,11 +94,16 @@ KNWRobot::KNWRobot(long lcdAddress = 0x27) // address can also be 0x3F
     analogPins[3] = true;
 
     memset(pcaPins, 0, sizeof(pcaPins));
+	
 
     setupKeypad();
+
     setupLCD(lcdAddress);
+
     setupPWM();
+
     setupSensors();
+
     setupIR();
 }
 
@@ -137,7 +141,7 @@ void KNWRobot::setupLCD(long lcdAddress)
     lcd = new LiquidCrystal_I2C(lcdAddress, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
     lcd->begin(16, 2); // initialize the lcd
     lcd->home();       // go to the top line
-    lcd->print("SMU Lyle KNW2300");
+    lcd->print("SMU Lyle ENGR 1357");
 }
 
 void KNWRobot::setupPWM()
@@ -250,7 +254,7 @@ int KNWRobot::getPin(int id, char type)
         {
             if (pingSensors[i].ID == id)
             {
-                return pingSensors[i].PIN;
+                return pingSensors[i].TRIG;
             }
         }
     }
@@ -316,7 +320,7 @@ int KNWRobot::getEcho(int id){
 
 bool KNWRobot::setupPing(int id, int trigger, int echo)
 {
-    if (checkPin(pin, 'd') && numPings < 8)
+    if (checkPin(trigger, 'd') && numPings < 8)
     {
         // set the trigger pin
         pingSensors[numPings].ID = id;
