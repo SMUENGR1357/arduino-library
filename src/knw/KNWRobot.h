@@ -35,6 +35,37 @@ struct Component
 };
 
 /**
+ * A struct representing the component of a PingSensor, needed because of the new type of Ping Sensors used since the library was last in use.
+ * Holds 3 elements:
+ * - Integer ID - defined by the programmer
+ * - Trig - the physical pin where Trigger is plugged into
+ * - Echo - the physical pin where Echo is plugged into
+ * - Type - 'a' for analog, 'd' for digital, and 'p' for PCA board
+ */
+struct PingSensor
+{
+    int ID = 0;
+    int TRIG = 0;
+    int ECHO = 0;
+    char TYPE = 0;
+};
+/**
+ * A struct representing the component of a Motor / Servo, used to send signals to the PWM.
+ * ID - the user-defined ID for the motor
+ * PIN - The physical pin where the motor is put into the PWM
+ * TYPE - 'a' for analog, 'd' for digital, and 'p' for PCA board
+ * ZERO - The origin of the servo / motor
+ * OBJ - The Servo object instance used by the Arduino
+ */
+struct Motor{
+    int ID = 0;
+    int PIN = 0;
+    char TYPE = 0;
+    int ZERO = 0;
+    Servo OBJ;
+};
+
+/**
  * KNWRobot Library 2.0, brought to you with love by the fabulous KNW TA's.
  *
  * This library contains the functions needed to communicate with the various
@@ -191,6 +222,18 @@ public:
          * @endcode
          */
      bool *getPCAPins();
+     /**
+      * Accessor function to get the pin of the Trigger for a Ping Sensor.
+      * @param id : The user-defined id of the ping sensor desired
+      * @returns the pin which the Trigger is plugged into
+      */
+     int getTrig(int id);
+     /**
+      * Accessor function to get the pin of the Echo for a Ping Sensor.
+      * @param id : The user-defined id of the ping sensor desired
+      * @returns the pin which the Echo is plugged into
+      */
+     int getEcho(int id);
 
      /**
          * Sets up and assigns a ping sensor to run on the specified digital pin.
@@ -221,7 +264,7 @@ public:
          * }
          * @endcode
          */
-     bool setupPing(int id, int pin);
+     bool setupPing(int id, int trigger, int echo);
 
      /**
          * Triggers a ping sensor to sense how far it is away from an object in front of it.
@@ -703,7 +746,7 @@ public:
          * }
          * @endcode
          */
-     bool setupServo(int id, int pin);
+     bool setupServo(int id, int pin, int zero = 90);
 
      /**
          * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
@@ -744,7 +787,7 @@ public:
          * }
          * @endcode
          */
-     bool setupMotor(int id, int pin);
+     bool setupMotor(int id, int pin, int zero = 90);
 
      /**
          * Stops a motor or servo with the provided identifier.
@@ -768,7 +811,7 @@ public:
          * myRobot->pcaStop(motorId);
          * @endcode
          */
-     void pcaStop(int id);
+     void pcaStop(int id, char type);
 
      /**
          * Stops all motors and servos connected to the PCA board.
@@ -928,9 +971,7 @@ public:
          * on how it operates.
          *
          * @param id The identifier that was passed as the first argument into setupMotor()
-         * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          *
          * Example code:
          *
@@ -966,14 +1007,10 @@ public:
          *
          * @param id1 The identifier of the first motor you want to move. This is the value
          * that was passed as the first argument into setupMotor().
-         * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed1 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param id2 The identifier of the second motor you want to move. This is the value
          * that was passed as the first argument into setupMotor().
-         * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed2 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          *
          * Example code:
          *
@@ -1006,9 +1043,7 @@ public:
          * back to 0, at which point your program resumes.
          *
          * @param id The identifier that was passed as the first argument into setupMotor()
-         * @param speed The speed between [-1023 - 1023] to set the motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param duration The duration <b><i>in milliseconds</i></b> to set the motor for.
          *
          * Example code:
@@ -1038,14 +1073,10 @@ public:
          *
          * @param id1 The identifier of the first motor you want to move. This identifier should
          * match one that was passed as the first argument into setupMotor().
-         * @param speed1 The speed between [-1023 - 1023] to set the first motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed1 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param id2 The identifier of the second motor you want to move. This identifier should
          * match one that was passed as the first argument into setupMotor().
-         * @param speed2 The speed between [-1023 - 1023] to set the second motor to. A negative value
-         * moves the motor in one direction, while a positive value moves the motor in
-         * the other.
+         * @param speed2 The speed between [0 - 180] to set the second motor to. A value below 90 moves in one direction, a value above 90 moves in the other.
          * @param duration The duration <b><i>in milliseconds</i></b> to set the motors for. Both
          * motors will stop at the same time when the duration is passed.
          *
@@ -1054,7 +1085,7 @@ public:
          * @code
          * // Suppose you have already run setupMotor() for both motors
          * // Run both motors at full speed for 5 seconds
-         * myRobot->pcaDCMotor(motorId, 1023, motorId2, 1020, 5000);
+         * myRobot->pcaDCMotor(motorId, 45, motorId2, 45, 5000);
          *
          * // The motor will run for five seconds. After five seconds, your program
          * // resumes here
@@ -1154,7 +1185,7 @@ public:
          * myRobot->printLCD(IRCharacters);
          * @endcode
          */
-     unsigned char *getIR();
+     char *getIR();
 
      /** 
         *   Reset functions to redo setup of keypad and LCD; these may
@@ -1171,11 +1202,11 @@ protected:
      bool pcaPins[16];
 
      // Tracks which components are associated to what ID's / pins
-     Component pingSensors[8];
+     PingSensor pingSensors[8];
      Component bumpSensors[8];
      Component irSensors[4];
-     Component motors[4];
-     Component servos[16];
+     Motor motors[4];
+     Motor servos[16];
 
      // Tracks how many of each component the robot currently has attached
      int numPings;
@@ -1217,7 +1248,8 @@ protected:
      int num_chars;
      unsigned long prev_time;
 
-     unsigned char IRChar, IRCharBitMask, buffer[8];
+     unsigned char IRChar, IRCharBitMask;
+     char buffer[8];
      bool receiverState = false;
      unsigned long cur_time, ticks;
 

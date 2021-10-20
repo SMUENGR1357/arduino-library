@@ -4,21 +4,23 @@
   ---------------------------------
   |        KNW Robot Library      |
   ---------------------------------
-  KNWRobot.cpp - Library written to control robots for SMU KNW2300
+  KNWRobot.cpp - Library written to control robots for SMU KNW 2300
   Controling Arduino: MEGA 2560
   Author: Alexandria Hancock
   Other Contributors: Morgan VandenBerg
+  
+  RE-Written Fall 2021 By: Christian Gould, Zach Suzuki
 
   For more details on functions, look in KNWRobot.h
 */
 
 #include "KNWRobot.h"
 #include "Arduino.h"
-
 #include "Wire.h"
-#include "LiquidCrystal_I2C.h"
-#include "Keypad.h"
-#include "Adafruit_PWMServoDriver.h"
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <NewPing.h>
 
 // PCA DETAILS (Calibrated by Prof Matt Saari)
 // Configuration parameters for each type of motor.
@@ -57,7 +59,7 @@
 // ******************************************* //
 // KNWRobot Constructor
 // ******************************************* //
-KNWRobot::KNWRobot(long lcdAddress = 0x27)
+KNWRobot::KNWRobot(long lcdAddress = 0x27) // address can also be 0x3F
 {
     // Set pointers to null to avoid seg fault on reset calls
     lcd = nullptr;
@@ -92,11 +94,16 @@ KNWRobot::KNWRobot(long lcdAddress = 0x27)
     analogPins[3] = true;
 
     memset(pcaPins, 0, sizeof(pcaPins));
+	
 
     setupKeypad();
+
     setupLCD(lcdAddress);
+
     setupPWM();
+
     setupSensors();
+
     setupIR();
 }
 
@@ -134,7 +141,7 @@ void KNWRobot::setupLCD(long lcdAddress)
     lcd = new LiquidCrystal_I2C(lcdAddress, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
     lcd->begin(16, 2); // initialize the lcd
     lcd->home();       // go to the top line
-    lcd->print("SMU Lyle KNW2300");
+    lcd->print("SMU Lyle ENGR 1357");
 }
 
 void KNWRobot::setupPWM()
@@ -154,7 +161,6 @@ void KNWRobot::setupSensors()
     numBumps = 0;
     inclinePin = -1;
     tempPin = -1;
-    numIR = 0;
 }
 
 void KNWRobot::setupIR()
@@ -247,7 +253,7 @@ int KNWRobot::getPin(int id, char type)
         {
             if (pingSensors[i].ID == id)
             {
-                return pingSensors[i].PIN;
+                return pingSensors[i].TRIG;
             }
         }
     }
@@ -297,50 +303,49 @@ int KNWRobot::getPin(int id, char type)
 // ******************************************* //
 // Ping Sensor Functions
 // ******************************************* //
-bool KNWRobot::setupPing(int id, int pin)
+int KNWRobot::getTrig(int id){
+    for(int i = 0; i < numPings; i++){
+        if (pingSensors[i].ID == id)
+            return pingSensors[i].TRIG;
+    }
+}
+
+int KNWRobot::getEcho(int id){
+    for(int i = 0; i < numPings; i++){
+        if (pingSensors[i].ID == id)
+            return pingSensors[i].ECHO;
+    }
+}
+
+bool KNWRobot::setupPing(int id, int trigger, int echo)
 {
-    if (checkPin(pin, 'd') && numPings < 8)
+    if (checkPin(trigger, 'd') && numPings < 8)
     {
+        // set the trigger pin
         pingSensors[numPings].ID = id;
-        pingSensors[numPings].PIN = pin;
+        pingSensors[numPings].TRIG = trigger;
+        pingSensors[numPings].ECHO = echo;
         pingSensors[numPings].TYPE = 'd';
         numPings++;
-        digitalPins[pin] = true;
+        digitalPins[trigger] = true;
+        digitalPins[echo] = true;
         return true;
     }
     return false;
 }
 
 // Check out this site for implementation details:
-// http://arduino.cc/en/Tutorial/Ping
 long KNWRobot::getPing(int id)
 {
-    int channel = getPin(id, 'p');
-    if (channel == -1)
+    int TRIGGER_PIN = getTrig(id);
+    int ECHO_PIN = getEcho(id);
+    int MAX_PING_DISTANCE = 200; // centimeters
+
+    if (TRIGGER_PIN == -1 || ECHO_PIN == -1)
         return -1; // Ping sensor has not been set up properly; this is an invalid ID
 
-    long duration, cm;
-
-    // The PING is triggered by a HIGH pulse of 2 or more microseconds.
-    // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-    pinMode(channel, OUTPUT);
-    digitalWrite(channel, LOW);
-    delayMicroseconds(2);
-    digitalWrite(channel, HIGH);
-    delayMicroseconds(5);
-    digitalWrite(channel, LOW);
-
-    // The same pin is used to read the signal from the PING: a HIGH pulse
-    // whose duration is the time (in microseconds) from the sending of the ping
-    // to the reception of its echo off of an object.
-    pinMode(channel, INPUT);
-    duration = pulseIn(channel, HIGH); // returned in microseconds ms
-
-    // convert the time into a distance
-    // 73.746 ms per inch (sound travels at 1130 ft/sec)
-    // 29ish ms per cm (roughly 342 m/sec)
-    // duration is time there and back, so divid by 2
-    return cm = duration / 29 / 2;
+    NewPing pingSensor(TRIGGER_PIN, ECHO_PIN, MAX_PING_DISTANCE);
+    return pingSensor.ping_cm();
 }
 
 // ******************************************* //
@@ -395,6 +400,12 @@ int KNWRobot::getIncline()
 int KNWRobot::getConductivity()
 {
     const unsigned long seconds = 3;
+
+    const int conductivityDigitalPin1 = 12;
+    const int conductivityDigitalPin2 = 13;
+    const int conductivityAnalogPin1 = 2;
+    const int conductivityAnalogPin2 = 3;
+
     int reading1, reading2, result;
 
     // One period of the wave is 10ms. So we want to
@@ -427,28 +438,6 @@ int KNWRobot::getConductivity()
 
     return result = abs(reading1 - reading2);
 }
-
-// ******************************************* //
-// Temperature Functions
-// ******************************************* //
-bool KNWRobot::setupTemp(int pin)
-{
-    if (checkPin(pin, 'a'))
-    {
-        tempPin = pin;
-        analogPins[pin] = true;
-        return true;
-    }
-    return false;
-}
-
-int KNWRobot::getTemp()
-{
-    if (tempPin == -1)
-        return -1;
-    return analogRead(tempPin);
-}
-
 // ******************************************* //
 // Keypad Functions
 // ******************************************* //
@@ -593,80 +582,68 @@ void KNWRobot::printLCD(char input)
 // ******************************************* //
 // PCA9685 Board Functions
 // ******************************************* //
-bool KNWRobot::setupServo(int id, int pin)
+bool KNWRobot::setupServo(int id, int pin, int zero)
 {
-    if (checkPin(pin, 'p') && numServos < 16)
+    if (checkPin(pin, 'd') && numServos < 16)
     {
         servos[numServos].ID = id;
         servos[numServos].PIN = pin;
-        servos[numServos].TYPE = 'p';
+        servos[numServos].TYPE = 'd';
+        servos[numServos].ZERO = zero;
+        servos[numServos].OBJ.attach(pin);
         numServos++;
-        pcaPins[pin] = true;
+        digitalPins[pin] = true;
         return true;
+
     }
     return false;
 }
 
-bool KNWRobot::setupMotor(int id, int pin)
+bool KNWRobot::setupMotor(int id, int pin, int zero)
 {
-    if (checkPin(pin, 'p') && numMotors < 4)
+    if (checkPin(pin, 'd') && numMotors < 4)
     {
         motors[numMotors].ID = id;
         motors[numMotors].PIN = pin;
-        motors[numMotors].TYPE = 'p';
+        motors[numMotors].TYPE = 'd';
+        motors[numMotors].ZERO = zero;
+        motors[numMotors].OBJ.attach(pin);
         numMotors++;
-        pcaPins[pin] = true;
+        digitalPins[pin] = true;
         return true;
     }
     return false;
 }
 
-void KNWRobot::pcaRaw(int id, int pulseSize)
+void KNWRobot::pcaStop(int id, char type)
 {
-    int pin = getPin(id, 's');
-    if (pin == -1)
-    {
-        pin = getPin(id, 'm');
-    }
-    if (pin != -1)
-    {
-        pwm->setPWM(pin, 0, pulseSize);
+    int pin = getPin(id, type);
+    if (pin != -1) {
+        if (type == 's') {
+            int angle = 90;
+            for (int i = 0; i < numServos; i++) {
+                if (servos[i].ID == id)
+                    angle = servos[i].ZERO;
+            }
+            pca180Servo(id, angle);
+        }
+        else if (type == 'm') {
+            int speed = 90;
+            for (int i = 0; i < numMotors; i++) {
+                if (motors[i].ID == id)
+                    speed = motors[i].ZERO;
+            }
+            pcaDCMotor(id, speed);
+        }
     }
 }
 
-void KNWRobot::pcaRawTime(int id, int pulseSize, int duration)
-{
-    int pin = getPin(id, 's');
-    if (pin == -1)
-    {
-        pin = getPin(id, 'm');
+void KNWRobot::pcaStopAll() {
+    for (int i = 0; i < numServos; i++) {
+        pcaStop(servos[i].ID, 's');
     }
-    if (pin != -1)
-    {
-        pwm->setPWM(pin, 0, pulseSize);
-        delay(duration);
-        pwm->setPWM(pin, 0, 0);
-    }
-}
-
-void KNWRobot::pcaStop(int id)
-{
-    int pin = getPin(id, 's');
-    if (pin == -1)
-    {
-        pin = getPin(id, 'm');
-    }
-    if (pin != -1)
-    {
-        pwm->setPWM(pin, 0, 0);
-    }
-}
-
-void KNWRobot::pcaStopAll()
-{
-    for (int channel = 0; channel < 16; channel++)
-    {
-        pwm->setPWM(channel, 0, 0);
+    for (int i = 0; i < numMotors; i++) {
+        pcaStop(motors[i].ID, 'm');
     }
 }
 
@@ -675,18 +652,10 @@ void KNWRobot::pca180Servo(int id, int angle)
     int pin = getPin(id, 's');
     if (pin != -1)
     { // not a valid ID
-        // Take input from [-90,90] and map to PWM duty cycle scale out of 4095
-        int pulselen = map(
-            angle,
-            0 * PCA_SERVO_180_INPUT_RANGE,
-            2 * PCA_SERVO_180_INPUT_RANGE,
-            PCA_SERVO_180_MIN,
-            PCA_SERVO_180_MAX);
-
-        // Shift to range of; PWM Signal: 1ms - 2ms will give
-        // full reverse to full forward, 1.5ms is neutral
-        pulselen = constrain(pulselen, PCA_SERVO_180_MIN, PCA_SERVO_180_MAX);
-        pwm->setPWM(pin, 0, pulselen);
+        for (int i = 0; i < numServos; i++) {
+            if (servos[i].ID == id)
+                servos[i].OBJ.write(angle);
+        }
     }
 }
 
@@ -718,21 +687,11 @@ void KNWRobot::pcaDCMotor(int id, int speed)
 {
     int pin = getPin(id, 'm');
     if (pin != -1)
-    {
-        // Take input from [-1023,1023] and map to
-        // PWM duty cycle scale out of 4095
-        int pulselen = map(
-            speed,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-
-        // Shift to range of; PWM Signal: 1ms - 2ms will give
-        // full reverse to full forward, 1.5ms is neutral
-        pulselen = constrain(pulselen, PCA_DC_MIN, PCA_DC_MAX);
-
-        pwm->setPWM(pin, 0, pulselen);
+    { // not a valid ID
+        for (int i = 0; i < numMotors; i++) {
+            if (motors[i].ID == id)
+                motors[i].OBJ.write(speed);
+        }
     }
 }
 
@@ -742,47 +701,19 @@ void KNWRobot::pcaDC2Motors(int id1, int speed1, int id2, int speed2)
     int pin2 = getPin(id2, 'm');
     if (pin1 != -1 && pin2 != 1)
     {
-        int pulselen1 = map(
-            speed1,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-        pulselen1 = constrain(pulselen1, PCA_DC_MIN, PCA_DC_MAX);
-
-        int pulselen2 = map(
-            speed2,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-        pulselen2 = constrain(pulselen2, PCA_DC_MIN, PCA_DC_MAX);
-
-        pwm->setPWM(pin1, 0, pulselen1);
-        pwm->setPWM(pin2, 0, pulselen2);
+        for (int i = 0; i < numMotors; i++) {
+            if (motors[i].ID == id1)
+                motors[i].OBJ.write(speed1);
+            if (motors[i].ID == id2)
+                motors[i].OBJ.write(speed2);
+        }
     }
 }
 
 void KNWRobot::pca180ServoTime(int id, int angle, int duration)
 {
-    int pin = getPin(id, 's');
-    if (pin != -1)
-    {
-        // Take input from [-90,90] and map to PWM duty cycle scale out of 4095
-        int pulselen = map(
-            angle,
-            0 * PCA_SERVO_180_INPUT_RANGE,
-            2 * PCA_SERVO_180_INPUT_RANGE,
-            PCA_SERVO_180_MIN,
-            PCA_SERVO_180_MAX);
-
-        pulselen = constrain(pulselen, PCA_SERVO_180_MIN, PCA_SERVO_180_MAX);
-        pwm->setPWM(pin, 0, pulselen);
-
-        delay(duration);
-
-        pwm->setPWM(pin, 0, 0);
-    }
+    pca180Servo(id, angle);
+    delay(duration);
 }
 
 void KNWRobot::pcaContServoTime(int id, int speed, int duration)
@@ -812,23 +743,9 @@ void KNWRobot::pcaContServoTime(int id, int speed, int duration)
 
 void KNWRobot::pcaDCMotorTime(int id, int speed, int duration)
 {
-    int pin = getPin(id, 'm');
-    if (pin != -1)
-    {
-        int pulselen = map(
-            speed,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-
-        pulselen = constrain(pulselen, PCA_DC_MIN, PCA_DC_MAX);
-        pwm->setPWM(pin, 0, pulselen);
-
-        delay(duration);
-
-        pwm->setPWM(pin, 0, 0);
-    }
+    pcaDCMotor(id, speed);
+    delay(duration);
+    pcaStop(id, 'm');
 }
 
 void KNWRobot::pcaDC2MotorsTime(
@@ -839,34 +756,10 @@ void KNWRobot::pcaDC2MotorsTime(
     int duration)
 {
 
-    int pin1 = getPin(id1, 'm');
-    int pin2 = getPin(id2, 'm');
-    if (pin1 != -1 && pin2 != 1)
-    {
-        int pulselen1 = map(
-            speed1,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-        pulselen1 = constrain(pulselen1, PCA_DC_MIN, PCA_DC_MAX);
-
-        int pulselen2 = map(
-            speed2,
-            -1 * PCA_DC_INPUT_RANGE,
-            PCA_DC_INPUT_RANGE,
-            PCA_DC_MIN,
-            PCA_DC_MAX);
-        pulselen2 = constrain(pulselen2, PCA_DC_MIN, PCA_DC_MAX);
-
-        pwm->setPWM(pin1, 0, pulselen1);
-        pwm->setPWM(pin2, 0, pulselen2);
-
-        delay(duration);
-
-        pwm->setPWM(pin1, 0, 0);
-        pwm->setPWM(pin2, 0, 0);
-    }
+    pcaDC2Motors(id1, speed1, id2, speed2);
+    delay(duration);
+    pcaStop(id1, 'm');
+    pcaStop(id2, 'm');
 }
 
 // ******************************************* //
@@ -889,7 +782,7 @@ bool KNWRobot::setupIR(int id, int pin)
 int KNWRobot::scanIR(int id)
 {
     int pin = getPin(id, 'r');
-    if (pin != -1)
+   if (pin != -1)
     {
         // takes 13 ms per char to broadcast from a beacon
         char reading;
@@ -1013,12 +906,13 @@ int KNWRobot::scanIR(int id)
     return -1; // this is for incorrect ID
 }
 
-unsigned char *KNWRobot::getIR()
+char *KNWRobot::getIR()
 {
     return buffer;
 }
 
 void KNWRobot::printVersion()
 {
-    printLCD("KNW2300 Library v1.3");
+    char temp[100] = "ENGR 1357 v1.0";
+    printLCD(temp);
 }
