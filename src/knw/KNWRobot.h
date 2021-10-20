@@ -34,6 +34,14 @@ struct Component
      char TYPE = 0; // either analog(a), digital (d), or pca (p)
 };
 
+/**
+ * A struct representing the component of a PingSensor, needed because of the new type of Ping Sensors used since the library was last in use.
+ * Holds 3 elements:
+ * - Integer ID - defined by the programmer
+ * - Trig - the physical pin where Trigger is plugged into
+ * - Echo - the physical pin where Echo is plugged into
+ * - Type - 'a' for analog, 'd' for digital, and 'p' for PCA board
+ */
 struct PingSensor
 {
     int ID = 0;
@@ -41,9 +49,15 @@ struct PingSensor
     int ECHO = 0;
     char TYPE = 0;
 };
-
-struct ServoObj
-{
+/**
+ * A struct representing the component of a Motor / Servo, used to send signals to the PWM.
+ * ID - the user-defined ID for the motor
+ * PIN - The physical pin where the motor is put into the PWM
+ * TYPE - 'a' for analog, 'd' for digital, and 'p' for PCA board
+ * ZERO - The origin of the servo / motor
+ * OBJ - The Servo object instance used by the Arduino
+ */
+struct Motor{
     int ID = 0;
     int PIN = 0;
     char TYPE = 0;
@@ -208,8 +222,17 @@ public:
          * @endcode
          */
      bool *getPCAPins();
-
+     /**
+      * Accessor function to get the pin of the Trigger for a Ping Sensor.
+      * @param id : The user-defined id of the ping sensor desired
+      * @returns the pin which the Trigger is plugged into
+      */
      int getTrig(int id);
+     /**
+      * Accessor function to get the pin of the Echo for a Ping Sensor.
+      * @param id : The user-defined id of the ping sensor desired
+      * @returns the pin which the Echo is plugged into
+      */
      int getEcho(int id);
 
      /**
@@ -1194,8 +1217,8 @@ protected:
      PingSensor pingSensors[8];
      Component bumpSensors[8];
      Component irSensors[4];
-     ServoObj motors[4];
-     ServoObj servos[16];
+     Motor motors[4];
+     Motor servos[16];
 
      // Tracks how many of each component the robot currently has attached
      int numPings;
@@ -1246,8 +1269,6 @@ protected:
      bool checkPin(int pin, char type); // check to see if avalible
      int getPin(int id, char type);     // from an ID
      void secretFunction();
-     int getTrig(int id);
-     int getEcho(int id);
      void pcaRaw(int id, int pulseSize);
      void pcaRawTime(int id, int pulseSize, int duration);
 

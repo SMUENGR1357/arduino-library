@@ -317,20 +317,6 @@ int KNWRobot::getEcho(int id){
     }
 }
 
-int KNWRobot::getTrig(int id){
-    for(int i = 0; i < numPings; i++){
-        if (pingSensors[i].ID == id)
-            return pingSensors[i].TRIG;
-    }
-}
-
-int KNWRobot::getEcho(int id){
-    for(int i = 0; i < numPings; i++){
-        if (pingSensors[i].ID == id)
-            return pingSensors[i].ECHO;
-    }
-}
-
 bool KNWRobot::setupPing(int id, int trigger, int echo)
 {
     if (checkPin(trigger, 'd') && numPings < 8)
@@ -796,7 +782,7 @@ bool KNWRobot::setupIR(int id, int pin)
 int KNWRobot::scanIR(int id)
 {
     int pin = getPin(id, 'r');
-    if (pin != -1)
+   if (pin != -1)
     {
         // takes 13 ms per char to broadcast from a beacon
         char reading;
