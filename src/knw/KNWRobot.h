@@ -37,8 +37,8 @@ struct Component
 struct PingSensor
 {
     int ID = 0;
-    int ECHO = 0;
     int TRIG = 0;
+    int ECHO = 0;
     char TYPE = 0;
 };
 
@@ -47,6 +47,7 @@ struct ServoObj
     int ID = 0;
     int PIN = 0;
     char TYPE = 0;
+    int ZERO = 0;
     Servo OBJ;
 };
 
@@ -207,6 +208,9 @@ public:
          * @endcode
          */
      bool *getPCAPins();
+
+     int getTrig(int id);
+     int getEcho(int id);
 
      /**
          * Sets up and assigns a ping sensor to run on the specified digital pin.
@@ -719,7 +723,7 @@ public:
          * }
          * @endcode
          */
-     bool setupServo(int id, int pin);
+     bool setupServo(int id, int pin, int zero = 90);
 
      /**
          * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
@@ -760,7 +764,7 @@ public:
          * }
          * @endcode
          */
-     bool setupMotor(int id, int pin);
+     bool setupMotor(int id, int pin, int zero = 90);
 
      /**
          * Stops a motor or servo with the provided identifier.
@@ -784,7 +788,7 @@ public:
          * myRobot->pcaStop(motorId);
          * @endcode
          */
-     void pcaStop(int id);
+     void pcaStop(int id, char type);
 
      /**
          * Stops all motors and servos connected to the PCA board.
@@ -1170,7 +1174,7 @@ public:
          * myRobot->printLCD(IRCharacters);
          * @endcode
          */
-     unsigned char *getIR();
+     char *getIR();
 
      /** 
         *   Reset functions to redo setup of keypad and LCD; these may
@@ -1233,7 +1237,8 @@ protected:
      int num_chars;
      unsigned long prev_time;
 
-     unsigned char IRChar, IRCharBitMask, buffer[8];
+     unsigned char IRChar, IRCharBitMask;
+     char buffer[8];
      bool receiverState = false;
      unsigned long cur_time, ticks;
 
