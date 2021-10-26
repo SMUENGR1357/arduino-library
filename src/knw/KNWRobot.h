@@ -732,6 +732,7 @@ public:
          * when running the various pca servo functions, so it's recommended you assign it to a variable.
          * It is also recommended you make it equal to the pin number it is assigned to.
          * @param pin The pin on the PCA board that servo is connected to.
+         * @param zero The "zero value" for a servo to use no power. Do not modify this if you do not know what you are doing. Default value is 94.
          * @return true If the servo was successfully assigned to the pin
          * @return false If the servo was not assigned to the pin
          *
@@ -746,7 +747,7 @@ public:
          * }
          * @endcode
          */
-     bool setupServo(int id, int pin, int zero = 90);
+     bool setupServo(int id, int pin, int zero = 94);
 
      /**
          * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
@@ -799,16 +800,17 @@ public:
          *
          * @param id The identifier that was passed as the first argument into
          * setupMotor() / setupServo()
+         * @param type The type of device to stop. Use 'm' for motors and 's' for servos.
          *
          * Example code:
          *
          * @code
          * // Assuming you've already run setupMotor()
-         * myRobot->pcaDCMotor(motorId, 1023);
+         * myRobot->pcaDCMotor(motorId, 45);
          *
          * // Robot does whatever it needs to do
          *
-         * myRobot->pcaStop(motorId);
+         * myRobot->pcaStop(motorId, 'm');
          * @endcode
          */
      void pcaStop(int id, char type);
@@ -821,7 +823,7 @@ public:
          *
          * * @code
          * // Assuming you've already run setupMotor()
-         * myRobot->pca2DCMotor(motorId, 1023, motorId2, 1020);
+         * myRobot->pca2DCMotor(motorId, 45, motorId2, 45);
          *
          * // Robot does whatever it needs to do
          *
@@ -912,7 +914,7 @@ public:
          * degree servos, use the pca180Servo() or pca180ServoTime() functions.
          *
          * @param id The identifier that was passed as the first argument into setupServo()
-         * @param angle The speed between [-90 - 90] to set the servo to. A negative value
+         * @param speed The speed between [-90 - 90] to set the servo to. A negative value
          * moves the servo in one direction, while a positive value moves the servo in
          * the other.
          *
@@ -978,7 +980,7 @@ public:
          * @code
          * // Suppose you have already run setupMotor() and a setupPing() function
          * // Run a motor at full speed
-         * myRobot->pcaDCMotor(motorId, 1023);
+         * myRobot->pcaDCMotor(motorId, 45);
          *
          * // While the motor runs, read a ping sensor value
          * long pingReading = myRobot->getPing(pingId);
@@ -987,7 +989,7 @@ public:
          *   myRobot->pcaDCMotor(motorId, 0);
          *
          *   // Alternatively, you can use pcaStop()
-         *   myRobot->pcaStop(motorId);
+         *   myRobot->pcaStop(motorId, 'm');
          * }
          * @endcode
          */
@@ -1017,13 +1019,13 @@ public:
          * @code
          * // Suppose you have already run setupMotor() and a setupPing() function
          * // Run both motors at full speed
-         * myRobot->pcaDC2Motors(motorId, 1023, motorId2, 1023);
+         * myRobot->pcaDC2Motors(motorId, 45, motorId2, 45);
          *
          * // While the motors run, read a ping sensor value
          * long pingReading = myRobot->getPing(pingId);
          * if (pingReading < 30) {
          *   // Robot is less than 30 cm away from a wall, so stop the robot from moving
-         *   myRobot->pcaDC2Motors(motorId, 0, motorId2, 0);
+         *   myRobot->pcaDC2Motors(motorId, 90, motorId2, 90);
          *
          *   // Alternatively, you can use pcaStopAll()
          *   myRobot->pcaStopAll();
@@ -1050,8 +1052,8 @@ public:
          *
          * @code
          * // Suppose you have already run setupMotor()
-         * // Run a motor at full speed for 5 seconds
-         * myRobot->pcaDCMotor(motorId, 1023, 5000);
+         * // Run a motor at moderate speed for 5 seconds
+         * myRobot->pcaDCMotor(motorId, 45, 5000);
          *
          * // The motor will run for five seconds. After five seconds, your program
          * // resumes here

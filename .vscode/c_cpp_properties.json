@@ -40,7 +40,7 @@
             "includePath": [
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/mega",
-                "/Users/christian/Documents/Arduino/libraries/LiquidCrystal_I2C",
+                "/Users/christiangould/Documents/Arduino/libraries/LiquidCrystal_I2C",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/libraries/Wire/src",
                 "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/lib/gcc/avr/7.3.0/include",
                 "/Applications/Arduino.app/Contents/Java/hardware/tools/avr/lib/gcc/avr/7.3.0/include-fixed",
@@ -53,7 +53,7 @@
             "cppStandard": "c++11",
             "defines": [
                 "F_CPU=16000000L",
-                "ARDUINO=10813",
+                "ARDUINO=10816",
                 "ARDUINO_AVR_MEGA2560",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
