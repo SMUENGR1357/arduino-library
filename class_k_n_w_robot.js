@@ -53,7 +53,7 @@ var class_k_n_w_robot =
     [ "setupPing", "class_k_n_w_robot.html#a0f8bef5f8e46cc8cc6ca38af76148d24", null ],
     [ "setupPWM", "class_k_n_w_robot.html#a6bb1982dd5b262c9197b5b849c8f0daf", null ],
     [ "setupSensors", "class_k_n_w_robot.html#a10e15a7c5f721ddb60f7c90d94b47b38", null ],
-    [ "setupServo", "class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6", null ],
+    [ "setupServo", "class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9", null ],
     [ "setupTemp", "class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55", null ],
     [ "analogPins", "class_k_n_w_robot.html#ace29350913058ea80765d66b7c65131d", null ],
     [ "buffer", "class_k_n_w_robot.html#ad4190fca44ec2ba53022234deb033936", null ],

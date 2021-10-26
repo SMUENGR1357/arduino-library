@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SMU KNW 2300 Arduino Library: KNWRobot Class Reference</title>
+<title>SMU ENGR 1357 Arduino Library: KNWRobot Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">SMU KNW 2300 Arduino Library
+   <div id="projectname">SMU ENGR 1357 Arduino Library
    </div>
-   <div id="projectbrief">Documentation for the Arduino Library used in the SMU KNW 2300 course.</div>
+   <div id="projectbrief">Documentation for the Arduino Library used in the SMU ENGR 1357 course.</div>
   </td>
  </tr>
  </tbody>
@@ -182,9 +182,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac33b91ee3c56c3035379499150c0a3df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#ac33b91ee3c56c3035379499150c0a3df">printLCD</a> (char input)</td></tr>
 <tr class="memdesc:ac33b91ee3c56c3035379499150c0a3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a single character onto the LCD at the current cursor position.  <a href="class_k_n_w_robot.html#ac33b91ee3c56c3035379499150c0a3df">More...</a><br /></td></tr>
 <tr class="separator:ac33b91ee3c56c3035379499150c0a3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdcbf844f178b7d97d8bd496c7d9dea6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6">setupServo</a> (int id, int pin, int zero=90)</td></tr>
-<tr class="memdesc:abdcbf844f178b7d97d8bd496c7d9dea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up and assigns a servo motor to run on the specified pin on the PCA board.  <a href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6">More...</a><br /></td></tr>
-<tr class="separator:abdcbf844f178b7d97d8bd496c7d9dea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43face84c808ebd0ef4c8c7230bc72d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9">setupServo</a> (int id, int pin, int zero=94)</td></tr>
+<tr class="memdesc:a43face84c808ebd0ef4c8c7230bc72d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up and assigns a servo motor to run on the specified pin on the PCA board.  <a href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9">More...</a><br /></td></tr>
+<tr class="separator:a43face84c808ebd0ef4c8c7230bc72d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5cb86404e2f39e96fce71e24a0d15ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca">setupMotor</a> (int id, int pin, int zero=90)</td></tr>
 <tr class="memdesc:ab5cb86404e2f39e96fce71e24a0d15ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up and assigns a DC motor to run on the specified pin on the PCA board.  <a href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca">More...</a><br /></td></tr>
 <tr class="separator:ab5cb86404e2f39e96fce71e24a0d15ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1053,11 +1053,11 @@ Analog Pin 3 </li>
 </div><div class="memdoc">
 
 <p>Moves a specified 180 degree servo to a specified angle. </p>
-<p>This moves a 180 degree servo with a given identifier to a given angle. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Once the servo moves to the given angle, it will stay at that angle. Your program will continue running as soon as the angle is applied. This behavior is different than the otherwise similar function <a class="el" href="class_k_n_w_robot.html#a0ef5545959defdfd33ec5296d931bc00" title="Moves a specified 180 degree servo to a specified angle for the specified amount of time.">pca180ServoTime()</a>. Refer to that function for specifics on how it operates.</p>
+<p>This moves a 180 degree servo with a given identifier to a given angle. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Once the servo moves to the given angle, it will stay at that angle. Your program will continue running as soon as the angle is applied. This behavior is different than the otherwise similar function <a class="el" href="class_k_n_w_robot.html#a0ef5545959defdfd33ec5296d931bc00" title="Moves a specified 180 degree servo to a specified angle for the specified amount of time.">pca180ServoTime()</a>. Refer to that function for specifics on how it operates.</p>
 <p>Note that this function is meant for use with 180 degree servos. For continuous rotation servos (360 degree servos), use the <a class="el" href="class_k_n_w_robot.html#af4ad97037ff87e997aa2764da4b4ce18" title="Moves a specified continuous rotation servo with a specified speed.">pcaContServo()</a> or <a class="el" href="class_k_n_w_robot.html#a0e53f71b815b641f93d7b5797d531f7d" title="Moves a specified continuous rotation servo to a specified speed for the specified amount of time.">pcaContServoTime()</a> functions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
+    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
     <tr><td class="paramname">angle</td><td>The angle between [0 - 180] to set the servo to.</td></tr>
   </table>
   </dd>
@@ -1111,11 +1111,11 @@ Analog Pin 3 </li>
 </div><div class="memdoc">
 
 <p>Moves a specified 180 degree servo to a specified angle for the specified amount of time. </p>
-<p>This moves a 180 degree servo with a given identifier to a given angle for a given amount of time. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Unlike the <a class="el" href="class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6" title="Moves a specified 180 degree servo to a specified angle.">pca180Servo()</a> function, which sets the angle and then immediately continues with your program, this function sets an angle and then waits for the time to pass. It will then reset the servo back to 0, at which point your program resumes.</p>
+<p>This moves a 180 degree servo with a given identifier to a given angle for a given amount of time. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Unlike the <a class="el" href="class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6" title="Moves a specified 180 degree servo to a specified angle.">pca180Servo()</a> function, which sets the angle and then immediately continues with your program, this function sets an angle and then waits for the time to pass. It will then reset the servo back to 0, at which point your program resumes.</p>
 <p>Note that this function is meant for use with 180 degree servos. For continuous rotation servos (360 degree servos), use the <a class="el" href="class_k_n_w_robot.html#af4ad97037ff87e997aa2764da4b4ce18" title="Moves a specified continuous rotation servo with a specified speed.">pcaContServo()</a> or <a class="el" href="class_k_n_w_robot.html#a0e53f71b815b641f93d7b5797d531f7d" title="Moves a specified continuous rotation servo to a specified speed for the specified amount of time.">pcaContServoTime()</a> functions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
+    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
     <tr><td class="paramname">angle</td><td>The angle between [0 - 180] to set the servo to. </td></tr>
     <tr><td class="paramname">duration</td><td>The duration <b><em>in milliseconds</em></b> to set the servo for.</td></tr>
   </table>
@@ -1157,12 +1157,12 @@ Analog Pin 3 </li>
 </div><div class="memdoc">
 
 <p>Moves a specified continuous rotation servo with a specified speed. </p>
-<p>This moves a continuous rotation servo with a given identifier with the given speed. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Once the servo moves with the given speed, it will move at that speed indefinitely. Your program will continue running as soon as the speed is applied. This behavior is different than the otherwise similar function <a class="el" href="class_k_n_w_robot.html#a0e53f71b815b641f93d7b5797d531f7d" title="Moves a specified continuous rotation servo to a specified speed for the specified amount of time.">pcaContServoTime()</a>. Refer to that function for specifics on how it operates.</p>
+<p>This moves a continuous rotation servo with a given identifier with the given speed. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Once the servo moves with the given speed, it will move at that speed indefinitely. Your program will continue running as soon as the speed is applied. This behavior is different than the otherwise similar function <a class="el" href="class_k_n_w_robot.html#a0e53f71b815b641f93d7b5797d531f7d" title="Moves a specified continuous rotation servo to a specified speed for the specified amount of time.">pcaContServoTime()</a>. Refer to that function for specifics on how it operates.</p>
 <p>Note that this function is meant for use with continuous rotation servos. For 180 degree servos, use the <a class="el" href="class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6" title="Moves a specified 180 degree servo to a specified angle.">pca180Servo()</a> or <a class="el" href="class_k_n_w_robot.html#a0ef5545959defdfd33ec5296d931bc00" title="Moves a specified 180 degree servo to a specified angle for the specified amount of time.">pca180ServoTime()</a> functions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
-    <tr><td class="paramname">angle</td><td>The speed between [-90 - 90] to set the servo to. A negative value moves the servo in one direction, while a positive value moves the servo in the other.</td></tr>
+    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
+    <tr><td class="paramname">speed</td><td>The speed between [-90 - 90] to set the servo to. A negative value moves the servo in one direction, while a positive value moves the servo in the other.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1210,11 +1210,11 @@ Analog Pin 3 </li>
 </div><div class="memdoc">
 
 <p>Moves a specified continuous rotation servo to a specified speed for the specified amount of time. </p>
-<p>This moves a continuous rotation servo with a given identifier with a given speed for a given amount of time. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Unlike the <a class="el" href="class_k_n_w_robot.html#af4ad97037ff87e997aa2764da4b4ce18" title="Moves a specified continuous rotation servo with a specified speed.">pcaContServo()</a> function, which sets the speed and then immediately continues with your program, this function sets a speed and then waits for the time to pass. It will then reset the servo back to 0, at which point your program resumes.</p>
+<p>This moves a continuous rotation servo with a given identifier with a given speed for a given amount of time. The identifier should match one that was supplied as the first argument to <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>. Unlike the <a class="el" href="class_k_n_w_robot.html#af4ad97037ff87e997aa2764da4b4ce18" title="Moves a specified continuous rotation servo with a specified speed.">pcaContServo()</a> function, which sets the speed and then immediately continues with your program, this function sets a speed and then waits for the time to pass. It will then reset the servo back to 0, at which point your program resumes.</p>
 <p>Note that this function is meant for use with continuous rotation servos. For 180 degree servos, use the <a class="el" href="class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6" title="Moves a specified 180 degree servo to a specified angle.">pca180Servo()</a> or <a class="el" href="class_k_n_w_robot.html#a0ef5545959defdfd33ec5296d931bc00" title="Moves a specified 180 degree servo to a specified angle for the specified amount of time.">pca180ServoTime()</a> functions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
+    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
     <tr><td class="paramname">speed</td><td>The speed between [-90 - 90] to set the servo to. </td></tr>
     <tr><td class="paramname">duration</td><td>The duration <b><em>in milliseconds</em></b> to set the servo for.</td></tr>
   </table>
@@ -1281,13 +1281,13 @@ Analog Pin 3 </li>
 <p>Example code:</p>
 <div class="fragment"><div class="line"><span class="comment">// Suppose you have already run setupMotor() and a setupPing() function</span></div>
 <div class="line"><span class="comment">// Run both motors at full speed</span></div>
-<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6">pcaDC2Motors</a>(motorId, 1023, motorId2, 1023);</div>
+<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6">pcaDC2Motors</a>(motorId, 45, motorId2, 45);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// While the motors run, read a ping sensor value</span></div>
 <div class="line"><span class="keywordtype">long</span> pingReading = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e">getPing</a>(pingId);</div>
 <div class="line"><span class="keywordflow">if</span> (pingReading &lt; 30) {</div>
 <div class="line">  <span class="comment">// Robot is less than 30 cm away from a wall, so stop the robot from moving</span></div>
-<div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6">pcaDC2Motors</a>(motorId, 0, motorId2, 0);</div>
+<div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6">pcaDC2Motors</a>(motorId, 90, motorId2, 90);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Alternatively, you can use pcaStopAll()</span></div>
 <div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a04b7aaed9340548ba0552ca08aca3d01">pcaStopAll</a>();</div>
@@ -1399,7 +1399,7 @@ Analog Pin 3 </li>
 <p>Example code:</p>
 <div class="fragment"><div class="line"><span class="comment">// Suppose you have already run setupMotor() and a setupPing() function</span></div>
 <div class="line"><span class="comment">// Run a motor at full speed</span></div>
-<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 1023);</div>
+<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 45);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// While the motor runs, read a ping sensor value</span></div>
 <div class="line"><span class="keywordtype">long</span> pingReading = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#afe191a97cfbccbcce9165173ae18567e">getPing</a>(pingId);</div>
@@ -1408,7 +1408,7 @@ Analog Pin 3 </li>
 <div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 0);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Alternatively, you can use pcaStop()</span></div>
-<div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a7658f304fa5590b6bdb2385ea1b45f00">pcaStop</a>(motorId);</div>
+<div class="line">  myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a7658f304fa5590b6bdb2385ea1b45f00">pcaStop</a>(motorId, <span class="charliteral">&#39;m&#39;</span>);</div>
 <div class="line">}</div>
 </div><!-- fragment --> 
 </div>
@@ -1457,8 +1457,8 @@ Analog Pin 3 </li>
 </dl>
 <p>Example code:</p>
 <div class="fragment"><div class="line"><span class="comment">// Suppose you have already run setupMotor()</span></div>
-<div class="line"><span class="comment">// Run a motor at full speed for 5 seconds</span></div>
-<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 1023, 5000);</div>
+<div class="line"><span class="comment">// Run a motor at moderate speed for 5 seconds</span></div>
+<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 45, 5000);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// The motor will run for five seconds. After five seconds, your program</span></div>
 <div class="line"><span class="comment">// resumes here</span></div>
@@ -1570,20 +1570,21 @@ Analog Pin 3 </li>
 </div><div class="memdoc">
 
 <p>Stops a motor or servo with the provided identifier. </p>
-<p>Assuming you setup a motor / servo using <a class="el" href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca" title="Sets up and assigns a DC motor to run on the specified pin on the PCA board.">setupMotor()</a> / <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>, this function stops the motor / servo that was assigned the identifier you provided. If the identifier has not been assigned, nothing happens.</p>
+<p>Assuming you setup a motor / servo using <a class="el" href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca" title="Sets up and assigns a DC motor to run on the specified pin on the PCA board.">setupMotor()</a> / <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a>, this function stops the motor / servo that was assigned the identifier you provided. If the identifier has not been assigned, nothing happens.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca" title="Sets up and assigns a DC motor to run on the specified pin on the PCA board.">setupMotor()</a> / <a class="el" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a></td></tr>
+    <tr><td class="paramname">id</td><td>The identifier that was passed as the first argument into <a class="el" href="class_k_n_w_robot.html#ab5cb86404e2f39e96fce71e24a0d15ca" title="Sets up and assigns a DC motor to run on the specified pin on the PCA board.">setupMotor()</a> / <a class="el" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9" title="Sets up and assigns a servo motor to run on the specified pin on the PCA board.">setupServo()</a> </td></tr>
+    <tr><td class="paramname">type</td><td>The type of device to stop. Use 'm' for motors and 's' for servos.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Example code:</p>
 <div class="fragment"><div class="line"><span class="comment">// Assuming you&#39;ve already run setupMotor()</span></div>
-<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 1023);</div>
+<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43883e6cf9bb018f86087b6fa4b9c32a">pcaDCMotor</a>(motorId, 45);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Robot does whatever it needs to do</span></div>
 <div class="line"> </div>
-<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a7658f304fa5590b6bdb2385ea1b45f00">pcaStop</a>(motorId);</div>
+<div class="line">myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a7658f304fa5590b6bdb2385ea1b45f00">pcaStop</a>(motorId, <span class="charliteral">&#39;m&#39;</span>);</div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1606,7 +1607,7 @@ Analog Pin 3 </li>
 <p>All pins on the PCA board have their PWM signals reset, thereby stopping all motors / servos.</p>
 <ul>
 <li><div class="fragment"><div class="line"><span class="comment">// Assuming you&#39;ve already run setupMotor()</span></div>
-<div class="line">myRobot-&gt;pca2DCMotor(motorId, 1023, motorId2, 1020);</div>
+<div class="line">myRobot-&gt;pca2DCMotor(motorId, 45, motorId2, 45);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Robot does whatever it needs to do</span></div>
 <div class="line"> </div>
@@ -2298,8 +2299,8 @@ false If the ping sensor was not assigned to the pin</dd></dl>
 
 </div>
 </div>
-<a id="abdcbf844f178b7d97d8bd496c7d9dea6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdcbf844f178b7d97d8bd496c7d9dea6">&#9670;&nbsp;</a></span>setupServo()</h2>
+<a id="a43face84c808ebd0ef4c8c7230bc72d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43face84c808ebd0ef4c8c7230bc72d9">&#9670;&nbsp;</a></span>setupServo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2320,7 +2321,7 @@ false If the ping sensor was not assigned to the pin</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>zero</em> = <code>90</code>&#160;</td>
+          <td class="paramname"><em>zero</em> = <code>94</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2342,6 +2343,7 @@ false If the ping sensor was not assigned to the pin</dd></dl>
   <table class="params">
     <tr><td class="paramname">id</td><td>A unique identifier that you specify. You will use this identifier when running the various pca servo functions, so it's recommended you assign it to a variable. It is also recommended you make it equal to the pin number it is assigned to. </td></tr>
     <tr><td class="paramname">pin</td><td>The pin on the PCA board that servo is connected to. </td></tr>
+    <tr><td class="paramname">zero</td><td>The "zero value" for a servo to use no power. Do not modify this if you do not know what you are doing. Default value is 94. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2351,7 +2353,7 @@ false If the servo was not assigned to the pin</dd></dl>
 <p>Example usage:</p>
 <div class="fragment"><div class="line"><span class="comment">// Assuming a servo is wired and connected to PCA board pin 2</span></div>
 <div class="line"><span class="keywordtype">int</span> servoId = 1;</div>
-<div class="line"><span class="keywordtype">bool</span> success = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6">setupServo</a>(servoId, 2);</div>
+<div class="line"><span class="keywordtype">bool</span> success = myRobot-&gt;<a class="code" href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9">setupServo</a>(servoId, 2);</div>
 <div class="line"><span class="keywordflow">if</span> (success) {</div>
 <div class="line">  <span class="comment">// Now ready to use the servo with servoId</span></div>
 <div class="line">}</div>
@@ -3288,9 +3290,9 @@ false If the temperature probe was not assigned to the pin</dd></dl>
 <div class="ttc" id="aclass_k_n_w_robot_html_a8a566c97d4b6712b70e1f75c9f1b460f"><div class="ttname"><a href="class_k_n_w_robot.html#a8a566c97d4b6712b70e1f75c9f1b460f">KNWRobot::getIR</a></div><div class="ttdeci">char * getIR()</div><div class="ttdoc">This provides the characters that were reading from the most recent call to scanIR().</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:909</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a01890a72e68ea56e7d1636d8a5d46dd6"><div class="ttname"><a href="class_k_n_w_robot.html#a01890a72e68ea56e7d1636d8a5d46dd6">KNWRobot::pcaDC2Motors</a></div><div class="ttdeci">void pcaDC2Motors(int id1, int speed1, int id2, int speed2)</div><div class="ttdoc">Moves two specified DC motors with two specified speeds.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:698</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a5f41c4fd52a7137645939340bdb2b6d6"><div class="ttname"><a href="class_k_n_w_robot.html#a5f41c4fd52a7137645939340bdb2b6d6">KNWRobot::pca180Servo</a></div><div class="ttdeci">void pca180Servo(int id, int angle)</div><div class="ttdoc">Moves a specified 180 degree servo to a specified angle.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:650</div></div>
-<div class="ttc" id="aclass_k_n_w_robot_html_abdcbf844f178b7d97d8bd496c7d9dea6"><div class="ttname"><a href="class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6">KNWRobot::setupServo</a></div><div class="ttdeci">bool setupServo(int id, int pin, int zero=90)</div><div class="ttdoc">Sets up and assigns a servo motor to run on the specified pin on the PCA board.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:585</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_acbd878cb6aa6348769b63a2bd41d305d"><div class="ttname"><a href="class_k_n_w_robot.html#acbd878cb6aa6348769b63a2bd41d305d">KNWRobot::getKeypadInput</a></div><div class="ttdeci">int getKeypadInput()</div><div class="ttdoc">Clears out the LCD, and gets input from the number pad.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:444</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a23d3413b58f2ae774251bdf778760a55"><div class="ttname"><a href="class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55">KNWRobot::setupTemp</a></div><div class="ttdeci">bool setupTemp(int pin)</div><div class="ttdoc">Sets up and assigns your temperature probe to run on the specified analog pin.</div></div>
+<div class="ttc" id="aclass_k_n_w_robot_html_a43face84c808ebd0ef4c8c7230bc72d9"><div class="ttname"><a href="class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9">KNWRobot::setupServo</a></div><div class="ttdeci">bool setupServo(int id, int pin, int zero=94)</div><div class="ttdoc">Sets up and assigns a servo motor to run on the specified pin on the PCA board.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:585</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a2f19ae94e6d68900c0c9ddd16b4bb326"><div class="ttname"><a href="class_k_n_w_robot.html#a2f19ae94e6d68900c0c9ddd16b4bb326">KNWRobot::scanIR</a></div><div class="ttdeci">int scanIR(int id)</div><div class="ttdoc">This uses the IR sensor with the given identifier to scan for beacons that may be nearby.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:782</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a1d8eaa7d3d286d00f8a48f5bb6049e14"><div class="ttname"><a href="class_k_n_w_robot.html#a1d8eaa7d3d286d00f8a48f5bb6049e14">KNWRobot::setupIR</a></div><div class="ttdeci">bool setupIR(int id, int pin)</div><div class="ttdoc">Sets up and assigns an IR navigation sensor to run on the specified digital pin.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:768</div></div>
 <div class="ttc" id="aclass_k_n_w_robot_html_a97d13b03aa286d2a8315a42807f2b6a6"><div class="ttname"><a href="class_k_n_w_robot.html#a97d13b03aa286d2a8315a42807f2b6a6">KNWRobot::getAnalogPins</a></div><div class="ttdeci">bool * getAnalogPins()</div><div class="ttdoc">Accessor function to get what analog pins are currently assigned.</div><div class="ttdef"><b>Definition:</b> KNWRobot.cpp:195</div></div>

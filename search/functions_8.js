@@ -13,6 +13,6 @@ var searchData=
   ['setupping_188',['setupPing',['../class_k_n_w_robot.html#a0f8bef5f8e46cc8cc6ca38af76148d24',1,'KNWRobot']]],
   ['setuppwm_189',['setupPWM',['../class_k_n_w_robot.html#a6bb1982dd5b262c9197b5b849c8f0daf',1,'KNWRobot']]],
   ['setupsensors_190',['setupSensors',['../class_k_n_w_robot.html#a10e15a7c5f721ddb60f7c90d94b47b38',1,'KNWRobot']]],
-  ['setupservo_191',['setupServo',['../class_k_n_w_robot.html#abdcbf844f178b7d97d8bd496c7d9dea6',1,'KNWRobot']]],
+  ['setupservo_191',['setupServo',['../class_k_n_w_robot.html#a43face84c808ebd0ef4c8c7230bc72d9',1,'KNWRobot']]],
   ['setuptemp_192',['setupTemp',['../class_k_n_w_robot.html#a23d3413b58f2ae774251bdf778760a55',1,'KNWRobot']]]
 ];
