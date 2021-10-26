@@ -732,6 +732,7 @@ public:
          * when running the various pca servo functions, so it's recommended you assign it to a variable.
          * It is also recommended you make it equal to the pin number it is assigned to.
          * @param pin The pin on the PCA board that servo is connected to.
+         * @param zero The "zero value" for a servo to use no power. Do not modify this if you do not know what you are doing. Default value is 94.
          * @return true If the servo was successfully assigned to the pin
          * @return false If the servo was not assigned to the pin
          *
@@ -746,7 +747,7 @@ public:
          * }
          * @endcode
          */
-     bool setupServo(int id, int pin, int zero = 90);
+     bool setupServo(int id, int pin, int zero = 94);
 
      /**
          * Sets up and assigns a DC motor to run on the specified pin on the PCA board.
